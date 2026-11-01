@@ -1,3 +1,4 @@
+import type { PlacementSummary } from './placed-cracker-state';
 import type * as THREE from 'three';
 import type { CrackerType } from '../../config/crackers';
 
@@ -8,8 +9,9 @@ export type WorldPoint = { id?: number; confidence: number; position: Point3 };
 export type Reality = { trackingStatus?: string; trackingReason?: string; position?: Point3; rotation?: Rotation; worldPoints?: WorldPoint[]; lighting?: { exposure?: number } };
 export type Hit = { type: string; position: Point3; rotation?: Rotation; distance?: number };
 export type Placement = { position: Point3; normal: Point3; source: 'engine-surface' | 'slam-point-cloud'; updatedAt: number; support: number };
-export type Snapshot = {
-  selectedCracker: CrackerType;
+export type ARFlow = 'scan' | 'choose' | 'place' | 'fuse';
+export type Snapshot = PlacementSummary & {
+  selectedCracker: CrackerType; canRecenter: boolean;
   state: ScanState; camera: string; trackingStatus: string; trackingReason: string;
   candidateValid: boolean; placementMode: string; error: string | null; errorKind: 'camera' | 'denied' | 'engine' | null; paused: boolean;
 };
@@ -35,6 +37,7 @@ export type XR8Engine = {
   XrController: {
     configure: (options: { disableWorldTracking: boolean; enableWorldPoints: boolean; scale: 'absolute' }) => void;
     pipelineModule: () => Pipeline;
+    recenter?: () => void;
     updateCameraProjectionMatrix: (options: { origin: THREE.Vector3; facing: THREE.Quaternion }) => void;
     hitTest: (x: number, y: number, types?: string[]) => Hit[];
   };

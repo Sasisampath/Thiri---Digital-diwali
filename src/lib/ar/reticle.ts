@@ -8,6 +8,7 @@ export class PlacementReticle {
   private mesh = new Mesh(this.geometry, this.material);
   private texture: Texture | null = null;
   private disposed = false;
+  private motion = window.matchMedia('(prefers-reduced-motion: reduce)');
   constructor(private scene: Scene, onError: () => void) {
     this.mesh.visible = false;
     this.mesh.renderOrder = 10;
@@ -19,7 +20,8 @@ export class PlacementReticle {
     }, undefined, () => { if (!this.disposed) onError(); });
   }
   isReady() { return Boolean(this.texture && !this.disposed); }
-  update(placement: Placement | null) {
+  update(placement: Placement | null, pulse = false, now = 0) {
+    this.material.opacity = pulse && !this.motion.matches ? 0.85 + Math.sin(now / 700) * 0.07 : 0.95;
     this.mesh.visible = Boolean(placement && this.texture);
     if (!placement) return;
     const normal = new Vector3(placement.normal.x, placement.normal.y, placement.normal.z).normalize();

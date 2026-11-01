@@ -3,7 +3,7 @@ async function fixture(browser, size = { width: 390, height: 844 }, options = {}
  const context = await browser.newContext({ viewport: size, isMobile: true, hasTouch: true, reducedMotion: 'reduce' });
  await context.addInitScript(({ incompatible, initFailure }) => {
   sessionStorage.setItem('thiri:splash-seen:v1', '1');
-  const t = window.testAR = { nativeCalls: 0, runCalls: 0, stops: 0, pauses: 0, resumes: 0, activeMax: 0, disposedRenderers: 0,
+  const t = window.testAR = { nativeCalls: 0, runCalls: 0, stops: 0, pauses: 0, resumes: 0, activeMax: 0, disposedRenderers: 0, recenters: 0,
    streams: [], history: [], nativeMode: 'grant', facing: 'environment', resolveNative: null, compatible: !incompatible,
    initFailure, hits: [], modules: [], scene: null, candidate: null, options: null };
   const makeStream = () => {
@@ -24,9 +24,9 @@ async function fixture(browser, size = { width: 390, height: 844 }, options = {}
    return makeStream();
   }}});
   const notify = event => t.modules.forEach(m => m.onCameraStatusChange?.(event));
-  t.emit = ({ status = 'NORMAL', reason = 'UNSPECIFIED', hits = [], points = [], x = 0, lookAt = [0, 0, -1.4] } = {}) => {
+  t.emit = ({ status = 'NORMAL', reason = 'UNSPECIFIED', hits = [], points = [], x = 0, cameraPosition = null, lookAt = [0, 0, -1.4] } = {}) => {
    t.hits = hits;
-   t.scene.camera.position.set(x, 1.5, 0); t.scene.camera.lookAt(...lookAt); t.scene.camera.updateMatrixWorld(true);
+   t.scene.camera.position.set(...(cameraPosition ?? [x, 1.5, 0])); t.scene.camera.lookAt(...lookAt); t.scene.camera.updateMatrixWorld(true);
    t.modules.forEach(m => m.onUpdate?.({ processCpuResult: { reality: { trackingStatus: status, trackingReason: reason, worldPoints: points } } }));
   };
   window.XR8 = {
@@ -41,7 +41,7 @@ async function fixture(browser, size = { width: 390, height: 844 }, options = {}
     }}), xrScene: () => t.scene,
    },
    XrController: { configure: config => { t.config = config; }, pipelineModule: () => ({ name: 'reality' }),
-    updateCameraProjectionMatrix: () => { t.scene.camera.updateProjectionMatrix(); }, hitTest: () => t.hits },
+    recenter: () => t.recenters++, updateCameraProjectionMatrix: () => { t.scene.camera.updateProjectionMatrix(); }, hitTest: () => t.hits },
    clearCameraPipelineModules: () => { t.modules = []; }, addCameraPipelineModules: modules => { t.modules.push(...modules); },
    run: options => {
     t.options = { direction: options.cameraConfig.direction, allowedDevices: options.allowedDevices }; t.runCalls++;

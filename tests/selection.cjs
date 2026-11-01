@@ -42,15 +42,15 @@ async function ready(page) {
    await page.evaluate(()=>testAR.emit({status:'LIMITED',reason:'INITIALIZING'}));
    await expect(page.getByText('Tracking is recovering. You can keep choosing.')).toBeVisible();await expect(page.getByRole('radio',{name:'Rocket',exact:true})).toBeChecked();
    await page.getByText('Ground Chakra',{exact:true}).click();await page.getByRole('button',{name:'Place Ground Chakra',exact:true}).click();
-   await expect(page).toHaveURL(/place-cracker$/);await expect(page.locator('.cracker-placement-boundary')).toHaveAttribute('data-selected-cracker','ground-chakra');
-   await expect(page.locator('.cracker-placement-boundary')).toHaveAttribute('data-placement-type','ground-flat');
-   await expect(page.getByText('Find a tracked spot before placing your cracker.')).toBeVisible();
-   await expect(page.getByRole('button',{name:/^Place /})).toHaveCount(0);
-   expect(await page.evaluate(()=>({native:testAR.nativeCalls,runs:testAR.runCalls,max:testAR.activeMax,sameCanvas:originalARCanvas===document.querySelector('canvas'),sameScene:originalARScene===testAR.scene,objects:testAR.scene.scene.children.length}))).toEqual({native:1,runs:1,max:1,sameCanvas:true,sameScene:true,objects:1});
+   await expect(page).toHaveURL(/place-cracker$/);await expect(page.locator('.cracker-placement-panel')).toHaveAttribute('data-selected-cracker','ground-chakra');
+   await expect(page.locator('.cracker-placement-panel')).toHaveAttribute('data-placement-type','ground-flat');
+   await expect(page.getByText('Move your phone slowly to find the ground again.')).toBeVisible();
+   await expect(page.getByRole('button',{name:'Place Cracker',exact:true})).toBeDisabled();
+   expect(await page.evaluate(()=>({native:testAR.nativeCalls,runs:testAR.runCalls,max:testAR.activeMax,sameCanvas:originalARCanvas===document.querySelector('canvas'),sameScene:originalARScene===testAR.scene,model:Boolean(testAR.scene.scene.getObjectByName('CrackerModel:ground-chakra'))}))).toEqual({native:1,runs:1,max:1,sameCanvas:true,sameScene:true,model:true});
    await page.getByRole('button',{name:'Back to cracker selection',exact:true}).click();await expect(page).toHaveURL(/choose-cracker$/);
    await expect(page.getByRole('radio',{name:'Ground Chakra',exact:true})).toBeChecked();
    await page.getByText('Rocket',{exact:true}).click();await page.getByRole('button',{name:'Place Rocket',exact:true}).click();
-   await expect(page.locator('.cracker-placement-boundary')).toHaveAttribute('data-selected-cracker','rocket');await expect(page.locator('.cracker-placement-boundary')).toHaveAttribute('data-placement-type','ground-upright');
+   await expect(page.locator('.cracker-placement-panel')).toHaveAttribute('data-selected-cracker','rocket');await expect(page.locator('.cracker-placement-panel')).toHaveAttribute('data-placement-type','ground-upright');
    await page.goBack();await expect(page).toHaveURL(/choose-cracker$/);await expect(page.getByRole('radio',{name:'Rocket',exact:true})).toBeChecked();
    await page.getByRole('button',{name:'Back to Scan the Ground',exact:true}).click();await expect(page).toHaveURL(/\/camera$/);
    expect(await page.evaluate(()=>[testAR.nativeCalls,testAR.runCalls])).toEqual([1,1]);
@@ -63,7 +63,7 @@ async function ready(page) {
    await page.goto(new URL('camera-permission',url).href);await page.getByRole('button',{name:'Enable Camera'}).click();await expect(page.locator('.ar-scan')).toHaveAttribute('data-ar-state','SCANNING');await ready(page);await page.getByRole('button',{name:'Choose a Cracker'}).click();
    await page.getByRole('radio',{name:'Flower Pot',exact:true}).focus();await page.keyboard.press('ArrowRight');await expect(page.getByRole('radio',{name:'Ground Chakra',exact:true})).toBeChecked();
    await page.emulateMedia({reducedMotion:'no-preference'});await page.getByRole('button',{name:'Place Ground Chakra',exact:true}).click();await expect(page).toHaveURL(/place-cracker$/);
-   await page.getByRole('button',{name:'Change cracker',exact:true}).click();await expect(page.getByRole('radio',{name:'Ground Chakra',exact:true})).toBeChecked();
+   await page.getByRole('button',{name:'Back to cracker selection',exact:true}).click();await expect(page.getByRole('radio',{name:'Ground Chakra',exact:true})).toBeChecked();
    await page.emulateMedia({reducedMotion:'reduce'});expect(await page.locator('.cracker-selection-sheet').evaluate(e=>getComputedStyle(e).animationName)).toBe('none');
    await context.close();results.push({engine:name,result:'pass',test:'native radio keyboard navigation, animated exit, reduced motion, return from placement'});
   }

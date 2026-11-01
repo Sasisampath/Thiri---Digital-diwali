@@ -5,12 +5,13 @@ import CameraPermissionScreen from './components/CameraPermissionScreen';
 import { useCamera } from './hooks/useCamera';
 
 const ScanGroundScreen = lazy(() => import('./components/ar/ScanGroundScreen'));
-type Route = 'welcome' | 'permission' | 'camera' | 'choose' | 'place';
+type Route = 'welcome' | 'permission' | 'camera' | 'choose' | 'place' | 'fuse';
 const base = import.meta.env.BASE_URL;
-const paths: Record<Route, string> = { welcome: base, permission: `${base}camera-permission`, camera: `${base}camera`, choose: `${base}choose-cracker`, place: `${base}place-cracker` };
-const isAR = (route: Route) => route === 'camera' || route === 'choose' || route === 'place';
+const paths: Record<Route, string> = { welcome: base, permission: `${base}camera-permission`, camera: `${base}camera`, choose: `${base}choose-cracker`, place: `${base}place-cracker`, fuse: `${base}light-fuse` };
+const isAR = (route: Route) => route === 'camera' || route === 'choose' || route === 'place' || route === 'fuse';
 function currentRoute(): Route {
   if (location.pathname === paths.camera || location.pathname === `${base}scan-ground`) return 'camera';
+  if (location.pathname === paths.fuse) return 'fuse';
   if (location.pathname === paths.place) return 'place';
   if (location.pathname === paths.choose) return 'choose';
   if (location.pathname === paths.permission) return 'permission';
@@ -71,13 +72,14 @@ export default function App() {
   };
   const backToScan = () => {
     const depth = history.state?.thiriScanDistance;
-    if (Number.isInteger(depth) && depth > 0 && depth <= 2) history.go(-depth);
+    if (Number.isInteger(depth) && depth > 0 && depth <= 3) history.go(-depth);
     else navigate('camera', true);
   };
   const backToChoose = () => {
     if (history.state?.thiriFrom === 'choose') history.back();
     else navigate('choose', true);
   };
+  const backToPlacement = () => { if (history.state?.thiriFrom === 'place') history.back(); else navigate('place', true); };
   const closeAR = () => navigate('welcome');
   const permissionHelp = () => {
     setError('Enable camera access in your browser settings to experience Thiri in your surroundings.', 'denied');
@@ -87,7 +89,7 @@ export default function App() {
   return <SplashGate>
     {route === 'welcome' ? <WelcomeScreen onGetStarted={() => { setError(null); navigate('permission'); }} />
       : isAR(route) && arConsent ? <Suspense fallback={<main className="ar-loading"><p>Getting your camera ready…</p><button type="button" onClick={closeAR}>Back to Welcome</button></main>}>
-        <ScanGroundScreen mode={route === 'place' ? 'place' : route === 'choose' ? 'choose' : 'scan'} releasePermissionCamera={stop} onClose={closeAR} onChoose={() => navigate('choose')} onPlace={() => navigate('place')} onBackToChoose={backToChoose} onBackToScan={backToScan} onPermissionHelp={permissionHelp} />
+        <ScanGroundScreen mode={route === 'fuse' ? 'fuse' : route === 'place' ? 'place' : route === 'choose' ? 'choose' : 'scan'} releasePermissionCamera={stop} onClose={closeAR} onChoose={() => navigate('choose')} onPlace={() => navigate('place')} onLightFuse={() => navigate('fuse')} onBackToPlacement={backToPlacement} onBackToChoose={backToChoose} onBackToScan={backToScan} onPermissionHelp={permissionHelp} />
       </Suspense>
       : <CameraPermissionScreen onBack={() => { setError(null); navigate('welcome'); }} onEnable={enableCamera} requesting={requesting} error={error} errorKind={errorKind} />}
   </SplashGate>;

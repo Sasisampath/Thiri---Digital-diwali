@@ -1,0 +1,13 @@
+.cracker-placement-panel { position: absolute; bottom: max(14px, env(safe-area-inset-bottom)); left: max(20px, env(safe-area-inset-left)); right: max(20px, env(safe-area-inset-right)); width: min(calc(100% - 40px), 390px); margin: 0 auto; padding: 20px; border-radius: 24px; background: rgb(24 18 34 / 90%); color: #fff; text-align: center; }
+.placement-copy h1, .fuse-step-boundary h1 { margin: 6px 0 12px; font-size: clamp(21px, 6vw, 25px); line-height: 1.15; letter-spacing: -.035em; outline: none; }
+.placement-copy p, .fuse-step-boundary > p { margin: 0 0 16px; color: #e2d8ec; font-size: 13px; line-height: 1.5; }
+.cracker-placement-panel .placement-cracker-name { margin: 0 0 8px; color: #c6b8e1; font-size: 10px; font-weight: 600; letter-spacing: .05em; }
+.placement-copy small { display: block; margin: -4px 0 14px; color: #d1c4e1; font-size: 11px; }
+.placement-secondary-actions { display: flex; justify-content: center; gap: 8px; }
+.placement-secondary-actions:empty { display: none; }
+.placement-secondary-actions .ar-secondary-button { margin-top: 8px; min-height: 44px; padding: 10px; }
+.placement-recovery-note { display: block; font-size: 10px; color: #c6b8e1; line-height: 1.5; }
+.ar-position-title { justify-self: center; margin: 0; padding: 10px 12px; border-radius: 22px; background: rgb(24 18 34 / 84%); text-align: center; color: #fff; font-size: 12px; font-weight: 650; line-height: 1.4; }
+.ar-circle-button:disabled { opacity: .5; cursor: default; }
+@media (max-height: 660px) { .cracker-placement-panel { bottom: max(10px, env(safe-area-inset-bottom)); padding: 15px; }.placement-copy h1, .fuse-step-boundary h1 { font-size: 21px; margin-bottom: 10px; }.placement-copy p { font-size: 12px; margin-bottom: 13px; }.cracker-placement-panel .thiri-primary-button { min-height: 50px; padding: 13px; } }
+@media (orientation: landscape) and (max-height: 520px) { .cracker-placement-panel { left: auto; width: 45%; right: max(16px, env(safe-area-inset-right)); max-height: calc(100% - 110px); overflow-y: auto; touch-action: pan-y; }.placement-copy h1 { font-size: 19px; } }

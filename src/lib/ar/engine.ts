@@ -2,9 +2,10 @@ import * as THREE from 'three';
 import { getCracker } from '../../config/crackers';
 import type { CrackerType } from '../../config/crackers';
 import { aim, GroundPlacement } from './placement';
+import { PlacementController } from './placement-controller';
 import { PlacementReticle } from './reticle';
 import { initialSnapshot, trackingState } from './tracking';
-import type { CameraUpdate, Placement, Reality, Snapshot, XR8Engine, XrScene } from './types';
+import type { ARFlow, CameraUpdate, Placement, Reality, Snapshot, XR8Engine, XrScene } from './types';
 
 export const ENGINE_VERSION = '1.0.0';
 let runtime: Promise<XR8Engine> | null = null;
@@ -41,6 +42,8 @@ export class GroundARSession {
   private scene: XrScene | null = null;
   private reticle: PlacementReticle | null = null;
   private estimator = new GroundPlacement();
+  private crackerPlacement: PlacementController | null = null;
+  private flow: ARFlow = 'scan';
   private candidate: Placement | null = null;
   private saved: Placement | null = null;
   private hadTracking = false;
@@ -51,7 +54,7 @@ export class GroundARSession {
   private streams = new Set<MediaStream>();
   private trackListeners = new Map<MediaStreamTrack, () => void>();
 
-  constructor(private canvas: HTMLCanvasElement) {}
+  constructor(private canvas: HTMLCanvasElement, selectedCracker: CrackerType = initialSnapshot.selectedCracker) { this.snapshot = { ...initialSnapshot, selectedCracker }; }
   subscribe = (listener: () => void) => { this.listeners.add(listener); return () => { this.listeners.delete(listener); }; };
   getSnapshot = () => this.snapshot;
   private publish(patch: Partial<Snapshot>) {
@@ -61,7 +64,25 @@ export class GroundARSession {
     this.listeners.forEach(listener => listener());
   }
   private live() { return !this.disposed && !this.stopping && owner === this; }
-  private clearPlacement() { this.candidate = null; this.saved = null; this.estimator.reset(); this.reticle?.update(null); }
+  private clearPlacement() {
+    this.candidate = null; this.saved = null; this.estimator.reset(); this.reticle?.update(null);
+    this.crackerPlacement?.trackingLost(); this.syncCracker();
+  }
+  private syncCracker() { if (this.crackerPlacement) this.publish(this.crackerPlacement.getSummary()); }
+  private prepareCracker() {
+    if (!this.scene || !['place', 'fuse'].includes(this.flow)) { this.crackerPlacement?.leave(); return; }
+    try {
+      this.crackerPlacement ??= new PlacementController(this.scene.scene);
+      this.crackerPlacement.enter(this.snapshot.selectedCracker, this.flow as 'place' | 'fuse'); this.syncCracker();
+    } catch { this.fail('The 3D preview could not start on this device. Try choosing a cracker again.', 'engine'); }
+  }
+  setFlow(flow: ARFlow) {
+    if (flow === this.flow) return;
+    this.flow = flow;
+    if (flow === 'place') this.saved = null;
+    if (flow === 'scan') this.returnToScan();
+    this.prepareCracker();
+  }
   private resize = () => {
     const bounds = this.canvas.getBoundingClientRect();
     const scale = Math.min(window.devicePixelRatio || 1, 1.5);
@@ -109,6 +130,7 @@ export class GroundARSession {
       await this.xr.loadChunk('slam');
       if (!this.live()) return;
       if (document.visibilityState === 'hidden') { this.fail('Return to Thiri and tap Retry to start your camera.', 'camera'); return; }
+      this.publish({ canRecenter: typeof this.xr.XrController.recenter === 'function' });
       this.xr.clearCameraPipelineModules();
       this.xr.XrController.configure({ disableWorldTracking: false, enableWorldPoints: true, scale: 'absolute' });
       this.xr.addCameraPipelineModules([
@@ -166,6 +188,7 @@ export class GroundARSession {
     this.xr.XrController.updateCameraProjectionMatrix({ origin: this.scene.camera.position, facing: this.scene.camera.quaternion });
     this.reticle = new PlacementReticle(this.scene.scene, () => this.fail('The placement indicator could not load. Check your connection and tap Retry.', 'engine'));
     this.lastFrame = performance.now();
+    this.prepareCracker();
     this.publish({ state: 'SCANNING' });
   }
   private onFrame(reality?: Reality) {
@@ -185,7 +208,11 @@ export class GroundARSession {
     }
     const visible = this.saved ?? this.candidate;
     const valid = Boolean(visible && (this.saved || now - visible.updatedAt < 350) && this.snapshot.camera === 'hasVideo' && this.reticle?.isReady());
-    this.reticle?.update(valid ? visible : null);
+    this.crackerPlacement?.update(this.scene.camera, this.candidate, this.snapshot.camera === 'hasVideo', now);
+    const inPlacement = this.flow === 'place' || this.flow === 'fuse';
+    const indicator = inPlacement ? this.crackerPlacement?.getReticle() ?? null : valid ? visible : null;
+    this.reticle?.update(indicator, inPlacement, now);
+    this.syncCracker();
     this.publish({ state: trackingState(status, valid, this.hadTracking), trackingStatus: status, trackingReason: reason, candidateValid: valid, placementMode: valid ? visible!.source : 'none' });
   }
   confirmPlacement(): Placement | null {
@@ -196,12 +223,33 @@ export class GroundARSession {
     return structuredClone(this.saved);
   }
   selectCracker(id: CrackerType) {
-    if (this.live() && getCracker(id)) this.publish({ selectedCracker: id });
+    if (this.live() && getCracker(id)) { this.publish({ selectedCracker: id }); this.crackerPlacement?.selectionChanged(id); this.syncCracker(); }
   }
-  /** Screen 06 must call this guard at the final placement action, never on selection. */
+  /** Measured scan context, distinct from the final model-placement commit below. */
   getPlacementContext() {
     const placement = this.confirmPlacement();
     return placement ? { cracker: getCracker(this.snapshot.selectedCracker), placement } : null;
+  }
+  private freshTracking() { return this.live() && this.snapshot.trackingStatus === 'NORMAL' && this.snapshot.trackingReason !== 'INITIALIZING' && !this.snapshot.paused && this.snapshot.camera === 'hasVideo' && performance.now() - this.lastFrame <= 350; }
+  placeCracker() {
+    if (!this.freshTracking()) { this.crackerPlacement?.trackingLost(); this.syncCracker(); return null; }
+    const placed = this.crackerPlacement?.confirm(performance.now()) ?? null;
+    if (placed) this.reticle?.update(null);
+    this.syncCracker(); return placed;
+  }
+  getPlacedCracker() { return this.crackerPlacement?.getPlaced() ?? null; }
+  beginFuseStep() {
+    if (!this.freshTracking() || !this.crackerPlacement?.canContinue(performance.now())) { this.crackerPlacement?.trackingLost(); this.syncCracker(); return null; }
+    return this.crackerPlacement.getPlaced();
+  }
+  repositionCracker() { this.saved = null; this.crackerPlacement?.reposition(); this.reticle?.update(null); this.syncCracker(); }
+  rescanCracker() { this.crackerPlacement?.reposition(); this.clearPlacement(); this.publish({ state: 'SCANNING', candidateValid: false, placementMode: 'none' }); }
+  recenterCracker() {
+    if (!this.live()) return;
+    this.repositionCracker(); this.clearPlacement();
+    try { this.xr?.XrController.recenter?.(); }
+    catch { this.crackerPlacement?.setError('The view could not reset. Try rescanning the ground.'); this.syncCracker(); }
+    this.publish({ state: 'SCANNING', candidateValid: false, placementMode: 'none' });
   }
   returnToScan() { this.saved = null; }
   private unsupported(message: string) { this.publish({ state: 'UNSUPPORTED', error: message, errorKind: 'engine', candidateValid: false }); this.release(); }
@@ -222,6 +270,7 @@ export class GroundARSession {
       owner = null;
     }
     this.streams.forEach(stream => stream.getTracks().forEach(track => track.stop())); this.streams.clear();
+    this.crackerPlacement?.dispose(); this.crackerPlacement = null;
     this.reticle?.dispose(); this.reticle = null;
     this.scene?.renderer.dispose(); this.scene = null;
     this.candidate = null; this.saved = null; this.estimator.reset();

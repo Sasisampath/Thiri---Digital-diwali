@@ -1,0 +1,95 @@
+{
+  "note": "Real procedural Three.js scene/geometry/transforms are tested using synthetic SDK camera/pose data. Not physical-device anchor verification.",
+  "results": [
+    {
+      "engine": "Chromium",
+      "width": 320,
+      "height": 568,
+      "result": "pass",
+      "test": "procedural cone/fuse/base bounds, preview alpha, real candidate, frozen world position/rotation, lost/recovered tracking retention, fuse boundary, reposition/recenter, one AR session, full disposal"
+    },
+    {
+      "engine": "Chromium",
+      "width": 375,
+      "height": 812,
+      "result": "pass",
+      "test": "procedural cone/fuse/base bounds, preview alpha, real candidate, frozen world position/rotation, lost/recovered tracking retention, fuse boundary, reposition/recenter, one AR session, full disposal"
+    },
+    {
+      "engine": "Chromium",
+      "width": 390,
+      "height": 844,
+      "result": "pass",
+      "test": "procedural cone/fuse/base bounds, preview alpha, real candidate, frozen world position/rotation, lost/recovered tracking retention, fuse boundary, reposition/recenter, one AR session, full disposal"
+    },
+    {
+      "engine": "Chromium",
+      "width": 428,
+      "height": 926,
+      "result": "pass",
+      "test": "procedural cone/fuse/base bounds, preview alpha, real candidate, frozen world position/rotation, lost/recovered tracking retention, fuse boundary, reposition/recenter, one AR session, full disposal"
+    },
+    {
+      "engine": "Chromium",
+      "id": "ground-chakra",
+      "result": "pass",
+      "test": "correct volumetric untextured model/fuse, horizontal chakra or tall supported rocket, placement, rescan without camera restart"
+    },
+    {
+      "engine": "Chromium",
+      "id": "rocket",
+      "result": "pass",
+      "test": "correct volumetric untextured model/fuse, horizontal chakra or tall supported rocket, placement, rescan without camera restart"
+    },
+    {
+      "engine": "Chromium",
+      "result": "pass",
+      "test": "NORMAL without support cannot place, sudden pose invalidates preview, stale confirmation rejected, background/resume retains saved world transform without restarting camera"
+    },
+    {
+      "engine": "WebKit",
+      "width": 320,
+      "height": 568,
+      "result": "pass",
+      "test": "procedural cone/fuse/base bounds, preview alpha, real candidate, frozen world position/rotation, lost/recovered tracking retention, fuse boundary, reposition/recenter, one AR session, full disposal"
+    },
+    {
+      "engine": "WebKit",
+      "width": 375,
+      "height": 812,
+      "result": "pass",
+      "test": "procedural cone/fuse/base bounds, preview alpha, real candidate, frozen world position/rotation, lost/recovered tracking retention, fuse boundary, reposition/recenter, one AR session, full disposal"
+    },
+    {
+      "engine": "WebKit",
+      "width": 390,
+      "height": 844,
+      "result": "pass",
+      "test": "procedural cone/fuse/base bounds, preview alpha, real candidate, frozen world position/rotation, lost/recovered tracking retention, fuse boundary, reposition/recenter, one AR session, full disposal"
+    },
+    {
+      "engine": "WebKit",
+      "width": 428,
+      "height": 926,
+      "result": "pass",
+      "test": "procedural cone/fuse/base bounds, preview alpha, real candidate, frozen world position/rotation, lost/recovered tracking retention, fuse boundary, reposition/recenter, one AR session, full disposal"
+    },
+    {
+      "engine": "WebKit",
+      "id": "ground-chakra",
+      "result": "pass",
+      "test": "correct volumetric untextured model/fuse, horizontal chakra or tall supported rocket, placement, rescan without camera restart"
+    },
+    {
+      "engine": "WebKit",
+      "id": "rocket",
+      "result": "pass",
+      "test": "correct volumetric untextured model/fuse, horizontal chakra or tall supported rocket, placement, rescan without camera restart"
+    },
+    {
+      "engine": "WebKit",
+      "result": "pass",
+      "test": "NORMAL without support cannot place, sudden pose invalidates preview, stale confirmation rejected, background/resume retains saved world transform without restarting camera"
+    }
+  ]
+}

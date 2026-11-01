@@ -1,8 +1,8 @@
 # Thiri
 
-Mobile-first Vite + React + TypeScript application with the approved Splash, Welcome and Camera Permission screens, Screen 04: Scan the Ground, and Screen 05: Choose Your Cracker.
+Mobile-first Vite + React + TypeScript application with the approved Splash, Welcome and Camera Permission screens, Screen 04: Scan the Ground, Screen 05: Choose Your Cracker, and Screen 06: Place Your Cracker.
 
-Flow: **Splash → Welcome → Camera Explanation → Enable Camera → Scan the Ground → Choose Your Cracker → Screen 06 placement boundary.**
+Flow: **Splash → Welcome → Camera Explanation → Enable Camera → Scan the Ground → Choose Your Cracker → Place Your Cracker → Screen 07 integration boundary.**
 
 ## Run
 
@@ -22,15 +22,21 @@ The project is in this directory; run the commands alongside `package.json`. Vit
 - The permission preflight stream stops synchronously before XR8 opens its rear camera. XR8 exclusively owns the AR camera and render loop afterward.
 - No elapsed timer, camera-open event, NORMAL status alone or isolated feature-point hit can mark placement READY.
 - The reticle uses the supplied SVG as a real Three.js ground-plane texture. The compact guide uses the supplied transparent illustration and fades after usable tracking.
-- Choosing a cracker opens the functional selection sheet while retaining the same AR component, canvas, SDK camera and world context. The selected cracker carries into the clearly labeled Screen 06 placement boundary.
+- Choosing a cracker opens the functional selection sheet while retaining the same AR component, canvas, SDK camera and world context. The selected cracker carries into the clearly labeled Place Your Cracker → Screen 07 integration boundary.
 - Tracking loss invalidates placement. Backgrounding pauses the SDK; resuming requires fresh tracking evidence. Closing, exiting AR, pagehide and failures stop/release resources.
-- Unsupported devices show an explanation rather than simulated AR. No cracker models, fuse effects or fireworks have been implemented.
+- Unsupported devices show an explanation rather than simulated AR. Procedural cracker models are implemented; fuse effects and fireworks remain future work.
 
 See [Screen 04 engineering and device test guide](docs/SCAN_GROUND.md) for files, placement evidence, lifecycle details, limitations and the acceptance checklist.
 
 ## Screen 05 — cracker selection
 
-Three transparent-artwork radio cards, Flower Pot default, dynamic Place CTA, shared AR-session selection state, tracking-loss-safe interaction and camera-preserving navigation are implemented. The Screen 06 boundary carries the selected ID/placement type but does not simulate world placement. [Files, assets, state, navigation and remaining work](docs/CRACKER_SELECTION.md).
+Three transparent-artwork radio cards, Flower Pot default, dynamic Place CTA, shared AR-session selection state, tracking-loss-safe interaction and camera-preserving navigation are implemented. Screen 06 uses the selected ID/placement type to prepare the corresponding procedural model. [Files, assets, state, navigation and remaining work](docs/CRACKER_SELECTION.md).
+
+## Screen 06 — world placement
+
+Real procedural cone, horizontal chakra and supported rocket models share the existing SDK scene, tracked camera and render loop. A guarded screen-target ray intersects fresh measured horizontal ground support. Preview follows that candidate until confirmation freezes the displayed world position, quaternion and scale. Tracking loss hides the saved model while retaining its transform for recovery. Reposition, rescan and optional SDK recenter preserve the camera session; recenter explicitly clears placement because it changes the tracking origin. Screen 07 receives the actual model and named `FusePoint`, with no ignition.
+
+See [placement implementation and Vercel device checks](docs/CRACKER_PLACEMENT.md).
 
 ## Assets
 
@@ -60,6 +66,7 @@ npm run test:e2e
 npm run test:camera
 npm run test:ar
 npm run test:selection
+npm run test:placement
 npm run test:runtime
 ```
 
