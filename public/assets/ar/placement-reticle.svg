@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="360" viewBox="0 0 720 360">
+<defs>
+ <filter id="soft-glow" x="-30%" y="-80%" width="160%" height="260%"><feGaussianBlur stdDeviation="9"/></filter>
+</defs>
+<!-- An AR ground surface reticle. Transparent background throughout. -->
+<ellipse cx="360" cy="180" rx="278" ry="120" fill="#7559E8" fill-opacity="0.12" filter="url(#soft-glow)"/>
+<ellipse cx="360" cy="180" rx="264" ry="112" fill="#7559E8" fill-opacity="0.08" stroke="#FFFFFF" stroke-opacity="0.68" stroke-width="13" stroke-dasharray="37 22"/>
+<ellipse cx="360" cy="180" rx="264" ry="112" fill="none" stroke="#7559E8" stroke-width="7" stroke-dasharray="37 22"/>
+<ellipse cx="360" cy="180" rx="160" ry="65" fill="none" stroke="#FFFFFF" stroke-opacity="0.85" stroke-width="8"/>
+<ellipse cx="360" cy="180" rx="160" ry="65" fill="none" stroke="#9776EC" stroke-width="4"/>
+<g stroke="#FFFFFF" stroke-width="18" stroke-linecap="round"><path d="M320 180H400"/><path d="M360 140V220"/></g>
+<g stroke="#7559E8" stroke-width="11" stroke-linecap="round"><path d="M320 180H400"/><path d="M360 140V220"/></g>
+</svg>

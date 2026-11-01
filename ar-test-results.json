@@ -1,0 +1,91 @@
+{
+  "note": "SDK callbacks, camera and poses are test fixtures. Real Three.js placement/reticle code is exercised. This does NOT certify physical SLAM.",
+  "results": [
+    {
+      "engine": "Chromium",
+      "width": 320,
+      "height": 568,
+      "test": "layout, consent handoff, no timer/normal/feature-only false READY, world-space surface reticle, aim update, session-preserving next step/back, tracking loss, sound, release",
+      "result": "pass"
+    },
+    {
+      "engine": "Chromium",
+      "width": 375,
+      "height": 812,
+      "test": "layout, consent handoff, no timer/normal/feature-only false READY, world-space surface reticle, aim update, session-preserving next step/back, tracking loss, sound, release",
+      "result": "pass"
+    },
+    {
+      "engine": "Chromium",
+      "width": 390,
+      "height": 844,
+      "test": "layout, consent handoff, no timer/normal/feature-only false READY, world-space surface reticle, aim update, session-preserving next step/back, tracking loss, sound, release",
+      "result": "pass"
+    },
+    {
+      "engine": "Chromium",
+      "width": 428,
+      "height": 926,
+      "test": "layout, consent handoff, no timer/normal/feature-only false READY, world-space surface reticle, aim update, session-preserving next step/back, tracking loss, sound, release",
+      "result": "pass"
+    },
+    {
+      "engine": "Chromium",
+      "test": "SLAM point-cloud horizontal support, wall rejection, stale-frame invalidation, pause/resume, WebGL-loss cleanup",
+      "result": "pass"
+    },
+    {
+      "engine": "Chromium",
+      "test": "unsupported devices never show fake AR or placement",
+      "result": "pass"
+    },
+    {
+      "engine": "Chromium",
+      "test": "engine initialization failure/retry and native-error permission guidance",
+      "result": "pass"
+    },
+    {
+      "engine": "WebKit",
+      "width": 320,
+      "height": 568,
+      "test": "layout, consent handoff, no timer/normal/feature-only false READY, world-space surface reticle, aim update, session-preserving next step/back, tracking loss, sound, release",
+      "result": "pass"
+    },
+    {
+      "engine": "WebKit",
+      "width": 375,
+      "height": 812,
+      "test": "layout, consent handoff, no timer/normal/feature-only false READY, world-space surface reticle, aim update, session-preserving next step/back, tracking loss, sound, release",
+      "result": "pass"
+    },
+    {
+      "engine": "WebKit",
+      "width": 390,
+      "height": 844,
+      "test": "layout, consent handoff, no timer/normal/feature-only false READY, world-space surface reticle, aim update, session-preserving next step/back, tracking loss, sound, release",
+      "result": "pass"
+    },
+    {
+      "engine": "WebKit",
+      "width": 428,
+      "height": 926,
+      "test": "layout, consent handoff, no timer/normal/feature-only false READY, world-space surface reticle, aim update, session-preserving next step/back, tracking loss, sound, release",
+      "result": "pass"
+    },
+    {
+      "engine": "WebKit",
+      "test": "SLAM point-cloud horizontal support, wall rejection, stale-frame invalidation, pause/resume, WebGL-loss cleanup",
+      "result": "pass"
+    },
+    {
+      "engine": "WebKit",
+      "test": "unsupported devices never show fake AR or placement",
+      "result": "pass"
+    },
+    {
+      "engine": "WebKit",
+      "test": "engine initialization failure/retry and native-error permission guidance",
+      "result": "pass"
+    }
+  ]
+}

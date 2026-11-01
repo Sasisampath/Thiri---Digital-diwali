@@ -1,0 +1,12 @@
+import { cp, mkdir, readFile, writeFile } from 'node:fs/promises';
+import { fileURLToPath } from 'node:url';
+import path from 'node:path';
+const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+const source = path.join(root, 'node_modules/@8thwall/engine-binary');
+const pkg = JSON.parse(await readFile(path.join(source, 'package.json'), 'utf8'));
+if (pkg.version !== '1.0.0') throw new Error('Review the AR integration before changing engine-binary 1.0.0.');
+await mkdir(path.join(root, 'public/vendor/8thwall'), { recursive: true });
+await cp(path.join(source, 'dist'), path.join(root, 'public/vendor/8thwall'), { recursive: true });
+await cp(path.join(source, 'LICENSE'), path.join(root, 'public/licenses/8thwall-engine-LICENSE.txt'));
+await writeFile(path.join(root, 'public/vendor/8thwall/version.json'), JSON.stringify({ package: pkg.name, version: pkg.version }));
+console.log(`Prepared the complete, unmodified ${pkg.name}@${pkg.version} runtime.`);

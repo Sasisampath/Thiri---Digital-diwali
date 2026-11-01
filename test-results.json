@@ -1,0 +1,70 @@
+[
+  {
+    "engine": "Chromium",
+    "width": 320,
+    "height": 568,
+    "result": "pass: splash lifecycle, Welcome sizing/CTA touch target, camera explanation navigation without reload, back navigation, no camera, replay prevention, no runtime errors"
+  },
+  {
+    "engine": "Chromium",
+    "width": 375,
+    "height": 812,
+    "result": "pass: splash lifecycle, Welcome sizing/CTA touch target, camera explanation navigation without reload, back navigation, no camera, replay prevention, no runtime errors"
+  },
+  {
+    "engine": "Chromium",
+    "width": 390,
+    "height": 844,
+    "result": "pass: splash lifecycle, Welcome sizing/CTA touch target, camera explanation navigation without reload, back navigation, no camera, replay prevention, no runtime errors"
+  },
+  {
+    "engine": "Chromium",
+    "width": 428,
+    "height": 926,
+    "result": "pass: splash lifecycle, Welcome sizing/CTA touch target, camera explanation navigation without reload, back navigation, no camera, replay prevention, no runtime errors"
+  },
+  {
+    "engine": "Chromium",
+    "test": "reduced motion",
+    "result": "pass"
+  },
+  {
+    "engine": "Chromium",
+    "test": "Kolam fallback",
+    "result": "pass"
+  },
+  {
+    "engine": "WebKit",
+    "width": 320,
+    "height": 568,
+    "result": "pass: splash lifecycle, Welcome sizing/CTA touch target, camera explanation navigation without reload, back navigation, no camera, replay prevention, no runtime errors"
+  },
+  {
+    "engine": "WebKit",
+    "width": 375,
+    "height": 812,
+    "result": "pass: splash lifecycle, Welcome sizing/CTA touch target, camera explanation navigation without reload, back navigation, no camera, replay prevention, no runtime errors"
+  },
+  {
+    "engine": "WebKit",
+    "width": 390,
+    "height": 844,
+    "result": "pass: splash lifecycle, Welcome sizing/CTA touch target, camera explanation navigation without reload, back navigation, no camera, replay prevention, no runtime errors"
+  },
+  {
+    "engine": "WebKit",
+    "width": 428,
+    "height": 926,
+    "result": "pass: splash lifecycle, Welcome sizing/CTA touch target, camera explanation navigation without reload, back navigation, no camera, replay prevention, no runtime errors"
+  },
+  {
+    "engine": "WebKit",
+    "test": "reduced motion",
+    "result": "pass"
+  },
+  {
+    "engine": "WebKit",
+    "test": "Kolam fallback",
+    "result": "pass"
+  }
+]

@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/((?!assets/|vendor/|licenses/).*)",
+      "destination": "/index.html"
+    }
+  ]
+}

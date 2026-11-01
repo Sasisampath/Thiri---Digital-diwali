@@ -1,0 +1,12 @@
+{
+  "note": "Real distributed SDK WASM/SLAM initialization, with camera access blocked. Not physical SLAM verification.",
+  "result": {
+    "package": "@8thwall/engine-binary@1.0.0",
+    "runtimeVersionReported": "0.0.0.0",
+    "initialized": true,
+    "slamLoaded": true,
+    "cameraCalls": 0
+  },
+  "errors": [],
+  "failedRequests": []
+}

@@ -1,0 +1,14 @@
+Thiri third-party AR runtime notices
+
+8th Wall Engine Binary 1.0.0
+Created by Niantic Spatial, Inc.
+Copyright © 2026 Niantic Spatial, Inc. All rights reserved.
+Distributed unmodified under the XR Engine License Agreement, not the MIT license.
+Full license, limitations, and warranty disclaimers: 8thwall-engine-LICENSE.txt
+Upstream: https://github.com/8thwall/engine
+The runtime's own copyright and license notices are also retained under /vendor/8thwall/.
+
+Three.js 0.183.2
+Copyright © 2010-2026 three.js authors.
+MIT license and warranty disclaimer: three-LICENSE.txt
+Upstream: https://github.com/mrdoob/three.js

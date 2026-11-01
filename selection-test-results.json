@@ -1,0 +1,71 @@
+{
+  "note": "SDK/camera/poses are fixtures; verifies selection UI and real shared session logic, not physical AR.",
+  "results": [
+    {
+      "engine": "Chromium",
+      "width": 320,
+      "height": 568,
+      "result": "pass",
+      "test": "three WebP cards/default/selection/CTA, lost-tracking selection, shared placement metadata, stable camera/canvas/scene, HTML and browser Back, close/cleanup, no flat-image AR placement"
+    },
+    {
+      "engine": "Chromium",
+      "width": 375,
+      "height": 812,
+      "result": "pass",
+      "test": "three WebP cards/default/selection/CTA, lost-tracking selection, shared placement metadata, stable camera/canvas/scene, HTML and browser Back, close/cleanup, no flat-image AR placement"
+    },
+    {
+      "engine": "Chromium",
+      "width": 390,
+      "height": 844,
+      "result": "pass",
+      "test": "three WebP cards/default/selection/CTA, lost-tracking selection, shared placement metadata, stable camera/canvas/scene, HTML and browser Back, close/cleanup, no flat-image AR placement"
+    },
+    {
+      "engine": "Chromium",
+      "width": 428,
+      "height": 926,
+      "result": "pass",
+      "test": "three WebP cards/default/selection/CTA, lost-tracking selection, shared placement metadata, stable camera/canvas/scene, HTML and browser Back, close/cleanup, no flat-image AR placement"
+    },
+    {
+      "engine": "Chromium",
+      "result": "pass",
+      "test": "native radio keyboard navigation, animated exit, reduced motion, return from placement"
+    },
+    {
+      "engine": "WebKit",
+      "width": 320,
+      "height": 568,
+      "result": "pass",
+      "test": "three WebP cards/default/selection/CTA, lost-tracking selection, shared placement metadata, stable camera/canvas/scene, HTML and browser Back, close/cleanup, no flat-image AR placement"
+    },
+    {
+      "engine": "WebKit",
+      "width": 375,
+      "height": 812,
+      "result": "pass",
+      "test": "three WebP cards/default/selection/CTA, lost-tracking selection, shared placement metadata, stable camera/canvas/scene, HTML and browser Back, close/cleanup, no flat-image AR placement"
+    },
+    {
+      "engine": "WebKit",
+      "width": 390,
+      "height": 844,
+      "result": "pass",
+      "test": "three WebP cards/default/selection/CTA, lost-tracking selection, shared placement metadata, stable camera/canvas/scene, HTML and browser Back, close/cleanup, no flat-image AR placement"
+    },
+    {
+      "engine": "WebKit",
+      "width": 428,
+      "height": 926,
+      "result": "pass",
+      "test": "three WebP cards/default/selection/CTA, lost-tracking selection, shared placement metadata, stable camera/canvas/scene, HTML and browser Back, close/cleanup, no flat-image AR placement"
+    },
+    {
+      "engine": "WebKit",
+      "result": "pass",
+      "test": "native radio keyboard navigation, animated exit, reduced motion, return from placement"
+    }
+  ]
+}

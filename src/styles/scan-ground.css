@@ -1,0 +1,29 @@
+.ar-scan { position: relative; width: 100%; height: 100vh; height: 100dvh; overflow: hidden; background: #241b2f; color: #fff; touch-action: none; }
+.ar-camera-canvas { position: absolute; inset: 0; display: block; width: 100% !important; height: 100% !important; }
+.ar-controls { position: absolute; top: max(16px, env(safe-area-inset-top)); left: max(18px, env(safe-area-inset-left)); right: max(18px, env(safe-area-inset-right)); display: grid; grid-template-columns: 46px minmax(0, 1fr) 46px; align-items: center; gap: 12px; }
+.ar-circle-button { width: 46px; height: 46px; display: grid; place-items: center; padding: 0; border: 1px solid rgb(255 255 255 / 25%); border-radius: 50%; background: rgb(24 18 34 / 84%); color: white; cursor: pointer; touch-action: manipulation; }
+.ar-circle-button:focus-visible, .ar-secondary-button:focus-visible { outline: 3px solid #ffd35a; outline-offset: 3px; }
+.ar-status { display: flex; justify-self: center; align-items: center; justify-content: center; gap: 8px; max-width: 100%; min-height: 38px; padding: 9px 13px; border-radius: 99px; background: rgb(24 18 34 / 84%); font-size: 11px; line-height: 1.4; text-align: center; }
+.ar-status i { flex: 0 0 6px; width: 6px; height: 6px; border-radius: 50%; background: #ffd35a; }
+.ar-status.state-ready i { background: #bfaeff; }
+.ar-status.state-error i, .ar-status.state-tracking_lost i, .ar-status.state-unsupported i { background: #ff7049; }
+.ar-search-aim { position: absolute; width: 60px; height: 60px; left: 50%; top: 58%; transform: translate(-50%, -50%); opacity: .65; pointer-events: none; }
+.ar-search-aim span { position: absolute; width: 12px; height: 12px; border: solid white; border-width: 2px 0 0 2px; }
+.ar-search-aim span:nth-child(1) { top: 0; left: 0; }.ar-search-aim span:nth-child(2) { top: 0; right: 0; transform: rotate(90deg); }.ar-search-aim span:nth-child(3) { bottom: 0; right: 0; transform: rotate(180deg); }.ar-search-aim span:nth-child(4) { bottom: 0; left: 0; transform: rotate(270deg); }
+.ar-guide { position: absolute; bottom: calc(max(20px, env(safe-area-inset-bottom)) + 184px); left: 50%; transform: translateX(-50%); width: min(calc(100% - 40px), 350px); display: flex; align-items: center; gap: 12px; padding: 12px 16px; border: 1px solid rgb(255 255 255 / 18%); border-radius: 22px; background: rgb(24 18 34 / 88%); pointer-events: none; opacity: 1; transition: opacity 220ms ease, visibility 220ms; }
+.ar-guide.is-dismissed { opacity: 0; visibility: hidden; }
+.ar-guide-art { width: 68px; height: 100px; flex: 0 0 68px; }.ar-guide-art img { display: block; width: 100%; height: 100%; object-fit: contain; }
+.ar-guide h2 { margin: 0 0 8px; font-size: 18px; letter-spacing: -.025em; }.ar-guide p { margin: 0 0 7px; font-size: 12px; line-height: 1.5; }.ar-guide small { color: #ddd5e7; font-size: 11px; }
+.ar-scan-footer { position: absolute; bottom: calc(max(10px, env(safe-area-inset-bottom)) + 44px); left: max(20px, env(safe-area-inset-left)); right: max(20px, env(safe-area-inset-right)); display: grid; gap: 14px; justify-items: center; }
+.ar-instruction { width: min(100%, 380px); padding: 18px 16px; border-radius: 22px; background: rgb(24 18 34 / 88%); text-align: center; }
+.ar-instruction h1 { margin: 0 0 10px; font-size: 23px; letter-spacing: -.035em; }.ar-instruction p { margin: 0; font-size: 14px; line-height: 1.5; }.ar-instruction small { display: block; margin-top: 10px; color: #ddd5e7; font-size: 11px; line-height: 1.5; }
+.ar-scan-footer .thiri-primary-button { max-width: 380px; }
+.ar-attribution { position: absolute; bottom: max(2px, env(safe-area-inset-bottom)); left: 50%; transform: translateX(-50%); min-height: 44px; display: flex; align-items: center; justify-content: center; padding: 8px 16px; border-radius: 24px; background: rgb(24 18 34 / 84%); }
+.ar-failure, .ar-next-step { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: min(calc(100% - 40px), 380px); max-height: calc(100% - 160px); overflow-y: auto; padding: 26px 22px; border: 1px solid rgb(255 255 255 / 20%); border-radius: 26px; background: rgb(24 18 34 / 94%); text-align: center; touch-action: pan-y; }
+.ar-failure h1, .ar-next-step h1 { margin: 0 0 16px; font-size: 26px; letter-spacing: -.035em; line-height: 1.2; }.ar-failure p, .ar-next-step p { margin: 0 0 22px; color: #e6e0ed; font-size: 14px; line-height: 1.6; }
+.ar-secondary-button { min-height: 46px; width: 100%; margin-top: 6px; padding: 12px 16px; border: none; border-radius: 22px; background: transparent; color: #fff; font: 600 13px system-ui; cursor: pointer; }
+.ar-step-label { display: block; font-size: 10px; color: #cfc0ff; letter-spacing: .12em; margin-bottom: 14px; }
+.ar-debug { position: absolute; top: 90px; left: 12px; width: calc(100% - 24px); max-height: 150px; overflow: auto; padding: 12px; background: #111; color: #fff; font-size: 9px; pointer-events: none; }
+@media (max-height: 660px) { .ar-guide { bottom: calc(max(10px, env(safe-area-inset-bottom)) + 168px); padding: 10px 12px; }.ar-guide-art { width: 54px; height: 80px; flex-basis: 54px; }.ar-guide h2 { font-size: 16px; }.ar-instruction { padding: 14px; }.ar-instruction h1 { font-size: 20px; } }
+@media (orientation: landscape) and (max-height: 520px) { .ar-guide { left: 20px; bottom: 62px; transform: none; width: 240px; }.ar-scan-footer { left: auto; width: 45%; }.ar-instruction h1 { font-size: 18px; }.ar-instruction p { font-size: 12px; }.ar-scan-footer { gap: 8px; }.ar-scan-footer .thiri-primary-button { min-height: 48px; padding: 12px; } }
+@media (prefers-reduced-motion: reduce) { .ar-guide { transition: none; } }

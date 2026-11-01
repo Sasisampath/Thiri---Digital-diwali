@@ -1,0 +1,91 @@
+{
+  "note": "Synthetic camera and SDK fixtures; not physical camera/SLAM verification.",
+  "results": [
+    {
+      "engine": "Chromium",
+      "width": 320,
+      "height": 568,
+      "test": "no early access, explanation layout/assets, permission preflight, exclusive XR8 handoff, close/cleanup, Not now",
+      "result": "pass"
+    },
+    {
+      "engine": "Chromium",
+      "width": 375,
+      "height": 812,
+      "test": "no early access, explanation layout/assets, permission preflight, exclusive XR8 handoff, close/cleanup, Not now",
+      "result": "pass"
+    },
+    {
+      "engine": "Chromium",
+      "width": 390,
+      "height": 844,
+      "test": "no early access, explanation layout/assets, permission preflight, exclusive XR8 handoff, close/cleanup, Not now",
+      "result": "pass"
+    },
+    {
+      "engine": "Chromium",
+      "width": 428,
+      "height": 926,
+      "test": "no early access, explanation layout/assets, permission preflight, exclusive XR8 handoff, close/cleanup, Not now",
+      "result": "pass"
+    },
+    {
+      "engine": "Chromium",
+      "test": "denied/missing/busy states, relaxed constraints, retry",
+      "result": "pass"
+    },
+    {
+      "engine": "Chromium",
+      "test": "late permission cleanup and no surprise AR navigation",
+      "result": "pass"
+    },
+    {
+      "engine": "Chromium",
+      "test": "direct-link guard and selfie rejection before AR",
+      "result": "pass"
+    },
+    {
+      "engine": "WebKit",
+      "width": 320,
+      "height": 568,
+      "test": "no early access, explanation layout/assets, permission preflight, exclusive XR8 handoff, close/cleanup, Not now",
+      "result": "pass"
+    },
+    {
+      "engine": "WebKit",
+      "width": 375,
+      "height": 812,
+      "test": "no early access, explanation layout/assets, permission preflight, exclusive XR8 handoff, close/cleanup, Not now",
+      "result": "pass"
+    },
+    {
+      "engine": "WebKit",
+      "width": 390,
+      "height": 844,
+      "test": "no early access, explanation layout/assets, permission preflight, exclusive XR8 handoff, close/cleanup, Not now",
+      "result": "pass"
+    },
+    {
+      "engine": "WebKit",
+      "width": 428,
+      "height": 926,
+      "test": "no early access, explanation layout/assets, permission preflight, exclusive XR8 handoff, close/cleanup, Not now",
+      "result": "pass"
+    },
+    {
+      "engine": "WebKit",
+      "test": "denied/missing/busy states, relaxed constraints, retry",
+      "result": "pass"
+    },
+    {
+      "engine": "WebKit",
+      "test": "late permission cleanup and no surprise AR navigation",
+      "result": "pass"
+    },
+    {
+      "engine": "WebKit",
+      "test": "direct-link guard and selfie rejection before AR",
+      "result": "pass"
+    }
+  ]
+}

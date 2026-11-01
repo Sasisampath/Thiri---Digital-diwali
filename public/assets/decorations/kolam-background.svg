@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" fill="none" stroke="#E9A586" stroke-width="1">
+  <defs><path id="loop" d="M200 30C240 70 330 120 330 200S240 330 200 370C160 330 70 280 70 200S160 70 200 30ZM200 70C160 110 110 160 110 200S160 290 200 330C240 290 290 240 290 200S240 110 200 70Z"/></defs>
+  <use href="#loop"/><use href="#loop" transform="rotate(90 200 200)"/>
+  <path d="M60 60Q200 140 340 60Q260 200 340 340Q200 260 60 340Q140 200 60 60Z"/>
+  <g fill="#E9A586" stroke="none">
+    <circle cx="120" cy="120" r="1.5"/><circle cx="160" cy="120" r="1.5"/><circle cx="200" cy="120" r="1.5"/><circle cx="240" cy="120" r="1.5"/><circle cx="280" cy="120" r="1.5"/>
+    <circle cx="120" cy="160" r="1.5"/><circle cx="160" cy="160" r="1.5"/><circle cx="200" cy="160" r="1.5"/><circle cx="240" cy="160" r="1.5"/><circle cx="280" cy="160" r="1.5"/>
+    <circle cx="120" cy="200" r="1.5"/><circle cx="160" cy="200" r="1.5"/><circle cx="200" cy="200" r="1.5"/><circle cx="240" cy="200" r="1.5"/><circle cx="280" cy="200" r="1.5"/>
+    <circle cx="120" cy="240" r="1.5"/><circle cx="160" cy="240" r="1.5"/><circle cx="200" cy="240" r="1.5"/><circle cx="240" cy="240" r="1.5"/><circle cx="280" cy="240" r="1.5"/>
+    <circle cx="120" cy="280" r="1.5"/><circle cx="160" cy="280" r="1.5"/><circle cx="200" cy="280" r="1.5"/><circle cx="240" cy="280" r="1.5"/><circle cx="280" cy="280" r="1.5"/>
+  </g>
+</svg>
