@@ -32,7 +32,7 @@ Placement phases: SEARCHING, PREVIEWING, READY_TO_PLACE, PLACED, TRACKING_LOST, 
 
 Sudden camera translation/rotation, LIMITED tracking or backgrounding hides the preview/placed rendering and disables actions. Saved placed data survives temporary loss; several subsequent NORMAL samples are required before rendering it again. This is recovery in the same SLAM coordinate frame, not a persistent cloud anchor or a promise of physical alignment after drift/relocalization. Rescan/reposition clears confirmation. The supported SDK `XrController.recenter()` resets the origin and explicitly clears placement. Pause/resume use the existing SDK lifecycle. Engine errors offer an honest retry; retry starts a fresh session and requires placement again.
 
-Screen 07 currently receives the placed data and exposes a minimal boundary. It performs no fuse animation, ignition, countdown or explosion.
+Screen 07 now uses the placed data in the working [Light the Fuse interaction](FUSE_IGNITION.md), with world-space sparks and a minimal five-second countdown. Final explosion effects remain future work.
 
 ## Local verification and limitations
 

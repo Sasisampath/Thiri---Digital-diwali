@@ -1,0 +1,95 @@
+{
+  "note": "Real Three projection, geometry, world transforms and application ignition logic; synthetic camera/SDK poses. Not physical-device AR verification.",
+  "results": [
+    {
+      "engine": "Chromium",
+      "width": 320,
+      "height": 568,
+      "result": "pass",
+      "test": "CSS tip alignment, drag miss/cancel/contact, camera projection movement, world-space sparks, one ignition, monotonic 5-to-1 countdown, frozen model, shared camera, no scrolling"
+    },
+    {
+      "engine": "Chromium",
+      "width": 375,
+      "height": 812,
+      "result": "pass",
+      "test": "CSS tip alignment, drag miss/cancel/contact, camera projection movement, world-space sparks, one ignition, monotonic 5-to-1 countdown, frozen model, shared camera, no scrolling"
+    },
+    {
+      "engine": "Chromium",
+      "width": 390,
+      "height": 844,
+      "result": "pass",
+      "test": "CSS tip alignment, drag miss/cancel/contact, camera projection movement, world-space sparks, one ignition, monotonic 5-to-1 countdown, frozen model, shared camera, no scrolling"
+    },
+    {
+      "engine": "Chromium",
+      "width": 428,
+      "height": 926,
+      "result": "pass",
+      "test": "CSS tip alignment, drag miss/cancel/contact, camera projection movement, world-space sparks, one ignition, monotonic 5-to-1 countdown, frozen model, shared camera, no scrolling"
+    },
+    {
+      "engine": "Chromium",
+      "id": "ground-chakra",
+      "result": "pass",
+      "test": "offscreen/limited tracking guards, Tap fallback, duplicate prevention, sound preference with missing assets silent, background cancellation without auto replay, explicit reposition retry, disposal"
+    },
+    {
+      "engine": "Chromium",
+      "id": "rocket",
+      "result": "pass",
+      "test": "offscreen/limited tracking guards, Tap fallback, duplicate prevention, sound preference with missing assets silent, background cancellation without auto replay, explicit reposition retry, disposal"
+    },
+    {
+      "engine": "Chromium",
+      "result": "pass",
+      "test": "projection uses offset CSS canvas bounds, rejects behind/offscreen, configurable radius boundary and NaN rejection"
+    },
+    {
+      "engine": "WebKit",
+      "width": 320,
+      "height": 568,
+      "result": "pass",
+      "test": "CSS tip alignment, drag miss/cancel/contact, camera projection movement, world-space sparks, one ignition, monotonic 5-to-1 countdown, frozen model, shared camera, no scrolling"
+    },
+    {
+      "engine": "WebKit",
+      "width": 375,
+      "height": 812,
+      "result": "pass",
+      "test": "CSS tip alignment, drag miss/cancel/contact, camera projection movement, world-space sparks, one ignition, monotonic 5-to-1 countdown, frozen model, shared camera, no scrolling"
+    },
+    {
+      "engine": "WebKit",
+      "width": 390,
+      "height": 844,
+      "result": "pass",
+      "test": "CSS tip alignment, drag miss/cancel/contact, camera projection movement, world-space sparks, one ignition, monotonic 5-to-1 countdown, frozen model, shared camera, no scrolling"
+    },
+    {
+      "engine": "WebKit",
+      "width": 428,
+      "height": 926,
+      "result": "pass",
+      "test": "CSS tip alignment, drag miss/cancel/contact, camera projection movement, world-space sparks, one ignition, monotonic 5-to-1 countdown, frozen model, shared camera, no scrolling"
+    },
+    {
+      "engine": "WebKit",
+      "id": "ground-chakra",
+      "result": "pass",
+      "test": "offscreen/limited tracking guards, Tap fallback, duplicate prevention, sound preference with missing assets silent, background cancellation without auto replay, explicit reposition retry, disposal"
+    },
+    {
+      "engine": "WebKit",
+      "id": "rocket",
+      "result": "pass",
+      "test": "offscreen/limited tracking guards, Tap fallback, duplicate prevention, sound preference with missing assets silent, background cancellation without auto replay, explicit reposition retry, disposal"
+    },
+    {
+      "engine": "WebKit",
+      "result": "pass",
+      "test": "projection uses offset CSS canvas bounds, rejects behind/offscreen, configurable radius boundary and NaN rejection"
+    }
+  ]
+}

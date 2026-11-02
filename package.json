@@ -18,7 +18,9 @@
     "postbuild": "node scripts/verify-ar-build.mjs",
     "test:runtime": "node tests/runtime.cjs",
     "test:selection": "node tests/selection.cjs",
-    "test:placement": "node tests/placement.cjs"
+    "test:placement": "node tests/placement.cjs",
+    "test:ignition": "node tests/ignition.cjs",
+    "test:ignition-state": "node tests/ignition-state.cjs"
   },
   "dependencies": {
     "@8thwall/engine-binary": "1.0.0",

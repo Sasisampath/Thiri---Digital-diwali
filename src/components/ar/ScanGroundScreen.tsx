@@ -4,7 +4,7 @@ import { initialSnapshot, scanMessages } from '../../lib/ar/tracking';
 import { getCracker } from '../../config/crackers';
 import CrackerSelectionSheet from './CrackerSelectionSheet';
 import CrackerPlacementScreen from './CrackerPlacementScreen';
-import FuseStepBoundary from './FuseStepBoundary';
+import FirestickInteraction from './FirestickInteraction';
 import type { ARFlow } from '../../lib/ar/types';
 import ARStatusIndicator from './ARStatusIndicator';
 import ScanInstructions from './ScanInstructions';
@@ -38,6 +38,9 @@ export default function ScanGroundScreen({ mode, releasePermissionCamera, onClos
   }, [snapshot.state]);
   useEffect(() => { session?.setFlow(mode); if (mode === 'scan') close.current?.focus({ preventScroll: true }); }, [mode, session]);
 
+  useEffect(() => { session?.setIgnitionSound(sound); }, [session, sound, mode]);
+  const returnFromFuse = () => { if(snapshot.ignitionInterrupted || ['FUSE_CONTACT','IGNITING','IGNITED'].includes(snapshot.ignitionPhase)) session?.repositionCracker(); onBackToPlacement(); };
+
   const exit = () => { session?.dispose(); onClose(); };
   const retry = () => { session?.dispose(); setAttempt(value => value + 1); };
   const choose = () => {
@@ -59,9 +62,9 @@ export default function ScanGroundScreen({ mode, releasePermissionCamera, onClos
   return <main className={`ar-scan${mode !== 'scan' ? ' is-cracker-flow' : ''}`} aria-label="Scan the Ground AR experience" data-ar-state={snapshot.state}>
     <canvas ref={canvas} className="ar-camera-canvas" aria-label="Live rear-camera AR view" />
     <header className="ar-controls">
-      <button ref={close} className="ar-circle-button" type="button" aria-label={mode === 'scan' ? 'Close AR and return to Welcome' : mode === 'choose' ? 'Back to Scan the Ground' : mode === 'fuse' ? 'Back to placement' : 'Back to cracker selection'} onClick={mode === 'scan' ? exit : mode === 'choose' ? onBackToScan : mode === 'fuse' ? onBackToPlacement : onBackToChoose}><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d={mode === 'scan' ? 'm6 6 12 12M18 6 6 18' : 'M19 12H5m7-7-7 7 7 7'} fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg></button>
+      <button ref={close} className="ar-circle-button" type="button" aria-label={mode === 'scan' ? 'Close AR and return to Welcome' : mode === 'choose' ? 'Back to Scan the Ground' : mode === 'fuse' ? 'Back to placement' : 'Back to cracker selection'} onClick={mode === 'scan' ? exit : mode === 'choose' ? onBackToScan : mode === 'fuse' ? returnFromFuse : onBackToChoose}><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d={mode === 'scan' ? 'm6 6 12 12M18 6 6 18' : 'M19 12H5m7-7-7 7 7 7'} fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg></button>
       {mode === 'place' || mode === 'fuse' ? <p className="ar-position-title">{mode === 'place' ? 'Position your cracker' : 'Light the Fuse'}</p> : <ARStatusIndicator state={snapshot.state} paused={snapshot.paused} />}
-      {mode === 'place' || mode === 'fuse' ? <button className="ar-circle-button" type="button" onClick={recenter} disabled={!session || snapshot.state === 'INITIALIZING'} aria-label={snapshot.canRecenter ? 'Recenter view and reset placement' : 'Reset placement'} title="Reset the view and reposition"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M3 11a9 9 0 1 1 2 7M3 4v7h7"/></svg></button>
+      {mode === 'place' ? <button className="ar-circle-button" type="button" onClick={recenter} disabled={!session || snapshot.state === 'INITIALIZING'} aria-label={snapshot.canRecenter ? 'Recenter view and reset placement' : 'Reset placement'} title="Reset the view and reposition"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M3 11a9 9 0 1 1 2 7M3 4v7h7"/></svg></button>
         : <button className="ar-circle-button" type="button" aria-label={sound ? 'Sound on' : 'Sound off'} aria-pressed={sound} onClick={toggleSound}><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="m11 5-6 4H2v6h3l6 4V5Z"/>{sound ? <path d="M15 8a6 6 0 0 1 0 8m3-11a10 10 0 0 1 0 14"/> : <path d="m16 9 6 6m0-6-6 6"/>}</svg></button> }
     </header>
     {!failed && mode === 'scan' && <>
@@ -75,7 +78,7 @@ export default function ScanGroundScreen({ mode, releasePermissionCamera, onClos
       <button className="ar-secondary-button" type="button" onClick={exit}>Back to Welcome</button>
     </section> : mode === 'choose' ? <CrackerSelectionSheet selected={snapshot.selectedCracker} trackingReady={ready} onSelect={id => session?.selectCracker(id)} onContinue={onPlace} onClose={exit} />
       : mode === 'place' ? <CrackerPlacementScreen cracker={getCracker(snapshot.selectedCracker)} placementPhase={snapshot.placementPhase} hasPlacedCracker={snapshot.hasPlacedCracker} canPlaceCracker={snapshot.canPlaceCracker} canLightFuse={snapshot.canLightFuse} placementError={snapshot.placementError} onPlace={() => session?.placeCracker()} onLight={light} onReposition={() => session?.repositionCracker()} onRescan={rescan} />
-      : mode === 'fuse' ? <FuseStepBoundary placed={session?.getPlacedCracker() ?? null} trackingReady={snapshot.canLightFuse} onBack={onBackToPlacement} /> : <footer className="ar-scan-footer">
+      : mode === 'fuse' ? <FirestickInteraction session={session} ignitionPhase={snapshot.ignitionPhase} fuseVisible={snapshot.fuseVisible} ignitionNear={snapshot.ignitionNear} countdown={snapshot.countdown} ignitionInterrupted={snapshot.ignitionInterrupted} ignitionError={snapshot.ignitionError} onBack={returnFromFuse} onRescan={rescan} /> : <footer className="ar-scan-footer">
       <div className="ar-instruction" aria-live="polite"><h1>Scan the Ground</h1><p>{scanMessages[snapshot.state]}</p>
         {!ready && snapshot.state !== 'INITIALIZING' && <small>{snapshot.paused ? 'Return to Thiri to continue scanning.' : 'Use a well-lit area with a textured floor.'}</small>}
       </div>

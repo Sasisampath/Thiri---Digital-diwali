@@ -17,5 +17,5 @@ async function verify(directory = '') {
  }
 }
 await verify();
-for (const asset of ['assets/ar/placement-reticle.svg', 'assets/crackers/placement/flower-pot-placement.webp', 'assets/crackers/placement/ground-chakra-placement.webp', 'assets/crackers/placement/rocket-placement.webp', 'assets/crackers/selection/flower-pot-selection.webp', 'assets/crackers/selection/ground-chakra-selection.webp', 'assets/crackers/selection/rocket-selection.webp', 'assets/onboarding/scan-ground-guide.webp', 'licenses/8thwall-engine-LICENSE.txt', 'licenses/three-LICENSE.txt']) await stat(path.join(root, 'dist', asset));
+for (const asset of ['assets/ar/placement-reticle.svg', 'assets/ignition/fallback-unlit.svg', 'assets/ignition/fallback-lit.svg', 'assets/crackers/placement/flower-pot-placement.webp', 'assets/crackers/placement/ground-chakra-placement.webp', 'assets/crackers/placement/rocket-placement.webp', 'assets/crackers/selection/flower-pot-selection.webp', 'assets/crackers/selection/ground-chakra-selection.webp', 'assets/crackers/selection/rocket-selection.webp', 'assets/onboarding/scan-ground-guide.webp', 'licenses/8thwall-engine-LICENSE.txt', 'licenses/three-LICENSE.txt']) await stat(path.join(root, 'dist', asset));
 console.log(`Verified ${count} unmodified engine artifacts, licenses and scan assets in dist/.`);

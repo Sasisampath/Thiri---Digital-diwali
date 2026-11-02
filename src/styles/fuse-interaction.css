@@ -1,0 +1,14 @@
+.firestick-drag { --stick-height: clamp(156px, 29svh, 240px); position: fixed; right: max(28px, env(safe-area-inset-right)); bottom: max(125px, calc(100px + env(safe-area-inset-bottom))); width: calc(var(--stick-height) / 3); height: var(--stick-height); border: 0; padding: 0; background: none; touch-action: none; user-select: none; -webkit-user-select: none; cursor: grab; transform: translate3d(0,0,0); transition: transform .25s ease-out, opacity .18s; z-index: 3; }
+.firestick-drag:disabled { cursor: default; }.firestick-drag:focus-visible { outline: 2px solid #FFD35A; outline-offset: 5px; border-radius: 20px; }
+.firestick-drag.is-dragging { cursor: grabbing; transition: opacity .18s; will-change: transform; }
+.firestick-drag.is-hidden { opacity: 0; pointer-events: none; }
+.firestick-drag img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; pointer-events: none; -webkit-user-drag: none; transition: opacity .2s; }
+.firestick-lit { opacity: 0; }.is-lit .firestick-lit { opacity: 1; }.is-lit .firestick-unlit { opacity: 0; }
+.fuse-target { position: fixed; width: 22px; height: 22px; transform: translate(-50%,-50%); border: 1px solid #ffd35aaa; border-radius: 50%; background: #ffd35a10; pointer-events: none; visibility: hidden; z-index: 2; }
+.fuse-target.is-near { box-shadow: 0 0 14px #ffb93c88; background: #ffd35a33; }.fuse-target.is-igniting { opacity: 0; }
+.fuse-instructions { position: absolute; bottom: max(30px, calc(20px + env(safe-area-inset-bottom))); left: max(20px, env(safe-area-inset-left)); right: max(20px, env(safe-area-inset-right)); margin: 0 auto; width: min(calc(100% - 40px), 380px); padding: 14px 18px; background: rgb(24 18 34 / 84%); border-radius: 22px; color: #FFF9F2; text-align: center; }
+.fuse-instructions h1 { margin: 0; font-size: clamp(17px, 4.6vw, 21px); line-height: 1.3; letter-spacing: -.02em; outline: none; }
+.fuse-instructions p { font-size: 13px; line-height: 1.5; margin: 10px 0 0; color: #e2d8ec; }
+.fuse-tap { min-width: 110px; min-height: 44px; border: 0; background: none; color: #d7caff; text-decoration: underline; text-underline-offset: 4px; font: inherit; font-size: 13px; cursor: pointer; }
+.fuse-tap:disabled { opacity: .45; cursor: default; }.fuse-instructions .fuse-countdown { font-size: 56px; line-height: 1.1; font-weight: 750; color: #FFD35A; font-variant-numeric: tabular-nums; }
+@media (prefers-reduced-motion: reduce) { .firestick-drag, .firestick-drag img { transition: none; } }

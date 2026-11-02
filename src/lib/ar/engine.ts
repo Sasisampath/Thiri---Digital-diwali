@@ -1,4 +1,6 @@
 import * as THREE from 'three';
+import { IgnitionController } from './ignition-controller';
+import type { FuseProjection } from './fuse-projection';
 import { getCracker } from '../../config/crackers';
 import type { CrackerType } from '../../config/crackers';
 import { aim, GroundPlacement } from './placement';
@@ -43,6 +45,8 @@ export class GroundARSession {
   private reticle: PlacementReticle | null = null;
   private estimator = new GroundPlacement();
   private crackerPlacement: PlacementController | null = null;
+  private ignition: IgnitionController | null = null;
+  private fuseListeners = new Set<(p: FuseProjection) => void>();
   private flow: ARFlow = 'scan';
   private candidate: Placement | null = null;
   private saved: Placement | null = null;
@@ -66,9 +70,10 @@ export class GroundARSession {
   private live() { return !this.disposed && !this.stopping && owner === this; }
   private clearPlacement() {
     this.candidate = null; this.saved = null; this.estimator.reset(); this.reticle?.update(null);
-    this.crackerPlacement?.trackingLost(); this.syncCracker();
+    this.crackerPlacement?.trackingLost(); this.ignition?.lost(); this.syncCracker();
   }
   private syncCracker() { if (this.crackerPlacement) this.publish(this.crackerPlacement.getSummary()); }
+  private syncIgnition = () => { if (this.ignition) this.publish(this.ignition.getSummary()); };
   private prepareCracker() {
     if (!this.scene || !['place', 'fuse'].includes(this.flow)) { this.crackerPlacement?.leave(); return; }
     try {
@@ -78,11 +83,19 @@ export class GroundARSession {
   }
   setFlow(flow: ARFlow) {
     if (flow === this.flow) return;
+    if (this.flow === 'fuse' && flow !== 'fuse') this.ignition?.leave();
     this.flow = flow;
     if (flow === 'place') this.saved = null;
     if (flow === 'scan') this.returnToScan();
     this.prepareCracker();
+    this.prepareIgnition();
   }
+  private prepareIgnition() {
+    if(this.flow !== 'fuse' || !this.scene)return;
+    this.ignition ??= new IgnitionController(this.scene.scene, this.canvas, this.syncIgnition, p => this.fuseListeners.forEach(listener => listener(p)), this);
+    this.ignition.enter(this.getPlacedCracker()); this.syncIgnition();
+  }
+
   private resize = () => {
     const bounds = this.canvas.getBoundingClientRect();
     const scale = Math.min(window.devicePixelRatio || 1, 1.5);
@@ -188,7 +201,7 @@ export class GroundARSession {
     this.xr.XrController.updateCameraProjectionMatrix({ origin: this.scene.camera.position, facing: this.scene.camera.quaternion });
     this.reticle = new PlacementReticle(this.scene.scene, () => this.fail('The placement indicator could not load. Check your connection and tap Retry.', 'engine'));
     this.lastFrame = performance.now();
-    this.prepareCracker();
+    this.prepareCracker(); this.prepareIgnition();
     this.publish({ state: 'SCANNING' });
   }
   private onFrame(reality?: Reality) {
@@ -213,6 +226,7 @@ export class GroundARSession {
     const indicator = inPlacement ? this.crackerPlacement?.getReticle() ?? null : valid ? visible : null;
     this.reticle?.update(indicator, inPlacement, now);
     this.syncCracker();
+    if(this.flow === 'fuse') this.ignition?.update(this.scene.camera, this.snapshot.canLightFuse && this.snapshot.camera === 'hasVideo', now);
     this.publish({ state: trackingState(status, valid, this.hadTracking), trackingStatus: status, trackingReason: reason, candidateValid: valid, placementMode: valid ? visible!.source : 'none' });
   }
   confirmPlacement(): Placement | null {
@@ -232,18 +246,26 @@ export class GroundARSession {
   }
   private freshTracking() { return this.live() && this.snapshot.trackingStatus === 'NORMAL' && this.snapshot.trackingReason !== 'INITIALIZING' && !this.snapshot.paused && this.snapshot.camera === 'hasVideo' && performance.now() - this.lastFrame <= 350; }
   placeCracker() {
-    if (!this.freshTracking()) { this.crackerPlacement?.trackingLost(); this.syncCracker(); return null; }
+    if (!this.freshTracking()) { this.crackerPlacement?.trackingLost(); this.ignition?.lost(); this.syncCracker(); return null; }
     const placed = this.crackerPlacement?.confirm(performance.now()) ?? null;
     if (placed) this.reticle?.update(null);
     this.syncCracker(); return placed;
   }
   getPlacedCracker() { return this.crackerPlacement?.getPlaced() ?? null; }
   beginFuseStep() {
-    if (!this.freshTracking() || !this.crackerPlacement?.canContinue(performance.now())) { this.crackerPlacement?.trackingLost(); this.syncCracker(); return null; }
+    if (!this.freshTracking() || !this.crackerPlacement?.canContinue(performance.now())) { this.crackerPlacement?.trackingLost(); this.ignition?.lost(); this.syncCracker(); return null; }
     return this.crackerPlacement.getPlaced();
   }
-  repositionCracker() { this.saved = null; this.crackerPlacement?.reposition(); this.reticle?.update(null); this.syncCracker(); }
-  rescanCracker() { this.crackerPlacement?.reposition(); this.clearPlacement(); this.publish({ state: 'SCANNING', candidateValid: false, placementMode: 'none' }); }
+  subscribeFuseProjection(listener: (p: FuseProjection) => void) { this.fuseListeners.add(listener); return () => { this.fuseListeners.delete(listener); }; }
+  armFirestick() { this.ignition?.arm(); }
+  beginFirestickDrag() { if(this.freshTracking()) return this.ignition?.beginDrag() ?? false; this.ignition?.lost(); return false; }
+  moveFirestick(tip: {x:number;y:number}) { if(this.freshTracking()) this.ignition?.moveTip(tip); else this.ignition?.lost(); }
+  cancelFirestickDrag() { this.ignition?.cancelDrag(); }
+  tapToLight() { if(this.freshTracking()) return this.ignition?.tap() ?? false; this.ignition?.lost(); return false; }
+  setIgnitionSound(enabled: boolean) { this.ignition?.setSound(enabled); }
+  getCountdownContext() { return this.ignition?.getCountdownContext() ?? null; }
+  repositionCracker() { this.ignition?.resetAttempt(); this.saved = null; this.crackerPlacement?.reposition(); this.reticle?.update(null); this.syncCracker(); }
+  rescanCracker() { this.ignition?.resetAttempt(); this.crackerPlacement?.reposition(); this.clearPlacement(); this.publish({ state: 'SCANNING', candidateValid: false, placementMode: 'none' }); }
   recenterCracker() {
     if (!this.live()) return;
     this.repositionCracker(); this.clearPlacement();
@@ -270,6 +292,7 @@ export class GroundARSession {
       owner = null;
     }
     this.streams.forEach(stream => stream.getTracks().forEach(track => track.stop())); this.streams.clear();
+    this.ignition?.dispose(); this.ignition = null; this.fuseListeners.clear();
     this.crackerPlacement?.dispose(); this.crackerPlacement = null;
     this.reticle?.dispose(); this.reticle = null;
     this.scene?.renderer.dispose(); this.scene = null;

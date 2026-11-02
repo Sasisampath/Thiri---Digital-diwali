@@ -1,0 +1,15 @@
+{
+  "note": "Browser-hosted real controller/Three.js math with explicit synthetic inputs; no physical camera.",
+  "results": [
+    {
+      "engine": "Chromium",
+      "result": "pass",
+      "test": "actual controller transitions, drag miss/cancel, duplicate tap rejected, configurable radius, elapsed-time countdown under skipped frames, integration context identity, interrupted replay rejected and disposal"
+    },
+    {
+      "engine": "WebKit",
+      "result": "pass",
+      "test": "actual controller transitions, drag miss/cancel, duplicate tap rejected, configurable radius, elapsed-time countdown under skipped frames, integration context identity, interrupted replay rejected and disposal"
+    }
+  ]
+}

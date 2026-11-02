@@ -54,9 +54,9 @@ async function ready(page,options) {
    await frames(page,{},4);await expect(page.getByRole('heading',{name:'Cracker placed!'})).toBeVisible();
    expect(await page.evaluate(()=>currentCracker.getWorldPosition(new THREE.Vector3()).toArray())).toEqual(saved.position);
    await frames(page,{},1);await page.getByRole('button',{name:'Light the Fuse',exact:true}).click();await expect(page).toHaveURL(/light-fuse$/);
-   await expect(page.locator('.fuse-step-boundary')).toContainText('Fuse controls are coming next.');
+   await expect(page.locator('.fuse-instructions')).toBeVisible();
    expect(await page.evaluate(()=>currentCracker.getObjectByName('FusePoint').getWorldPosition(new THREE.Vector3()).toArray())).not.toEqual(saved.position);
-   await page.locator('.fuse-step-boundary button').click();await expect(page).toHaveURL(/place-cracker$/);
+   await page.getByRole('button',{name:'Back to placement',exact:true}).click();await expect(page).toHaveURL(/place-cracker$/);
    await page.getByRole('button',{name:'Reposition',exact:true}).click();await expect(page.locator('.cracker-placement-panel')).toHaveAttribute('data-placement-phase','REPOSITIONING');
    const newTarget={position:[0.35,1.5,0],target:[0.4,0,-1.4]};await ready(page,newTarget);await frames(page,newTarget,1);
    await page.getByRole('button',{name:'Place Cracker',exact:true}).click();
