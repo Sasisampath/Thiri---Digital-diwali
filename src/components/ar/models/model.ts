@@ -29,6 +29,7 @@ export class ModelBuilder {
 export class ProceduralCrackerModel {
   readonly root = new Group();
   readonly baseTransform = new Object3D();
+  readonly visualBody = new Group();
   readonly fusePoint = new Object3D();
   readonly dimensions: Vector3;
   private preview = false;
@@ -37,8 +38,9 @@ export class ProceduralCrackerModel {
   constructor(readonly type: CrackerType, readonly placementOrientation: PlacementType, builder: ModelBuilder, fuse: [number, number, number]) {
     this.root.name = `CrackerModel:${type}`; this.root.userData.crackerType = type;
     this.baseTransform.name = 'BaseTransform'; this.root.add(this.baseTransform);
-    this.materials = builder.finish(this.baseTransform);
-    this.fusePoint.name = 'FusePoint'; this.fusePoint.position.set(...fuse); this.baseTransform.add(this.fusePoint);
+    this.visualBody.name='VisualBody'; this.baseTransform.add(this.visualBody);
+    this.materials = builder.finish(this.visualBody);
+    this.fusePoint.name = 'FusePoint'; this.fusePoint.position.set(...fuse); this.visualBody.add(this.fusePoint);
     this.root.updateMatrixWorld(true);
     const bounds = new Box3().setFromObject(this.root); this.dimensions = bounds.getSize(new Vector3());
     if (bounds.min.y < -0.0001) throw new Error('Cracker geometry must sit above its ground-contacting base');

@@ -1,8 +1,8 @@
 # Thiri
 
-Mobile-first Vite + React + TypeScript application with the approved Splash, Welcome and Camera Permission screens, Screen 04: Scan the Ground, Screen 05: Choose Your Cracker, Screen 06: Place Your Cracker, and Screen 07: Light the Fuse.
+Mobile-first Vite + React + TypeScript application with the approved Splash, Welcome and Camera Permission screens, Screen 04: Scan the Ground, Screen 05: Choose Your Cracker, Screen 06: Place Your Cracker, Screen 07: Light the Fuse, Screen 08: Countdown, and Screen 09: AR Fireworks.
 
-Flow: **Splash → Welcome → Camera Explanation → Enable Camera → Scan the Ground → Choose Your Cracker → Place Your Cracker → Light the Fuse → integrated 5-second Countdown.**
+Flow: **Splash → Welcome → Camera Explanation → Enable Camera → Scan the Ground → Choose Your Cracker → Place Your Cracker → Light the Fuse → 5-second Countdown → Fireworks → completion/replay.**
 
 ## Run
 
@@ -22,9 +22,9 @@ The project is in this directory; run the commands alongside `package.json`. Vit
 - The permission preflight stream stops synchronously before XR8 opens its rear camera. XR8 exclusively owns the AR camera and render loop afterward.
 - No elapsed timer, camera-open event, NORMAL status alone or isolated feature-point hit can mark placement READY.
 - The reticle uses the supplied SVG as a real Three.js ground-plane texture. The compact guide uses the supplied transparent illustration and fades after usable tracking.
-- Choosing a cracker opens the functional selection sheet while retaining the same AR component, canvas, SDK camera and world context. The selected cracker carries into the clearly labeled Place Your Cracker → Light the Fuse → integrated 5-second Countdown.
+- Choosing a cracker opens the functional selection sheet while retaining the same AR component, canvas, SDK camera and world context. The selected cracker carries into the clearly labeled Place Your Cracker → Light the Fuse → 5-second Countdown → Fireworks → completion/replay.
 - Tracking loss invalidates placement. Backgrounding pauses the SDK; resuming requires fresh tracking evidence. Closing, exiting AR, pagehide and failures stop/release resources.
-- Unsupported devices show an explanation rather than simulated AR. Procedural cracker models are implemented; final fireworks remain future work; fuse ignition is implemented.
+- Unsupported devices show an explanation rather than simulated AR. Procedural cracker models are implemented; world-space fireworks and fuse ignition are implemented.
 
 See [Screen 04 engineering and device test guide](docs/SCAN_GROUND.md) for files, placement evidence, lifecycle details, limitations and the acceptance checklist.
 
@@ -40,7 +40,11 @@ See [placement implementation and Vercel device checks](docs/CRACKER_PLACEMENT.m
 
 ## Screen 07 — Light the Fuse
 
-Drag the HTML firestick tip toward the real projected model FusePoint, or use the guarded Tap to Light action. A single world-space spark burst leads to a monotonic 5-to-1 countdown in the same camera session. Tracking/background interruptions cancel the sequence safely. No final fireworks are implemented. Approved firestick PNGs and audio were absent; temporary aligned SVG fallback artwork and silent audio are explicitly documented. [Implementation, missing assets and device tests](docs/FUSE_IGNITION.md).
+Drag the HTML firestick tip toward the real projected model FusePoint, or use the guarded Tap to Light action. A single world-space spark burst leads to a monotonic 5-to-1 countdown in the same camera session. Tracking/background interruptions cancel the sequence safely. The countdown now hands off to the selected firework. Approved firestick PNGs and audio were absent; temporary aligned SVG fallback artwork and silent audio are explicitly documented. [Implementation, missing assets and device tests](docs/FUSE_IGNITION.md).
+
+## Screen 09 — AR Fireworks
+
+Flower Pot has a golden fountain from its named opening; Ground Chakra spins a visual child and emits ground-level radial sparks; Rocket launches a separate visual from its fixed support, then bursts while world tracking and framing remain usable. A labelled, explicitly selected camera-relative sky preview handles sky limitations. Minimal completion supports Celebrate Again / Choose Another without restarting the camera or replaying automatically. Procedural pooled particles, adaptive budgets and safe interruption share the existing SDK loop. Audio remains silent pending approved files. [Implementation, tests and physical-device checklist](docs/FIREWORKS.md).
 
 ## Assets
 
@@ -74,6 +78,8 @@ npm run test:placement
 npm run test:ignition
 npm run test:ignition-state
 npm run test:runtime
+npm run test:fireworks-effects
+npm run test:fireworks
 ```
 
 Set `TEST_URL` to the server URL if necessary (e.g. `http://127.0.0.1:5174/`). `CHROMIUM_EXECUTABLE_PATH` can select an installed Chromium executable. Test missing browsers fail instead of silently skipping.

@@ -1,0 +1,167 @@
+{
+  "note": "Real WebGL particles and controller, deterministic timestamps and synthetic world transforms; not physical-device SLAM/GPU certification.",
+  "results": [
+    {
+      "engine": "Chromium",
+      "result": "pass",
+      "rows": [
+        {
+          "id": "flower-pot",
+          "noStart": false,
+          "start": true,
+          "duplicate": false,
+          "statesIncludeReady": true,
+          "effect": "FlowerPotFountain",
+          "active": 412,
+          "fixed": true,
+          "opening": true,
+          "moving": null,
+          "complete": "COMPLETED",
+          "empty": true,
+          "restored": true,
+          "clean": true,
+          "noReplay": true
+        },
+        {
+          "id": "ground-chakra",
+          "noStart": false,
+          "start": true,
+          "duplicate": false,
+          "statesIncludeReady": true,
+          "effect": "GroundChakraEffect",
+          "active": 159,
+          "fixed": true,
+          "opening": true,
+          "moving": [
+            0,
+            -0.45753589377532133,
+            0,
+            -0.8891911526253609
+          ],
+          "complete": "COMPLETED",
+          "empty": true,
+          "restored": true,
+          "clean": true,
+          "noReplay": true
+        },
+        {
+          "id": "rocket",
+          "noStart": false,
+          "start": true,
+          "duplicate": false,
+          "statesIncludeReady": true,
+          "effect": "RocketLaunchEffect",
+          "active": 468,
+          "fixed": true,
+          "opening": true,
+          "moving": [
+            0,
+            0.47902494331065765,
+            0
+          ],
+          "complete": "COMPLETED",
+          "empty": true,
+          "restored": true,
+          "clean": true,
+          "noReplay": true
+        },
+        {
+          "quality": "low"
+        },
+        {
+          "waited": "PAUSED",
+          "preview": true,
+          "duplicate": false,
+          "space": "camera-relative",
+          "cameraRelativeIdentity": true,
+          "background": "PAUSED"
+        },
+        {
+          "deterministic": true,
+          "children": 0
+        }
+      ]
+    },
+    {
+      "engine": "WebKit",
+      "result": "pass",
+      "rows": [
+        {
+          "id": "flower-pot",
+          "noStart": false,
+          "start": true,
+          "duplicate": false,
+          "statesIncludeReady": true,
+          "effect": "FlowerPotFountain",
+          "active": 412,
+          "fixed": true,
+          "opening": true,
+          "moving": null,
+          "complete": "COMPLETED",
+          "empty": true,
+          "restored": true,
+          "clean": true,
+          "noReplay": true
+        },
+        {
+          "id": "ground-chakra",
+          "noStart": false,
+          "start": true,
+          "duplicate": false,
+          "statesIncludeReady": true,
+          "effect": "GroundChakraEffect",
+          "active": 159,
+          "fixed": true,
+          "opening": true,
+          "moving": [
+            0,
+            -0.4575358937753214,
+            0,
+            -0.8891911526253609
+          ],
+          "complete": "COMPLETED",
+          "empty": true,
+          "restored": true,
+          "clean": true,
+          "noReplay": true
+        },
+        {
+          "id": "rocket",
+          "noStart": false,
+          "start": true,
+          "duplicate": false,
+          "statesIncludeReady": true,
+          "effect": "RocketLaunchEffect",
+          "active": 468,
+          "fixed": true,
+          "opening": true,
+          "moving": [
+            0,
+            0.47902494331065765,
+            0
+          ],
+          "complete": "COMPLETED",
+          "empty": true,
+          "restored": true,
+          "clean": true,
+          "noReplay": true
+        },
+        {
+          "quality": "low"
+        },
+        {
+          "waited": "PAUSED",
+          "preview": true,
+          "duplicate": false,
+          "space": "camera-relative",
+          "cameraRelativeIdentity": true,
+          "background": "PAUSED"
+        },
+        {
+          "deterministic": true,
+          "children": 0
+        }
+      ]
+    }
+  ]
+}

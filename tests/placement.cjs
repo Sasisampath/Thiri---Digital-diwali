@@ -73,7 +73,7 @@ async function ready(page,options) {
     const m=testAR.scene.scene.getObjectByName(`CrackerModel:${id}`),box=new THREE.Box3().setFromObject(m),size=box.getSize(new THREE.Vector3());let meshCount=0,maps=0;
     m.traverse(o=>{if(o.isMesh){meshCount++;if(o.material.map)maps++;}});return{minY:box.min.y,size:size.toArray(),meshCount,maps,fuse:!!m.getObjectByName('FusePoint')};
    },id);
-   expect(shape.minY).toBeGreaterThanOrEqual(-0.0001);expect(shape.maps).toBe(0);expect(shape.fuse).toBe(true);expect(shape.meshCount).toBeLessThanOrEqual(8);
+   expect(shape.minY).toBeGreaterThanOrEqual(-0.0001);expect(shape.maps).toBe(0);expect(shape.fuse).toBe(true);expect(shape.meshCount).toBeLessThanOrEqual(id==='rocket'?10:8);
    if(id==='ground-chakra')expect(shape.size[1]).toBeLessThan(shape.size[0]*.4);else expect(shape.size[1]).toBeGreaterThan(.75);
    await frames(page,{},1);await page.getByRole('button',{name:'Place Cracker',exact:true}).click();await expect(page.getByRole('heading',{name:'Cracker placed!'})).toBeVisible();
    await frames(page,{status:'LIMITED'},1);await page.getByRole('button',{name:'Rescan',exact:true}).click();await expect(page).toHaveURL(/\/camera$/);

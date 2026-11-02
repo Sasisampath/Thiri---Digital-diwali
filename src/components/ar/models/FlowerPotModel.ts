@@ -1,4 +1,4 @@
-import { CatmullRomCurve3, CylinderGeometry, Quaternion, SphereGeometry, TorusGeometry, TubeGeometry, Vector3 } from 'three';
+import { CatmullRomCurve3, CylinderGeometry, Quaternion, SphereGeometry, TorusGeometry, TubeGeometry, Vector3, Object3D } from 'three';
 import { ModelBuilder, ProceduralCrackerModel } from './model';
 
 export class FlowerPotModel extends ProceduralCrackerModel {
@@ -19,5 +19,6 @@ export class FlowerPotModel extends ProceduralCrackerModel {
     const fuse: [number, number, number] = [0.017, 0.346, 0];
     b.add(new TubeGeometry(new CatmullRomCurve3([new Vector3(0, 0.282, 0), new Vector3(0.003, 0.322, 0), new Vector3(...fuse)]), 10, 0.004, 5, false), 'rope', [0, 0, 0]);
     super('flower-pot', 'ground-upright', b, fuse);
+    const opening = new Object3D(); opening.name='FountainEmitter'; opening.position.set(0,.287,0);this.baseTransform.add(opening);
   }
 }

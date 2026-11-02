@@ -1,0 +1,233 @@
+{
+  "note": "Synthetic rear-camera/SLAM callbacks and controlled monotonic browser time exercise actual application/Three.js behavior. Not physical mobile AR verification.",
+  "results": [
+    {
+      "engine": "Chromium",
+      "id": "flower-pot",
+      "width": 320,
+      "height": 568,
+      "result": "pass",
+      "test": "real ignition/countdown handoff, selected effect exactly once, fixed world anchor, completion only after fade, replay/choose reset, one camera/session and full cleanup"
+    },
+    {
+      "engine": "Chromium",
+      "id": "flower-pot",
+      "width": 375,
+      "height": 812,
+      "result": "pass",
+      "test": "real ignition/countdown handoff, selected effect exactly once, fixed world anchor, completion only after fade, replay/choose reset, one camera/session and full cleanup"
+    },
+    {
+      "engine": "Chromium",
+      "id": "flower-pot",
+      "width": 390,
+      "height": 844,
+      "result": "pass",
+      "test": "real ignition/countdown handoff, selected effect exactly once, fixed world anchor, completion only after fade, replay/choose reset, one camera/session and full cleanup"
+    },
+    {
+      "engine": "Chromium",
+      "id": "flower-pot",
+      "width": 428,
+      "height": 926,
+      "result": "pass",
+      "test": "real ignition/countdown handoff, selected effect exactly once, fixed world anchor, completion only after fade, replay/choose reset, one camera/session and full cleanup"
+    },
+    {
+      "engine": "Chromium",
+      "id": "ground-chakra",
+      "width": 320,
+      "height": 568,
+      "result": "pass",
+      "test": "real ignition/countdown handoff, selected effect exactly once, fixed world anchor, completion only after fade, replay/choose reset, one camera/session and full cleanup"
+    },
+    {
+      "engine": "Chromium",
+      "id": "ground-chakra",
+      "width": 375,
+      "height": 812,
+      "result": "pass",
+      "test": "real ignition/countdown handoff, selected effect exactly once, fixed world anchor, completion only after fade, replay/choose reset, one camera/session and full cleanup"
+    },
+    {
+      "engine": "Chromium",
+      "id": "ground-chakra",
+      "width": 390,
+      "height": 844,
+      "result": "pass",
+      "test": "real ignition/countdown handoff, selected effect exactly once, fixed world anchor, completion only after fade, replay/choose reset, one camera/session and full cleanup"
+    },
+    {
+      "engine": "Chromium",
+      "id": "ground-chakra",
+      "width": 428,
+      "height": 926,
+      "result": "pass",
+      "test": "real ignition/countdown handoff, selected effect exactly once, fixed world anchor, completion only after fade, replay/choose reset, one camera/session and full cleanup"
+    },
+    {
+      "engine": "Chromium",
+      "id": "rocket",
+      "width": 320,
+      "height": 568,
+      "result": "pass",
+      "test": "real ignition/countdown handoff, selected effect exactly once, fixed world anchor, completion only after fade, replay/choose reset, one camera/session and full cleanup"
+    },
+    {
+      "engine": "Chromium",
+      "id": "rocket",
+      "width": 375,
+      "height": 812,
+      "result": "pass",
+      "test": "real ignition/countdown handoff, selected effect exactly once, fixed world anchor, completion only after fade, replay/choose reset, one camera/session and full cleanup"
+    },
+    {
+      "engine": "Chromium",
+      "id": "rocket",
+      "width": 390,
+      "height": 844,
+      "result": "pass",
+      "test": "real ignition/countdown handoff, selected effect exactly once, fixed world anchor, completion only after fade, replay/choose reset, one camera/session and full cleanup"
+    },
+    {
+      "engine": "Chromium",
+      "id": "rocket",
+      "width": 428,
+      "height": 926,
+      "result": "pass",
+      "test": "real ignition/countdown handoff, selected effect exactly once, fixed world anchor, completion only after fade, replay/choose reset, one camera/session and full cleanup"
+    },
+    {
+      "engine": "Chromium",
+      "id": "flower-pot",
+      "result": "pass",
+      "test": "tracking: no stale world animation or automatic replay; explicit recovery/sky preview; no camera restart"
+    },
+    {
+      "engine": "Chromium",
+      "id": "ground-chakra",
+      "result": "pass",
+      "test": "background: no stale world animation or automatic replay; explicit recovery/sky preview; no camera restart"
+    },
+    {
+      "engine": "Chromium",
+      "id": "rocket",
+      "result": "pass",
+      "test": "sky: no stale world animation or automatic replay; explicit recovery/sky preview; no camera restart"
+    },
+    {
+      "engine": "WebKit",
+      "id": "flower-pot",
+      "width": 320,
+      "height": 568,
+      "result": "pass",
+      "test": "real ignition/countdown handoff, selected effect exactly once, fixed world anchor, completion only after fade, replay/choose reset, one camera/session and full cleanup"
+    },
+    {
+      "engine": "WebKit",
+      "id": "flower-pot",
+      "width": 375,
+      "height": 812,
+      "result": "pass",
+      "test": "real ignition/countdown handoff, selected effect exactly once, fixed world anchor, completion only after fade, replay/choose reset, one camera/session and full cleanup"
+    },
+    {
+      "engine": "WebKit",
+      "id": "flower-pot",
+      "width": 390,
+      "height": 844,
+      "result": "pass",
+      "test": "real ignition/countdown handoff, selected effect exactly once, fixed world anchor, completion only after fade, replay/choose reset, one camera/session and full cleanup"
+    },
+    {
+      "engine": "WebKit",
+      "id": "flower-pot",
+      "width": 428,
+      "height": 926,
+      "result": "pass",
+      "test": "real ignition/countdown handoff, selected effect exactly once, fixed world anchor, completion only after fade, replay/choose reset, one camera/session and full cleanup"
+    },
+    {
+      "engine": "WebKit",
+      "id": "ground-chakra",
+      "width": 320,
+      "height": 568,
+      "result": "pass",
+      "test": "real ignition/countdown handoff, selected effect exactly once, fixed world anchor, completion only after fade, replay/choose reset, one camera/session and full cleanup"
+    },
+    {
+      "engine": "WebKit",
+      "id": "ground-chakra",
+      "width": 375,
+      "height": 812,
+      "result": "pass",
+      "test": "real ignition/countdown handoff, selected effect exactly once, fixed world anchor, completion only after fade, replay/choose reset, one camera/session and full cleanup"
+    },
+    {
+      "engine": "WebKit",
+      "id": "ground-chakra",
+      "width": 390,
+      "height": 844,
+      "result": "pass",
+      "test": "real ignition/countdown handoff, selected effect exactly once, fixed world anchor, completion only after fade, replay/choose reset, one camera/session and full cleanup"
+    },
+    {
+      "engine": "WebKit",
+      "id": "ground-chakra",
+      "width": 428,
+      "height": 926,
+      "result": "pass",
+      "test": "real ignition/countdown handoff, selected effect exactly once, fixed world anchor, completion only after fade, replay/choose reset, one camera/session and full cleanup"
+    },
+    {
+      "engine": "WebKit",
+      "id": "rocket",
+      "width": 320,
+      "height": 568,
+      "result": "pass",
+      "test": "real ignition/countdown handoff, selected effect exactly once, fixed world anchor, completion only after fade, replay/choose reset, one camera/session and full cleanup"
+    },
+    {
+      "engine": "WebKit",
+      "id": "rocket",
+      "width": 375,
+      "height": 812,
+      "result": "pass",
+      "test": "real ignition/countdown handoff, selected effect exactly once, fixed world anchor, completion only after fade, replay/choose reset, one camera/session and full cleanup"
+    },
+    {
+      "engine": "WebKit",
+      "id": "rocket",
+      "width": 390,
+      "height": 844,
+      "result": "pass",
+      "test": "real ignition/countdown handoff, selected effect exactly once, fixed world anchor, completion only after fade, replay/choose reset, one camera/session and full cleanup"
+    },
+    {
+      "engine": "WebKit",
+      "id": "rocket",
+      "width": 428,
+      "height": 926,
+      "result": "pass",
+      "test": "real ignition/countdown handoff, selected effect exactly once, fixed world anchor, completion only after fade, replay/choose reset, one camera/session and full cleanup"
+    },
+    {
+      "engine": "WebKit",
+      "id": "flower-pot",
+      "result": "pass",
+      "test": "tracking: no stale world animation or automatic replay; explicit recovery/sky preview; no camera restart"
+    },
+    {
+      "engine": "WebKit",
+      "id": "ground-chakra",
+      "result": "pass",
+      "test": "background: no stale world animation or automatic replay; explicit recovery/sky preview; no camera restart"
+    },
+    {
+      "engine": "WebKit",
+      "id": "rocket",
+      "result": "pass",
+      "test": "sky: no stale world animation or automatic replay; explicit recovery/sky preview; no camera restart"
+    }
+  ]
+}

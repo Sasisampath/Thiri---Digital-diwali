@@ -1,0 +1,13 @@
+.fireworks-playing { position: absolute; inset: 0; pointer-events: none; }
+.fireworks-completion { position: absolute; left: max(20px, env(safe-area-inset-left)); right: max(20px, env(safe-area-inset-right)); bottom: max(24px, env(safe-area-inset-bottom)); margin: 0 auto; width: min(calc(100% - 40px), 380px); padding: 22px; border-radius: 24px; background: rgb(24 18 34 / 88%); color: #FFF9F2; text-align: center; }
+.fireworks-completion h1 { margin: 0 0 12px; font-size: 25px; line-height: 1.2; letter-spacing: -.035em; outline: none; }
+.fireworks-completion p { margin: 0 0 20px; color: #e2d8ec; font-size: 14px; line-height: 1.5; }
+.fireworks-completion .ar-secondary-button { min-height: 48px; margin-top: 10px; }
+.rocket-guidance { position: absolute; left: 50%; bottom: max(26px, env(safe-area-inset-bottom)); transform: translateX(-50%); min-width: 190px; padding: 12px 18px; border-radius: 22px; background: rgb(24 18 34 / 82%); text-align: center; pointer-events: auto; }
+.rocket-guidance > span { display: block; font-size: 30px; animation: look-up .9s ease-in-out infinite alternate; }.rocket-guidance p { margin: 0; font-weight: 700; }
+.rocket-guidance button { border: 0; background: none; min-height: 44px; color: #ddd0ff; font: inherit; font-size: 12px; text-decoration: underline; }
+.sky-preview-label { position: absolute; bottom: max(30px, env(safe-area-inset-bottom)); left: 50%; transform: translateX(-50%); padding: 10px 14px; border-radius: 20px; background: rgb(24 18 34 / 82%); font-size: 12px; white-space: nowrap; }
+.fireworks-completion .thiri-primary-button + .thiri-primary-button { margin-top: 10px; }
+@keyframes look-up { to { transform: translateY(-6px); } }
+@media (prefers-reduced-motion: reduce) { .rocket-guidance > span { animation: none; } }
+.rocket-guidance small { display: block; font-size: 10px; font-weight: 400; margin: 5px 0 0; color: #ded4ea; }

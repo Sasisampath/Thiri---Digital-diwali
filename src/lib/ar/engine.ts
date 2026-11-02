@@ -1,3 +1,4 @@
+import { FireworksController } from './fireworks-controller';
 import * as THREE from 'three';
 import { IgnitionController } from './ignition-controller';
 import type { FuseProjection } from './fuse-projection';
@@ -45,6 +46,8 @@ export class GroundARSession {
   private reticle: PlacementReticle | null = null;
   private estimator = new GroundPlacement();
   private crackerPlacement: PlacementController | null = null;
+  private soundEnabled=false;
+  private fireworks: FireworksController | null = null;
   private ignition: IgnitionController | null = null;
   private fuseListeners = new Set<(p: FuseProjection) => void>();
   private flow: ARFlow = 'scan';
@@ -68,11 +71,13 @@ export class GroundARSession {
     this.listeners.forEach(listener => listener());
   }
   private live() { return !this.disposed && !this.stopping && owner === this; }
-  private clearPlacement() {
+  private clearPlacement(reason: 'tracking' | 'background' | 'stale' = 'tracking') {
+    this.fireworks?.interrupt(reason);
     this.candidate = null; this.saved = null; this.estimator.reset(); this.reticle?.update(null);
     this.crackerPlacement?.trackingLost(); this.ignition?.lost(); this.syncCracker();
   }
   private syncCracker() { if (this.crackerPlacement) this.publish(this.crackerPlacement.getSummary()); }
+  private syncFireworks = () => { if(this.fireworks)this.publish(this.fireworks.getSummary()); };
   private syncIgnition = () => { if (this.ignition) this.publish(this.ignition.getSummary()); };
   private prepareCracker() {
     if (!this.scene || !['place', 'fuse'].includes(this.flow)) { this.crackerPlacement?.leave(); return; }
@@ -83,7 +88,7 @@ export class GroundARSession {
   }
   setFlow(flow: ARFlow) {
     if (flow === this.flow) return;
-    if (this.flow === 'fuse' && flow !== 'fuse') this.ignition?.leave();
+    if (this.flow === 'fuse' && flow !== 'fuse') { this.ignition?.leave(); this.fireworks?.cancel(); }
     this.flow = flow;
     if (flow === 'place') this.saved = null;
     if (flow === 'scan') this.returnToScan();
@@ -106,7 +111,7 @@ export class GroundARSession {
   private contextLost = (event: Event) => { event.preventDefault(); this.fail('The camera display was interrupted. Tap Retry to start again.', 'engine'); };
   private visibility = () => {
     if (!this.live() || !this.xr) return;
-    this.clearPlacement();
+    this.clearPlacement('background');
     if (document.visibilityState === 'hidden') {
       try {
         this.xr.pause();
@@ -173,7 +178,7 @@ export class GroundARSession {
       this.watchdog = window.setInterval(() => {
         if (!this.live() || this.snapshot.paused) return;
         if (performance.now() - this.lastFrame > 1500 && this.snapshot.state !== 'INITIALIZING') {
-          this.clearPlacement(); this.publish({ state: 'TRACKING_LOST', candidateValid: false, placementMode: 'none' });
+          this.clearPlacement('stale'); this.publish({ state: 'TRACKING_LOST', candidateValid: false, placementMode: 'none' });
         }
       }, 500);
     } catch (error) {
@@ -210,6 +215,7 @@ export class GroundARSession {
     const status = reality.trackingStatus ?? 'UNKNOWN', reason = reality.trackingReason ?? '';
     if (status !== 'NORMAL' || reason === 'INITIALIZING') {
       this.clearPlacement();
+      if(this.flow === 'fuse' && this.snapshot.camera==='hasVideo')this.fireworks?.update(now,false,this.canvas.height);
       this.publish({ state: trackingState(reason === 'INITIALIZING' ? 'LIMITED' : status, false, this.hadTracking), trackingStatus: status, trackingReason: reason, candidateValid: false, placementMode: 'none' });
       return;
     }
@@ -226,7 +232,16 @@ export class GroundARSession {
     const indicator = inPlacement ? this.crackerPlacement?.getReticle() ?? null : valid ? visible : null;
     this.reticle?.update(indicator, inPlacement, now);
     this.syncCracker();
-    if(this.flow === 'fuse') this.ignition?.update(this.scene.camera, this.snapshot.canLightFuse && this.snapshot.camera === 'hasVideo', now);
+    if(this.flow === 'fuse') {
+      const usable = this.snapshot.canLightFuse && this.snapshot.camera === 'hasVideo';
+      this.ignition?.update(this.scene.camera, usable, now);
+      if(this.snapshot.countdown === 0 && !this.snapshot.ignitionInterrupted && usable) {
+        this.fireworks ??= new FireworksController(this.scene.scene, this.scene.camera, this.syncFireworks);
+        this.fireworks.setSound(this.soundEnabled);
+        this.fireworks.countdownFinished(this.getCountdownContext(), this.live() && !this.snapshot.paused, now); this.syncFireworks();
+      }
+      this.fireworks?.update(now, usable, this.canvas.height);
+    }
     this.publish({ state: trackingState(status, valid, this.hadTracking), trackingStatus: status, trackingReason: reason, candidateValid: valid, placementMode: valid ? visible!.source : 'none' });
   }
   confirmPlacement(): Placement | null {
@@ -262,10 +277,12 @@ export class GroundARSession {
   moveFirestick(tip: {x:number;y:number}) { if(this.freshTracking()) this.ignition?.moveTip(tip); else this.ignition?.lost(); }
   cancelFirestickDrag() { this.ignition?.cancelDrag(); }
   tapToLight() { if(this.freshTracking()) return this.ignition?.tap() ?? false; this.ignition?.lost(); return false; }
-  setIgnitionSound(enabled: boolean) { this.ignition?.setSound(enabled); }
+  setIgnitionSound(enabled: boolean) { this.soundEnabled=enabled;this.ignition?.setSound(enabled);this.fireworks?.setSound(enabled); }
   getCountdownContext() { return this.ignition?.getCountdownContext() ?? null; }
-  repositionCracker() { this.ignition?.resetAttempt(); this.saved = null; this.crackerPlacement?.reposition(); this.reticle?.update(null); this.syncCracker(); }
-  rescanCracker() { this.ignition?.resetAttempt(); this.crackerPlacement?.reposition(); this.clearPlacement(); this.publish({ state: 'SCANNING', candidateValid: false, placementMode: 'none' }); }
+  playSkyPreview() { return this.live() && !this.snapshot.paused && document.visibilityState==='visible' && this.snapshot.camera==='hasVideo' && performance.now()-this.lastFrame<=350 ? this.fireworks?.playSkyPreview(performance.now(),true)??false : false; }
+  getFireworksDiagnostics() { return this.fireworks?.diagnostics() ?? null; }
+  repositionCracker() { this.fireworks?.reset(); this.ignition?.resetAttempt(); this.saved = null; this.crackerPlacement?.reposition(); this.reticle?.update(null); this.syncCracker(); }
+  rescanCracker() { this.fireworks?.reset(); this.ignition?.resetAttempt(); this.crackerPlacement?.reposition(); this.clearPlacement(); this.publish({ state: 'SCANNING', candidateValid: false, placementMode: 'none' }); }
   recenterCracker() {
     if (!this.live()) return;
     this.repositionCracker(); this.clearPlacement();
@@ -292,6 +309,7 @@ export class GroundARSession {
       owner = null;
     }
     this.streams.forEach(stream => stream.getTracks().forEach(track => track.stop())); this.streams.clear();
+    this.fireworks?.dispose();this.fireworks=null;
     this.ignition?.dispose(); this.ignition = null; this.fuseListeners.clear();
     this.crackerPlacement?.dispose(); this.crackerPlacement = null;
     this.reticle?.dispose(); this.reticle = null;

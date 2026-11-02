@@ -31,10 +31,10 @@ async function dragHit(page){const{box,mouse}=await dragStart(page);const fuse=a
    expect(effect.visible).toBe(true);expect(effect.point).toEqual(effect.fuse);expect(effect.count).toBe(1);
    await frames(page,{},4);await expect(page.getByRole('timer')).toHaveText('5');
    const values=[5];for(let second=4;second>=1;second--){await frames(page,{},7);values.push(Number(await page.getByRole('timer').innerText()));}
-   expect(values).toEqual([5,4,3,2,1]);await frames(page,{},7);await expect(page.getByText('Fireworks are coming in the next screen.')).toBeVisible();
+   expect(values).toEqual([5,4,3,2,1]);await frames(page,{},7);await expect(page.locator('[data-fireworks-state="PLAYING"]')).toBeVisible();
    expect(await page.evaluate(()=>[testAR.nativeCalls,testAR.runCalls,testAR.activeMax])).toEqual([1,1,1]);
    expect(await page.evaluate(()=>savedModel.getWorldPosition(new THREE.Vector3()).toArray())).toEqual(saved);
-   await page.getByRole('button',{name:'Return to placement',exact:true}).click();await expect(page).toHaveURL(/place-cracker$/);await expect(page.getByRole('button',{name:'Place Cracker',exact:true})).toBeDisabled();
+   await page.getByRole('button',{name:'Cancel fireworks and return to placement',exact:true}).click();await expect(page).toHaveURL(/place-cracker$/);await expect(page.getByRole('button',{name:'Place Cracker',exact:true})).toBeDisabled();
    expect(errors).toEqual([]);await context.close();results.push({engine:name,width,height,result:'pass',test:'CSS tip alignment, drag miss/cancel/contact, camera projection movement, world-space sparks, one ignition, monotonic 5-to-1 countdown, frozen model, shared camera, no scrolling'});
   }
   for(const[label,id]of [['Ground Chakra','ground-chakra'],['Rocket','rocket']]){

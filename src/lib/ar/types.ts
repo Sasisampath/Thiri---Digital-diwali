@@ -1,3 +1,4 @@
+import type { FireworksSummary } from './fireworks-controller';
 import type { IgnitionSummary } from './ignition-controller';
 import type { PlacementSummary } from './placed-cracker-state';
 import type * as THREE from 'three';
@@ -11,7 +12,7 @@ export type Reality = { trackingStatus?: string; trackingReason?: string; positi
 export type Hit = { type: string; position: Point3; rotation?: Rotation; distance?: number };
 export type Placement = { position: Point3; normal: Point3; source: 'engine-surface' | 'slam-point-cloud'; updatedAt: number; support: number };
 export type ARFlow = 'scan' | 'choose' | 'place' | 'fuse';
-export type Snapshot = PlacementSummary & IgnitionSummary & {
+export type Snapshot = PlacementSummary & IgnitionSummary & FireworksSummary & {
   selectedCracker: CrackerType; canRecenter: boolean;
   state: ScanState; camera: string; trackingStatus: string; trackingReason: string;
   candidateValid: boolean; placementMode: string; error: string | null; errorKind: 'camera' | 'denied' | 'engine' | null; paused: boolean;

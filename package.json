@@ -20,7 +20,9 @@
     "test:selection": "node tests/selection.cjs",
     "test:placement": "node tests/placement.cjs",
     "test:ignition": "node tests/ignition.cjs",
-    "test:ignition-state": "node tests/ignition-state.cjs"
+    "test:ignition-state": "node tests/ignition-state.cjs",
+    "test:fireworks": "node tests/fireworks.cjs",
+    "test:fireworks-effects": "node tests/fireworks-effects.cjs"
   },
   "dependencies": {
     "@8thwall/engine-binary": "1.0.0",
