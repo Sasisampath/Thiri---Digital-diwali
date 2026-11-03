@@ -1,0 +1,107 @@
+{
+  "note": "Real app/Three/controllers with synthetic camera/SLAM callbacks and monotonic browser time. Native Chromium touch and WebKit DOM scroll API; not physical iPhone AR validation.",
+  "results": [
+    {
+      "engine": "Chromium",
+      "width": 320,
+      "height": 568,
+      "result": "pass",
+      "test": "six three-column radios, originals first, hidden second row, native Chromium touch / WebKit DOM scrolling, fixed header/CTA/camera, all labels/selection/official badge, no page scroll"
+    },
+    {
+      "engine": "Chromium",
+      "width": 375,
+      "height": 812,
+      "result": "pass",
+      "test": "six three-column radios, originals first, hidden second row, native Chromium touch / WebKit DOM scrolling, fixed header/CTA/camera, all labels/selection/official badge, no page scroll"
+    },
+    {
+      "engine": "Chromium",
+      "width": 390,
+      "height": 844,
+      "result": "pass",
+      "test": "six three-column radios, originals first, hidden second row, native Chromium touch / WebKit DOM scrolling, fixed header/CTA/camera, all labels/selection/official badge, no page scroll"
+    },
+    {
+      "engine": "Chromium",
+      "width": 428,
+      "height": 926,
+      "result": "pass",
+      "test": "six three-column radios, originals first, hidden second row, native Chromium touch / WebKit DOM scrolling, fixed header/CTA/camera, all labels/selection/official badge, no page scroll"
+    },
+    {
+      "engine": "Chromium",
+      "id": "jazzhq-flower-pot",
+      "result": "pass",
+      "test": "variant placement/fuse/countdown, natural delay, official screen-space logo/hold/fade, stable root, manual replay with second reveal, choose cleanup and one camera/session"
+    },
+    {
+      "engine": "Chromium",
+      "id": "jazzhq-chakra",
+      "result": "pass",
+      "test": "variant placement/fuse/countdown, natural delay, official screen-space logo/hold/fade, stable root, manual replay with second reveal, choose cleanup and one camera/session"
+    },
+    {
+      "engine": "Chromium",
+      "id": "jazzhq-rocket",
+      "result": "pass",
+      "test": "variant placement/fuse/countdown, natural delay, official screen-space logo/hold/fade, stable root, manual replay with second reveal, choose cleanup and one camera/session"
+    },
+    {
+      "engine": "Chromium",
+      "result": "pass",
+      "test": "special Rocket fallback uses actual preview burst delay and visible preview label; background aborts reveal without automatic replay"
+    },
+    {
+      "engine": "WebKit",
+      "width": 320,
+      "height": 568,
+      "result": "pass",
+      "test": "six three-column radios, originals first, hidden second row, native Chromium touch / WebKit DOM scrolling, fixed header/CTA/camera, all labels/selection/official badge, no page scroll"
+    },
+    {
+      "engine": "WebKit",
+      "width": 375,
+      "height": 812,
+      "result": "pass",
+      "test": "six three-column radios, originals first, hidden second row, native Chromium touch / WebKit DOM scrolling, fixed header/CTA/camera, all labels/selection/official badge, no page scroll"
+    },
+    {
+      "engine": "WebKit",
+      "width": 390,
+      "height": 844,
+      "result": "pass",
+      "test": "six three-column radios, originals first, hidden second row, native Chromium touch / WebKit DOM scrolling, fixed header/CTA/camera, all labels/selection/official badge, no page scroll"
+    },
+    {
+      "engine": "WebKit",
+      "width": 428,
+      "height": 926,
+      "result": "pass",
+      "test": "six three-column radios, originals first, hidden second row, native Chromium touch / WebKit DOM scrolling, fixed header/CTA/camera, all labels/selection/official badge, no page scroll"
+    },
+    {
+      "engine": "WebKit",
+      "id": "jazzhq-flower-pot",
+      "result": "pass",
+      "test": "variant placement/fuse/countdown, natural delay, official screen-space logo/hold/fade, stable root, manual replay with second reveal, choose cleanup and one camera/session"
+    },
+    {
+      "engine": "WebKit",
+      "id": "jazzhq-chakra",
+      "result": "pass",
+      "test": "variant placement/fuse/countdown, natural delay, official screen-space logo/hold/fade, stable root, manual replay with second reveal, choose cleanup and one camera/session"
+    },
+    {
+      "engine": "WebKit",
+      "id": "jazzhq-rocket",
+      "result": "pass",
+      "test": "variant placement/fuse/countdown, natural delay, official screen-space logo/hold/fade, stable root, manual replay with second reveal, choose cleanup and one camera/session"
+    },
+    {
+      "engine": "WebKit",
+      "result": "pass",
+      "test": "special Rocket fallback uses actual preview burst delay and visible preview label; background aborts reveal without automatic replay"
+    }
+  ]
+}

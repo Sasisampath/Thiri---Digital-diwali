@@ -22,13 +22,13 @@ async function ready(page) {
    await page.evaluate(()=>{window.originalARCanvas=document.querySelector('canvas');window.originalARScene=testAR.scene;});
    await page.getByRole('button',{name:'Choose a Cracker'}).click();
    await expect(page.getByRole('heading',{name:'Pick your cracker'})).toBeVisible();
-   await expect(page.getByRole('radio')).toHaveCount(3);await expect(page.getByRole('radio',{name:'Flower Pot',exact:true})).toBeChecked();
+   await expect(page.getByRole('radio')).toHaveCount(6);await expect(page.getByRole('radio',{name:'Flower Pot',exact:true})).toBeChecked();
    await expect(page.getByRole('button',{name:'Place Flower Pot',exact:true})).toBeVisible();
    await page.locator('.cracker-card-art img').evaluateAll(images=>Promise.all(images.map(i=>i.decode())));
    expect(await page.locator('.cracker-card-art img').evaluateAll(images=>images.every(i=>i.currentSrc.endsWith('.webp')&&getComputedStyle(i).objectFit==='contain'))).toBe(true);
    const bounds=await page.evaluate(()=>{
     const sheet=document.querySelector('.cracker-selection-sheet').getBoundingClientRect();
-    const cards=[...document.querySelectorAll('.cracker-card-face')].map(e=>{const r=e.getBoundingClientRect();return{x:r.x,y:r.y,width:r.width,height:r.height,right:r.right,bottom:r.bottom}});
+    const cards=[...document.querySelectorAll('.cracker-card-face')].slice(0,3).map(e=>{const r=e.getBoundingClientRect();return{x:r.x,y:r.y,width:r.width,height:r.height,right:r.right,bottom:r.bottom}});
     const cta=document.querySelector('.cracker-place-next').getBoundingClientRect();
     return{pageWidth:document.documentElement.scrollWidth,pageHeight:document.documentElement.scrollHeight,sheetTop:sheet.top,cards,ctaHeight:cta.height,ctaBottom:cta.bottom};
    });

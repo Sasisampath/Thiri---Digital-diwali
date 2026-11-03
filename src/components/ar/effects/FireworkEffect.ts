@@ -1,7 +1,7 @@
 import { Group, Mesh, PlaneGeometry, ShaderMaterial, Vector3 } from 'three';
 import type { PerspectiveCamera, Scene } from 'three';
 import type { PlacedCracker } from '../../../lib/ar/placed-cracker-state';
-export type FireworkContext={placed:PlacedCracker;scene:Scene;camera:PerspectiveCamera;capacity:number;reducedMotion:boolean};
+export type FireworkContext={placed:PlacedCracker;scene:Scene;camera:PerspectiveCamera;capacity:number;reducedMotion:boolean;brandTransitionAt?:number};
 export interface FireworkEffect {
   readonly root:Group;
   readonly duration:number;

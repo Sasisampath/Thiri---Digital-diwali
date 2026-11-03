@@ -65,7 +65,7 @@ export default function ScanGroundScreen({ mode, releasePermissionCamera, onClos
   const completed=mode==='fuse'&&snapshot.fireworksState==='COMPLETED'&&!failed;
   const debug = import.meta.env.DEV && new URLSearchParams(location.search).has('arDebug');
 
-  return <main className={`ar-scan${mode !== 'scan' ? ' is-cracker-flow' : ''}`} aria-label="Scan the Ground AR experience" data-ar-state={snapshot.state}>
+  return <main className={`ar-scan${mode === 'choose' ? ' is-cracker-flow is-selecting' : mode !== 'scan' ? ' is-cracker-flow' : ''}`} aria-label="Scan the Ground AR experience" data-ar-state={snapshot.state}>
     <canvas ref={canvas} className="ar-camera-canvas" aria-label="Live rear-camera AR view" />
     <header className="ar-controls" inert={completed} aria-hidden={completed?true:undefined}>
       <button ref={close} className="ar-circle-button" type="button" aria-label={mode === 'scan' ? 'Close AR and return to Welcome' : mode === 'choose' ? 'Back to Scan the Ground' : mode === 'fuse' ? showingFireworks ? 'Cancel fireworks and return to placement' : 'Back to placement' : 'Back to cracker selection'} onClick={mode === 'scan' ? exit : mode === 'choose' ? onBackToScan : mode === 'fuse' ? returnFromFuse : onBackToChoose}><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d={mode === 'scan' ? 'm6 6 12 12M18 6 6 18' : 'M19 12H5m7-7-7 7 7 7'} fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg></button>

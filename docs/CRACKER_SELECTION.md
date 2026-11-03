@@ -65,3 +65,6 @@ For manual testing, use the HTTPS Vercel deployment, complete the existing permi
 
 
 Screen 06 now implements real procedural world placement instead of the original placeholder. See [placement implementation](CRACKER_PLACEMENT.md).
+
+
+JazzHQ extension: selection data now contains six IDs with explicit baseType/brand/specialReveal metadata. The original three cards remain the initial row; only the card area scrolls to the three JazzHQ variants while header/CTA stay fixed. See [JazzHQ Specials](JAZZHQ_SPECIALS.md) for the updated behavior and six-option tests.

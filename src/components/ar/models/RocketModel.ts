@@ -1,8 +1,9 @@
+import type { CrackerType } from '../../../config/crackers';
 import { CatmullRomCurve3, ConeGeometry, CylinderGeometry, ExtrudeGeometry, Quaternion, Shape, TorusGeometry, TubeGeometry, Vector3, Group, Box3, Object3D } from 'three';
 import { ModelBuilder, ProceduralCrackerModel } from './model';
 
 export class RocketModel extends ProceduralCrackerModel {
-  constructor() {
+  constructor(type: CrackerType = 'rocket') {
     const b = new ModelBuilder(), stand = new ModelBuilder(), up = new Vector3(0, 1, 0), flat = new Quaternion().setFromAxisAngle(new Vector3(1, 0, 0), Math.PI / 2);
     b.add(new CylinderGeometry(0.004, 0.004, 0.52, 8), 'wood', [0, 0.26, 0.012]);
     for (let i = 0; i < 3; i++) {
@@ -24,7 +25,7 @@ export class RocketModel extends ProceduralCrackerModel {
     }
     const fuse: [number, number, number] = [0.085, 0.445, 0];
     b.add(new TubeGeometry(new CatmullRomCurve3([new Vector3(0.038, 0.498, 0), new Vector3(0.066, 0.475, 0), new Vector3(...fuse)]), 10, 0.003, 5, false), 'rope', [0, 0, 0]);
-    super('rocket', 'ground-upright', b, fuse);
+    super(type, 'ground-upright', b, fuse);
     this.visualBody.name='RocketVisual';
     const support=new Group();support.name='LaunchSupport';this.baseTransform.add(support);this.materials.push(...stand.finish(support));
     const exhaust=new Object3D();exhaust.name='RocketExhaust';exhaust.position.set(0,.478,0);this.visualBody.add(exhaust);

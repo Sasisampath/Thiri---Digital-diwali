@@ -1,8 +1,9 @@
+import type { CrackerType } from '../../../config/crackers';
 import { CatmullRomCurve3, CylinderGeometry, Quaternion, SphereGeometry, TorusGeometry, TubeGeometry, Vector3 } from 'three';
 import { ModelBuilder, ProceduralCrackerModel } from './model';
 
 export class GroundChakraModel extends ProceduralCrackerModel {
-  constructor() {
+  constructor(type: CrackerType = 'ground-chakra') {
     const b = new ModelBuilder(), flat = new Quaternion().setFromAxisAngle(new Vector3(1, 0, 0), Math.PI / 2);
     b.add(new CylinderGeometry(0.15, 0.15, 0.034, 32), 'purple', [0, 0.017, 0]);
     b.add(new CylinderGeometry(0.146, 0.146, 0.008, 32), 'orange', [0, 0.036, 0]);
@@ -17,6 +18,6 @@ export class GroundChakraModel extends ProceduralCrackerModel {
     }
     const fuse: [number, number, number] = [0.206, 0.055, 0];
     b.add(new TubeGeometry(new CatmullRomCurve3([new Vector3(0.13, 0.033, 0), new Vector3(0.175, 0.045, 0), new Vector3(...fuse)]), 8, 0.0035, 5, false), 'rope', [0, 0, 0]);
-    super('ground-chakra', 'ground-flat', b, fuse);
+    super(type, 'ground-flat', b, fuse);
   }
 }

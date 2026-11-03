@@ -70,6 +70,21 @@
       "test": "short: no invalid anchor replay, explicit recovery or scrollable short-screen exit"
     },
     {
+      "engine": "Chromium",
+      "result": "pass",
+      "test": "motion: no invalid anchor replay, explicit recovery or scrollable short-screen exit"
+    },
+    {
+      "engine": "Chromium",
+      "result": "pass",
+      "test": "stale: no invalid anchor replay, explicit recovery or scrollable short-screen exit"
+    },
+    {
+      "engine": "Chromium",
+      "result": "pass",
+      "test": "cleanup: no invalid anchor replay, explicit recovery or scrollable short-screen exit"
+    },
+    {
       "engine": "WebKit",
       "id": "flower-pot",
       "width": 320,
@@ -136,6 +151,21 @@
       "engine": "WebKit",
       "result": "pass",
       "test": "short: no invalid anchor replay, explicit recovery or scrollable short-screen exit"
+    },
+    {
+      "engine": "WebKit",
+      "result": "pass",
+      "test": "motion: no invalid anchor replay, explicit recovery or scrollable short-screen exit"
+    },
+    {
+      "engine": "WebKit",
+      "result": "pass",
+      "test": "stale: no invalid anchor replay, explicit recovery or scrollable short-screen exit"
+    },
+    {
+      "engine": "WebKit",
+      "result": "pass",
+      "test": "cleanup: no invalid anchor replay, explicit recovery or scrollable short-screen exit"
     }
   ]
 }

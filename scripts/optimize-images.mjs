@@ -7,6 +7,7 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const jobs = [
   ['celebration/glowing_diya_diwali_celebration', 768, false],
   ['celebration/glossy_festive_sparkle_cluster', 256, false],
+  ['branding/jazzhq-logo', null, true],
   ['branding/thiri-logo', null, true],
   ['branding/thiri-icon', null, true],
   ['crackers/flower-pot', 960, false],

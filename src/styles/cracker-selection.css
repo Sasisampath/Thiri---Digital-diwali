@@ -33,3 +33,17 @@
 @media (max-height: 660px) { .cracker-selection-sheet, .cracker-placement-boundary { padding-top: 13px; padding-bottom: max(10px, env(safe-area-inset-bottom)); }.cracker-card-grid { margin: 12px auto; gap: 8px; }.cracker-card-art { height: 76px; }.cracker-card-face { padding: 7px 4px; }.cracker-card-name { min-height: 28px; font-size: 11px; }.cracker-sheet-header h1 { font-size: 21px; }.cracker-sheet-header p { font-size: 11px; margin-top: 5px; }.cracker-place-next { min-height: 50px; padding-top: 13px; padding-bottom: 13px; } }
 @media (orientation: landscape) and (max-height: 520px) { .cracker-selection-sheet { left: auto; width: 55%; max-height: calc(100% - 118px); overflow-y: auto; border-radius: 24px 0 0; touch-action: pan-y; }.cracker-placement-boundary { left: auto; width: 55%; max-height: calc(100% - 118px); overflow-y: auto; }.cracker-card-art { height: 44px; }.cracker-sheet-header h1 { font-size: 18px; }.cracker-card-grid { margin: 8px auto; }.cracker-card-face { padding: 4px; }.cracker-card-name { font-size: 10px; min-height: 26px; }.cracker-sheet-header p { font-size: 10px; } }
 @media (prefers-reduced-motion: reduce) { .cracker-selection-sheet, .cracker-placement-boundary, .cracker-selection-sheet.is-exiting, .cracker-cta-label { animation: none; }.cracker-card-face { transition: none; } }
+
+/* Only the card area scrolls; its first viewport contains the original row and hint. */
+.cracker-selection-sheet { --cracker-art-height: clamp(78px, 13dvh, 112px); --cracker-card-shell: 55px; display: flex; flex-direction: column; max-height: calc(100dvh - 116px); }
+.cracker-selection-sheet .cracker-sheet-header, .cracker-selection-sheet .cracker-place-next, .cracker-selection-sheet .cracker-tracking-note { flex-shrink: 0; width: min(100%, 450px); }
+.cracker-card-scroll { width: min(100%, 450px); height: calc(var(--cracker-art-height) + var(--cracker-card-shell) + 28px); min-height: 60px; flex-shrink: 1; overflow-y: auto; overflow-x: hidden; margin: 18px auto; touch-action: pan-y; overscroll-behavior: contain; -webkit-overflow-scrolling: touch; scrollbar-width: thin; scrollbar-color: #766290 transparent; }
+.cracker-card-scroll .cracker-card-grid { margin: 0; }
+.cracker-card-scroll .cracker-card-art { height: var(--cracker-art-height); }
+.cracker-specials-hint { grid-column: 1 / -1; height: 18px; margin: 0; color: #c8bcda; font-size: 11px; text-align: center; line-height: 18px; }
+.cracker-brand-badge { position: absolute; top: 7px; left: 6px; width: 42px; padding: 4px; border-radius: 6px; background: #FFF9F2; pointer-events: none; }
+.cracker-brand-badge img { display: block; width: 100%; height: auto; object-fit: contain; }
+@media (max-height: 660px) { .cracker-selection-sheet { --cracker-art-height: 76px; --cracker-card-shell: 46px; }.cracker-card-scroll { margin: 12px auto; height: calc(var(--cracker-art-height) + var(--cracker-card-shell) + 26px); }.cracker-brand-badge { width: 36px; padding: 3px; } }
+@media (orientation: landscape) and (max-height: 520px) { .cracker-selection-sheet { --cracker-art-height: 44px; --cracker-card-shell: 38px; overflow: hidden; }.cracker-card-scroll { margin: 8px auto; } }
+.ar-scan.is-selecting { touch-action: pan-y; }
+.ar-scan.is-selecting .ar-camera-canvas { touch-action: none; }

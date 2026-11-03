@@ -32,6 +32,7 @@ export class RocketLaunchEffect implements FireworkEffect {
    this.burstSettings=burstConfig(this.burstNode.position,Infinity,context.reducedMotion);this.burst=new ParticleEmitter(context.capacity-trailCount,this.burstSettings,this.root);this.stop();
  }
  get activeParticles(){return this.trail.activeCount+this.burst.activeCount;}
+ get burstStartedAt(){return this.burstTime;}
  get hasBurst(){return this.burstTime!==null;}
  burstVisible(camera:PerspectiveCamera){return projectFuse(this.burstNode,camera,{left:0,top:0,width:1,height:1}).visible;}
  triggerBurst(elapsed:number){if(this.burstTime!==null)return;this.burstTime=elapsed;this.burstSettings.start=elapsed;this.burstSettings.end=elapsed;this.visual.visible=false;}

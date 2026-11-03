@@ -1,0 +1,731 @@
+{
+  "note": "Real model/controller/effect code with deterministic time and synthetic world/camera poses; not physical AR verification.",
+  "results": [
+    {
+      "engine": "Chromium",
+      "result": "pass",
+      "rows": [
+        {
+          "id": "flower-pot",
+          "base": "flower-pot",
+          "special": false,
+          "first": true,
+          "duplicate": false,
+          "effect": "FlowerPotFountain",
+          "early": "NONE",
+          "checkpoints": [
+            {
+              "time": 2.999,
+              "phase": "NONE",
+              "state": "PLAYING"
+            },
+            {
+              "time": 3.001,
+              "phase": "NONE",
+              "state": "PLAYING"
+            },
+            {
+              "time": 3.401,
+              "phase": "NONE",
+              "state": "PLAYING"
+            },
+            {
+              "time": 6.399,
+              "phase": "NONE",
+              "state": "COMPLETED"
+            },
+            {
+              "time": 6.401,
+              "phase": "NONE",
+              "state": "COMPLETED"
+            },
+            {
+              "time": 6.851,
+              "phase": "NONE",
+              "state": "COMPLETED"
+            }
+          ],
+          "rootStable": true,
+          "dimensions": [
+            0.27000001072883606,
+            0.34791699089854955,
+            0.27000001072883606
+          ],
+          "naturalChecksum": [
+            1651.778670722546,
+            740.3237839689828
+          ],
+          "fuse": "FusePoint",
+          "reset": "NONE",
+          "clean": true
+        },
+        {
+          "id": "ground-chakra",
+          "base": "ground-chakra",
+          "special": false,
+          "first": true,
+          "duplicate": false,
+          "effect": "GroundChakraEffect",
+          "early": "NONE",
+          "checkpoints": [
+            {
+              "time": 2.999,
+              "phase": "NONE",
+              "state": "PLAYING"
+            },
+            {
+              "time": 3.001,
+              "phase": "NONE",
+              "state": "PLAYING"
+            },
+            {
+              "time": 3.401,
+              "phase": "NONE",
+              "state": "PLAYING"
+            },
+            {
+              "time": 6.399,
+              "phase": "NONE",
+              "state": "COMPLETED"
+            },
+            {
+              "time": 6.401,
+              "phase": "NONE",
+              "state": "COMPLETED"
+            },
+            {
+              "time": 6.851,
+              "phase": "NONE",
+              "state": "COMPLETED"
+            }
+          ],
+          "rootStable": true,
+          "dimensions": [
+            0.3600219339132309,
+            0.06700000259280203,
+            0.3059999942779541
+          ],
+          "naturalChecksum": [
+            -75.53279570510495,
+            470.10206393152475
+          ],
+          "fuse": "FusePoint",
+          "reset": "NONE",
+          "clean": true
+        },
+        {
+          "id": "rocket",
+          "base": "rocket",
+          "special": false,
+          "first": true,
+          "duplicate": false,
+          "effect": "RocketLaunchEffect",
+          "early": "NONE",
+          "checkpoints": [
+            {
+              "time": 5.899,
+              "phase": "NONE",
+              "state": "PLAYING"
+            },
+            {
+              "time": 5.901000000000001,
+              "phase": "NONE",
+              "state": "PLAYING"
+            },
+            {
+              "time": 6.301,
+              "phase": "NONE",
+              "state": "COMPLETED"
+            },
+            {
+              "time": 9.299,
+              "phase": "NONE",
+              "state": "COMPLETED"
+            },
+            {
+              "time": 9.301,
+              "phase": "NONE",
+              "state": "COMPLETED"
+            },
+            {
+              "time": 9.751000000000001,
+              "phase": "NONE",
+              "state": "COMPLETED"
+            }
+          ],
+          "rootStable": true,
+          "dimensions": [
+            0.16869249194860458,
+            0.8370000125877559,
+            0.15895190834999084
+          ],
+          "naturalChecksum": [
+            359.3924960377044,
+            1.2889580910705263
+          ],
+          "fuse": "FusePoint",
+          "reset": "NONE",
+          "clean": true
+        },
+        {
+          "id": "jazzhq-flower-pot",
+          "base": "flower-pot",
+          "special": true,
+          "first": true,
+          "duplicate": false,
+          "effect": "FlowerPotFountain",
+          "early": "NONE",
+          "checkpoints": [
+            {
+              "time": 2.999,
+              "phase": "NONE",
+              "state": "PLAYING"
+            },
+            {
+              "time": 3.001,
+              "phase": "ENTERING",
+              "state": "PLAYING"
+            },
+            {
+              "time": 3.401,
+              "phase": "HOLDING",
+              "state": "PLAYING"
+            },
+            {
+              "time": 6.399,
+              "phase": "HOLDING",
+              "state": "PLAYING"
+            },
+            {
+              "time": 6.401,
+              "phase": "EXITING",
+              "state": "PLAYING"
+            },
+            {
+              "time": 6.851,
+              "phase": "NONE",
+              "state": "COMPLETED"
+            }
+          ],
+          "rootStable": true,
+          "dimensions": [
+            0.27000001072883606,
+            0.34791699089854955,
+            0.27000001072883606
+          ],
+          "naturalChecksum": [
+            1651.778670722546,
+            740.3237839689828
+          ],
+          "fuse": "FusePoint",
+          "reset": "NONE",
+          "clean": true
+        },
+        {
+          "id": "jazzhq-chakra",
+          "base": "ground-chakra",
+          "special": true,
+          "first": true,
+          "duplicate": false,
+          "effect": "GroundChakraEffect",
+          "early": "NONE",
+          "checkpoints": [
+            {
+              "time": 2.999,
+              "phase": "NONE",
+              "state": "PLAYING"
+            },
+            {
+              "time": 3.001,
+              "phase": "ENTERING",
+              "state": "PLAYING"
+            },
+            {
+              "time": 3.401,
+              "phase": "HOLDING",
+              "state": "PLAYING"
+            },
+            {
+              "time": 6.399,
+              "phase": "HOLDING",
+              "state": "PLAYING"
+            },
+            {
+              "time": 6.401,
+              "phase": "EXITING",
+              "state": "PLAYING"
+            },
+            {
+              "time": 6.851,
+              "phase": "NONE",
+              "state": "COMPLETED"
+            }
+          ],
+          "rootStable": true,
+          "dimensions": [
+            0.3600219339132309,
+            0.06700000259280203,
+            0.3059999942779541
+          ],
+          "naturalChecksum": [
+            -75.53279570510495,
+            470.10206393152475
+          ],
+          "fuse": "FusePoint",
+          "reset": "NONE",
+          "clean": true
+        },
+        {
+          "id": "jazzhq-rocket",
+          "base": "rocket",
+          "special": true,
+          "first": true,
+          "duplicate": false,
+          "effect": "RocketLaunchEffect",
+          "early": "NONE",
+          "checkpoints": [
+            {
+              "time": 5.899,
+              "phase": "NONE",
+              "state": "PLAYING"
+            },
+            {
+              "time": 5.901000000000001,
+              "phase": "ENTERING",
+              "state": "PLAYING"
+            },
+            {
+              "time": 6.301,
+              "phase": "HOLDING",
+              "state": "PLAYING"
+            },
+            {
+              "time": 9.299,
+              "phase": "HOLDING",
+              "state": "PLAYING"
+            },
+            {
+              "time": 9.301,
+              "phase": "EXITING",
+              "state": "PLAYING"
+            },
+            {
+              "time": 9.751000000000001,
+              "phase": "NONE",
+              "state": "COMPLETED"
+            }
+          ],
+          "rootStable": true,
+          "dimensions": [
+            0.16869249194860458,
+            0.8370000125877559,
+            0.15895190834999084
+          ],
+          "naturalChecksum": [
+            359.3924960377044,
+            1.2889580910705263
+          ],
+          "fuse": "FusePoint",
+          "reset": "NONE",
+          "clean": true
+        },
+        {
+          "interrupted": "NONE",
+          "state": "TRACKING_LOST"
+        },
+        {
+          "before": "NONE",
+          "at": "ENTERING",
+          "late": "PLAYING",
+          "completed": "COMPLETED",
+          "reset": "NONE"
+        },
+        {
+          "durations": [
+            {
+              "id": "flower-pot",
+              "before": "PLAYING",
+              "after": "COMPLETED",
+              "phase": "NONE"
+            },
+            {
+              "id": "ground-chakra",
+              "before": "PLAYING",
+              "after": "COMPLETED",
+              "phase": "NONE"
+            },
+            {
+              "id": "rocket",
+              "before": "PLAYING",
+              "after": "COMPLETED",
+              "phase": "NONE"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "engine": "WebKit",
+      "result": "pass",
+      "rows": [
+        {
+          "id": "flower-pot",
+          "base": "flower-pot",
+          "special": false,
+          "first": true,
+          "duplicate": false,
+          "effect": "FlowerPotFountain",
+          "early": "NONE",
+          "checkpoints": [
+            {
+              "time": 2.999,
+              "phase": "NONE",
+              "state": "PLAYING"
+            },
+            {
+              "time": 3.001,
+              "phase": "NONE",
+              "state": "PLAYING"
+            },
+            {
+              "time": 3.401,
+              "phase": "NONE",
+              "state": "PLAYING"
+            },
+            {
+              "time": 6.399,
+              "phase": "NONE",
+              "state": "COMPLETED"
+            },
+            {
+              "time": 6.401,
+              "phase": "NONE",
+              "state": "COMPLETED"
+            },
+            {
+              "time": 6.851,
+              "phase": "NONE",
+              "state": "COMPLETED"
+            }
+          ],
+          "rootStable": true,
+          "dimensions": [
+            0.27000001072883606,
+            0.34791699089854955,
+            0.27000001072883606
+          ],
+          "naturalChecksum": [
+            1651.778670722546,
+            740.3237839689828
+          ],
+          "fuse": "FusePoint",
+          "reset": "NONE",
+          "clean": true
+        },
+        {
+          "id": "ground-chakra",
+          "base": "ground-chakra",
+          "special": false,
+          "first": true,
+          "duplicate": false,
+          "effect": "GroundChakraEffect",
+          "early": "NONE",
+          "checkpoints": [
+            {
+              "time": 2.999,
+              "phase": "NONE",
+              "state": "PLAYING"
+            },
+            {
+              "time": 3.001,
+              "phase": "NONE",
+              "state": "PLAYING"
+            },
+            {
+              "time": 3.401,
+              "phase": "NONE",
+              "state": "PLAYING"
+            },
+            {
+              "time": 6.399,
+              "phase": "NONE",
+              "state": "COMPLETED"
+            },
+            {
+              "time": 6.401,
+              "phase": "NONE",
+              "state": "COMPLETED"
+            },
+            {
+              "time": 6.851,
+              "phase": "NONE",
+              "state": "COMPLETED"
+            }
+          ],
+          "rootStable": true,
+          "dimensions": [
+            0.3600219339132309,
+            0.06700000259280203,
+            0.3059999942779541
+          ],
+          "naturalChecksum": [
+            -75.53279570510495,
+            470.10206393152475
+          ],
+          "fuse": "FusePoint",
+          "reset": "NONE",
+          "clean": true
+        },
+        {
+          "id": "rocket",
+          "base": "rocket",
+          "special": false,
+          "first": true,
+          "duplicate": false,
+          "effect": "RocketLaunchEffect",
+          "early": "NONE",
+          "checkpoints": [
+            {
+              "time": 5.899,
+              "phase": "NONE",
+              "state": "PLAYING"
+            },
+            {
+              "time": 5.901000000000001,
+              "phase": "NONE",
+              "state": "PLAYING"
+            },
+            {
+              "time": 6.301,
+              "phase": "NONE",
+              "state": "COMPLETED"
+            },
+            {
+              "time": 9.299,
+              "phase": "NONE",
+              "state": "COMPLETED"
+            },
+            {
+              "time": 9.301,
+              "phase": "NONE",
+              "state": "COMPLETED"
+            },
+            {
+              "time": 9.751000000000001,
+              "phase": "NONE",
+              "state": "COMPLETED"
+            }
+          ],
+          "rootStable": true,
+          "dimensions": [
+            0.16869249194860458,
+            0.8370000125877559,
+            0.15895190834999084
+          ],
+          "naturalChecksum": [
+            359.3924960377044,
+            1.2889580910705263
+          ],
+          "fuse": "FusePoint",
+          "reset": "NONE",
+          "clean": true
+        },
+        {
+          "id": "jazzhq-flower-pot",
+          "base": "flower-pot",
+          "special": true,
+          "first": true,
+          "duplicate": false,
+          "effect": "FlowerPotFountain",
+          "early": "NONE",
+          "checkpoints": [
+            {
+              "time": 2.999,
+              "phase": "NONE",
+              "state": "PLAYING"
+            },
+            {
+              "time": 3.001,
+              "phase": "ENTERING",
+              "state": "PLAYING"
+            },
+            {
+              "time": 3.401,
+              "phase": "HOLDING",
+              "state": "PLAYING"
+            },
+            {
+              "time": 6.399,
+              "phase": "HOLDING",
+              "state": "PLAYING"
+            },
+            {
+              "time": 6.401,
+              "phase": "EXITING",
+              "state": "PLAYING"
+            },
+            {
+              "time": 6.851,
+              "phase": "NONE",
+              "state": "COMPLETED"
+            }
+          ],
+          "rootStable": true,
+          "dimensions": [
+            0.27000001072883606,
+            0.34791699089854955,
+            0.27000001072883606
+          ],
+          "naturalChecksum": [
+            1651.778670722546,
+            740.3237839689828
+          ],
+          "fuse": "FusePoint",
+          "reset": "NONE",
+          "clean": true
+        },
+        {
+          "id": "jazzhq-chakra",
+          "base": "ground-chakra",
+          "special": true,
+          "first": true,
+          "duplicate": false,
+          "effect": "GroundChakraEffect",
+          "early": "NONE",
+          "checkpoints": [
+            {
+              "time": 2.999,
+              "phase": "NONE",
+              "state": "PLAYING"
+            },
+            {
+              "time": 3.001,
+              "phase": "ENTERING",
+              "state": "PLAYING"
+            },
+            {
+              "time": 3.401,
+              "phase": "HOLDING",
+              "state": "PLAYING"
+            },
+            {
+              "time": 6.399,
+              "phase": "HOLDING",
+              "state": "PLAYING"
+            },
+            {
+              "time": 6.401,
+              "phase": "EXITING",
+              "state": "PLAYING"
+            },
+            {
+              "time": 6.851,
+              "phase": "NONE",
+              "state": "COMPLETED"
+            }
+          ],
+          "rootStable": true,
+          "dimensions": [
+            0.3600219339132309,
+            0.06700000259280203,
+            0.3059999942779541
+          ],
+          "naturalChecksum": [
+            -75.53279570510495,
+            470.10206393152475
+          ],
+          "fuse": "FusePoint",
+          "reset": "NONE",
+          "clean": true
+        },
+        {
+          "id": "jazzhq-rocket",
+          "base": "rocket",
+          "special": true,
+          "first": true,
+          "duplicate": false,
+          "effect": "RocketLaunchEffect",
+          "early": "NONE",
+          "checkpoints": [
+            {
+              "time": 5.899,
+              "phase": "NONE",
+              "state": "PLAYING"
+            },
+            {
+              "time": 5.901000000000001,
+              "phase": "ENTERING",
+              "state": "PLAYING"
+            },
+            {
+              "time": 6.301,
+              "phase": "HOLDING",
+              "state": "PLAYING"
+            },
+            {
+              "time": 9.299,
+              "phase": "HOLDING",
+              "state": "PLAYING"
+            },
+            {
+              "time": 9.301,
+              "phase": "EXITING",
+              "state": "PLAYING"
+            },
+            {
+              "time": 9.751000000000001,
+              "phase": "NONE",
+              "state": "COMPLETED"
+            }
+          ],
+          "rootStable": true,
+          "dimensions": [
+            0.16869249194860458,
+            0.8370000125877559,
+            0.15895190834999084
+          ],
+          "naturalChecksum": [
+            359.3924960377044,
+            1.2889580910705263
+          ],
+          "fuse": "FusePoint",
+          "reset": "NONE",
+          "clean": true
+        },
+        {
+          "interrupted": "NONE",
+          "state": "TRACKING_LOST"
+        },
+        {
+          "before": "NONE",
+          "at": "ENTERING",
+          "late": "PLAYING",
+          "completed": "COMPLETED",
+          "reset": "NONE"
+        },
+        {
+          "durations": [
+            {
+              "id": "flower-pot",
+              "before": "PLAYING",
+              "after": "COMPLETED",
+              "phase": "NONE"
+            },
+            {
+              "id": "ground-chakra",
+              "before": "PLAYING",
+              "after": "COMPLETED",
+              "phase": "NONE"
+            },
+            {
+              "id": "rocket",
+              "before": "PLAYING",
+              "after": "COMPLETED",
+              "phase": "NONE"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

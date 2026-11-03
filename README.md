@@ -50,6 +50,10 @@ Flower Pot has a golden fountain from its named opening; Ground Chakra spins a v
 
 The real COMPLETED event opens a compact cream card over the live camera with approved diya/sparkle artwork, accessible close/replay/selection controls and safe-area layout. Valid replay preserves the model and world placement and returns directly to manual ignition; unreliable tracking offers Rescan. New selection disposes old models/fuse references without restarting the camera. Finished particle resources release before completion is shown. [Files, asset optimization, reset APIs and device checklist](docs/CELEBRATION_COMPLETE.md).
 
+## JazzHQ Specials
+
+Selection keeps the original three-card row and adds a native vertically scrollable second row: JazzHQ Flower Pot, JazzHQ Chakra and JazzHQ Rocket. Specials reuse original artwork/models/effects, with official-logo badges. After three seconds of natural effects (measured from actual sky burst for Rocket), a shared screen-space official-logo reveal holds for three seconds and fades into completion. Original timings are unchanged. [Configuration, assets, timing, scroll tests and physical-device checklist](docs/JAZZHQ_SPECIALS.md).
+
 ## Assets
 
 Approved PNG originals are retained under `public/assets/branding`, `crackers` and `onboarding`, with optimized WebP alternatives and PNG fallback. New assets:
@@ -86,6 +90,8 @@ npm run test:fireworks-effects
 npm run test:fireworks
 npm run test:celebration
 npm run test:celebration-memory
+npm run test:jazzhq-effects
+npm run test:jazzhq
 ```
 
 Set `TEST_URL` to the server URL if necessary (e.g. `http://127.0.0.1:5174/`). `CHROMIUM_EXECUTABLE_PATH` can select an installed Chromium executable. Test missing browsers fail instead of silently skipping.
