@@ -68,9 +68,9 @@ export class IgnitionController {
       const elapsed=now-this.started;
       if(elapsed<700) { this.publish({ignitionPhase:'IGNITING'});this.effect.update(this.placed!.fusePoint,elapsed,this.reduced.matches); }
       else {
-        this.effect.hide();this.audio.stop();
+        this.effect.hide();
         // Start once, when the completed ignition is observed, never before it.
-        if(this.countdownStarted===null) {this.countdownStarted=now;this.context={selectedCracker:this.placed!.type,placedCracker:this.placed!,fusePoint:this.placed!.fusePoint,ignitionTimestamp:this.started,arSession:this.arSession};}
+        if(this.countdownStarted===null) {this.audio.stop();this.countdownStarted=now;this.context={selectedCracker:this.placed!.type,placedCracker:this.placed!,fusePoint:this.placed!.fusePoint,ignitionTimestamp:this.started,arSession:this.arSession};}
         const remaining=Math.max(0,5-Math.floor((now-this.countdownStarted)/1000));
         this.publish({ignitionPhase:'IGNITED',countdown:remaining});
       }

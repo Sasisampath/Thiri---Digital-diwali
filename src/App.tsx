@@ -1,4 +1,5 @@
 import { lazy, Suspense, useCallback, useEffect, useState, useRef } from 'react';
+import { audioManager } from './lib/audio/audio-manager';
 import SplashGate from './components/SplashScreen';
 import WelcomeScreen from './components/WelcomeScreen';
 import CameraPermissionScreen from './components/CameraPermissionScreen';
@@ -65,6 +66,7 @@ export default function App() {
   }, [stream, navigate, stop, setError]);
 
   const enableCamera = async () => {
+    audioManager.unlock();
     const acquired = await request();
     if (!acquired) return;
     // Grant/verify permission using the existing flow, then synchronously release
@@ -89,7 +91,7 @@ export default function App() {
   };
 
   return <SplashGate>
-    {route === 'welcome' ? <WelcomeScreen onGetStarted={() => { setError(null); navigate('permission'); }} />
+    {route === 'welcome' ? <WelcomeScreen onGetStarted={() => { audioManager.unlock(); setError(null); navigate('permission'); }} />
       : isAR(route) && arConsent ? <Suspense fallback={<main className="ar-loading"><p>Getting your camera ready…</p><button type="button" onClick={closeAR}>Back to Welcome</button></main>}>
         <ScanGroundScreen mode={route === 'fuse' ? 'fuse' : route === 'place' ? 'place' : route === 'choose' ? 'choose' : 'scan'} releasePermissionCamera={stop} onClose={closeAR} onChoose={() => navigate('choose')} onPlace={() => navigate('place')} onLightFuse={() => navigate('fuse')} onBackToPlacement={backToPlacement} onBackToChoose={backToChoose} onBackToScan={backToScan} onPermissionHelp={permissionHelp} />
       </Suspense>

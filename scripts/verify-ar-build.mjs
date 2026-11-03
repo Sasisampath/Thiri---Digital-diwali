@@ -17,5 +17,11 @@ async function verify(directory = '') {
  }
 }
 await verify();
+for (const name of ['flower-pot-fountain.mp3','ground-chakra-spin.mp3','rocket-launch.mp3','rocket-burst.mp3','fuse-ignite.mp3','firestick-crackle.mp3','NOTICE.txt']) {
+ const relative=path.join('assets/audio',name);
+ const [original,built]=await Promise.all([readFile(path.join(root,'public',relative)),readFile(path.join(root,'dist',relative))]);
+ if(!built.length||digest(original)!==digest(built))throw new Error(`Missing/modified audio asset: ${name}`);
+}
+
 for (const asset of ['assets/ar/placement-reticle.svg', 'assets/branding/jazzhq-logo.svg', 'assets/branding/jazzhq-logo.png', 'assets/branding/jazzhq-logo.webp', 'assets/celebration/glowing_diya_diwali_celebration.png', 'assets/celebration/glowing_diya_diwali_celebration.webp', 'assets/celebration/glossy_festive_sparkle_cluster.png', 'assets/celebration/glossy_festive_sparkle_cluster.webp', 'assets/ignition/fallback-unlit.svg', 'assets/ignition/fallback-lit.svg', 'assets/crackers/placement/flower-pot-placement.webp', 'assets/crackers/placement/ground-chakra-placement.webp', 'assets/crackers/placement/rocket-placement.webp', 'assets/crackers/selection/flower-pot-selection.webp', 'assets/crackers/selection/ground-chakra-selection.webp', 'assets/crackers/selection/rocket-selection.webp', 'assets/onboarding/scan-ground-guide.webp', 'licenses/8thwall-engine-LICENSE.txt', 'licenses/three-LICENSE.txt']) await stat(path.join(root, 'dist', asset));
-console.log(`Verified ${count} unmodified engine artifacts, licenses and scan assets in dist/.`);
+console.log(`Verified ${count} unmodified engine artifacts, licenses, six audio cues/provenance and scan assets in dist/.`);

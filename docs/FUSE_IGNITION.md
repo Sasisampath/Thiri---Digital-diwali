@@ -1,5 +1,7 @@
 # Screen 07 — Light the Fuse
 
+> Audio update (2026-11-03): historical silent/mute behavior below is superseded by [AUDIO.md](AUDIO.md). Six local cues now play through gesture-unlocked Web Audio, enabled by default; temporary synthesis is explicitly identified.
+
 ## What changed
 
 - `src/components/ar/FirestickInteraction.tsx`: Screen 07 instructions, target cue, accessible Tap to Light, interruption/recovery UI and integrated countdown.

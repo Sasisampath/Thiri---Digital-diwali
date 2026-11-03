@@ -1,5 +1,7 @@
 # JazzHQ Special Crackers
 
+> Audio update (2026-11-03): historical silent/mute behavior below is superseded by [AUDIO.md](AUDIO.md). Six local cues now play through gesture-unlocked Web Audio, enabled by default; temporary synthesis is explicitly identified.
+
 ## Delivered
 
 Six options share the existing selection, placement, FusePoint, ignition/countdown, fireworks and completion flows. The original three remain first. JazzHQ Flower Pot, JazzHQ Chakra and JazzHQ Rocket reuse the corresponding original artwork, procedural model recipes and effect classes, with a small official-logo badge and an explicitly configured screen-space brand reveal.

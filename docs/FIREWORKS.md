@@ -1,5 +1,7 @@
 # Screen 09 — AR Fireworks
 
+> Audio update (2026-11-03): historical silent/mute behavior below is superseded by [AUDIO.md](AUDIO.md). Six local cues now play through gesture-unlocked Web Audio, enabled by default; temporary synthesis is explicitly identified.
+
 ## Implemented
 
 Flower Pot, Ground Chakra and Rocket have distinct real-time Three.js particle effects. The existing ignition/countdown and rear-camera AR session are reused. The countdown's previous placeholder has been removed. No prerecorded footage, static firework image, extra renderer, requestAnimationFrame loop, SDK restart or additional permission request is introduced.

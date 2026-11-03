@@ -1,0 +1,121 @@
+{
+  "note": "Real browser Web Audio decoding/output graph and PCM checks, synthetic camera/SLAM. Does not verify speaker audibility on physical phones.",
+  "results": [
+    {
+      "engine": "Chromium",
+      "result": "pass",
+      "checks": "explicit sky preview emits one actual burst, launch does not emit an early burst"
+    },
+    {
+      "engine": "Chromium",
+      "pcm": {
+        "before": {
+          "state": "not-created",
+          "contexts": 0,
+          "active": 0,
+          "loaded": 0,
+          "fallback": [],
+          "events": []
+        },
+        "output": [
+          {
+            "cue": "flower-pot",
+            "duration": 5.6,
+            "rms": 0.12792000634081424,
+            "peak": 0.7148726582527161
+          },
+          {
+            "cue": "ground-chakra",
+            "duration": 4.900022675736961,
+            "rms": 0.10054001274179024,
+            "peak": 0.6290980577468872
+          },
+          {
+            "cue": "rocket-launch",
+            "duration": 2.0607256235827665,
+            "rms": 0.04723320150283849,
+            "peak": 0.34324735403060913
+          },
+          {
+            "cue": "rocket-burst",
+            "duration": 1.2719727891156463,
+            "rms": 0.011432185531874159,
+            "peak": 0.7266128659248352
+          },
+          {
+            "cue": "ignite",
+            "duration": 0.7,
+            "rms": 0.012561473483112524,
+            "peak": 0.3032478988170624
+          },
+          {
+            "cue": "crackle",
+            "duration": 1.8,
+            "rms": 0.039150577617531795,
+            "peak": 0.5186765193939209
+          }
+        ]
+      },
+      "result": "pass",
+      "checks": "decoded/rendered six real files; missing-file synthesized fallback; refresh requires activation"
+    },
+    {
+      "engine": "WebKit",
+      "result": "pass",
+      "checks": "explicit sky preview emits one actual burst, launch does not emit an early burst"
+    },
+    {
+      "engine": "WebKit",
+      "pcm": {
+        "before": {
+          "state": "not-created",
+          "contexts": 0,
+          "active": 0,
+          "loaded": 0,
+          "fallback": [],
+          "events": []
+        },
+        "output": [
+          {
+            "cue": "flower-pot",
+            "duration": 5.642448979591837,
+            "rms": 0.12791953587334473,
+            "peak": 0.714874267578125
+          },
+          {
+            "cue": "ground-chakra",
+            "duration": 4.937142857142857,
+            "rms": 0.10053964362485694,
+            "peak": 0.62908935546875
+          },
+          {
+            "cue": "rocket-launch",
+            "duration": 2.089795918367347,
+            "rms": 0.04723315080940918,
+            "peak": 0.34326171875
+          },
+          {
+            "cue": "rocket-burst",
+            "duration": 1.3061224489795917,
+            "rms": 0.011432155383157143,
+            "peak": 0.72662353515625
+          },
+          {
+            "cue": "ignite",
+            "duration": 0.7314285714285714,
+            "rms": 0.012561418635959321,
+            "peak": 0.303253173828125
+          },
+          {
+            "cue": "crackle",
+            "duration": 1.8285714285714285,
+            "rms": 0.03915041816613467,
+            "peak": 0.5186767578125
+          }
+        ]
+      },
+      "result": "pass",
+      "checks": "decoded/rendered six real files; missing-file synthesized fallback; refresh requires activation"
+    }
+  ]
+}

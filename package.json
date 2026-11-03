@@ -26,7 +26,8 @@
     "test:celebration": "node tests/celebration.cjs",
     "test:celebration-memory": "node tests/celebration-memory.cjs",
     "test:jazzhq-effects": "node tests/jazzhq-effects.cjs",
-    "test:jazzhq": "node tests/jazzhq.cjs"
+    "test:jazzhq": "node tests/jazzhq.cjs",
+    "test:audio": "node tests/audio.cjs"
   },
   "dependencies": {
     "@8thwall/engine-binary": "1.0.0",

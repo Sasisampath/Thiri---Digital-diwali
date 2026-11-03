@@ -1,5 +1,7 @@
 # Screen 04 — Scan the Ground
 
+> Audio update (2026-11-03): historical silent/mute behavior below is superseded by [AUDIO.md](AUDIO.md). Six local cues now play through gesture-unlocked Web Audio, enabled by default; temporary synthesis is explicitly identified.
+
 ## Source and versions
 
 Official references used:

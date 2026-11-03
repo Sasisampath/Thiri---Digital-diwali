@@ -42,14 +42,14 @@ async function dragHit(page){const{box,mouse}=await dragStart(page);const fuse=a
    await frames(page,{target:[0,2,1.4]},5);await expect(page.getByRole('button',{name:'Tap to Light',exact:true})).toBeDisabled();await expect(page.getByText('Point your camera at the fuse.')).toBeVisible();
    await frames(page,{},5);await expect(page.getByRole('button',{name:'Tap to Light',exact:true})).toBeEnabled();
    await frames(page,{status:'LIMITED'},1);await expect(page.getByText("Let's find your cracker again.",{exact:true})).toBeVisible();await expect(page.getByRole('button',{name:'Tap to Light',exact:true})).toBeDisabled();
-   await frames(page,{},4);await page.getByRole('button',{name:'Sound off',exact:true}).click();expect(await page.evaluate(()=>localStorage.getItem('thiri:sound-enabled'))).toBe('true');
+   await frames(page,{},4);await page.getByRole('button',{name:'Sound on',exact:true}).click();expect(await page.getByRole('button',{name:'Sound on',exact:true}).getAttribute('aria-pressed')).toBe('true');
    await page.getByRole('button',{name:'Tap to Light',exact:true}).evaluate(button=>{button.click();button.click();button.click();});await frames(page,{},1);await expect(page.locator('.fuse-instructions')).toHaveAttribute('data-ignition-state','IGNITING');
    await page.evaluate(()=>{Object.defineProperty(document,'visibilityState',{configurable:true,value:'hidden'});document.dispatchEvent(new Event('visibilitychange'));});await expect(page.getByText('Ignition paused.',{exact:true})).toBeVisible();
    await page.evaluate(()=>{Object.defineProperty(document,'visibilityState',{configurable:true,value:'visible'});document.dispatchEvent(new Event('visibilitychange'));});await frames(page,{},8);await expect(page.getByRole('timer')).toHaveCount(0);
-   expect(await page.evaluate(()=>testAR.scene.scene.getObjectByName('ThiriFuseIgnition').visible)).toBe(false);expect(audioRequests).toBe(0);
+   expect(await page.evaluate(()=>testAR.scene.scene.getObjectByName('ThiriFuseIgnition').visible)).toBe(false);expect(audioRequests).toBe(6);
    await page.getByRole('button',{name:'Return to placement',exact:true}).click();await frames(page,{},8);await page.getByRole('button',{name:'Place Cracker',exact:true}).click();await frames(page,{},1);await page.getByRole('button',{name:'Light the Fuse',exact:true}).click();await frames(page,{},2);await expect(page.getByRole('button',{name:'Tap to Light',exact:true})).toBeEnabled();
    await page.getByRole('button',{name:'Back to placement',exact:true}).click();await page.getByRole('button',{name:'Back to cracker selection',exact:true}).click();await page.getByRole('button',{name:'Close AR and return to Welcome',exact:true}).click();expect(await allStopped(page)).toBe(true);expect(await page.evaluate(()=>testAR.scene.scene.children.length)).toBe(0);expect(errors).toEqual([]);
-   await context.close();results.push({engine:name,id,result:'pass',test:'offscreen/limited tracking guards, Tap fallback, duplicate prevention, sound preference with missing assets silent, background cancellation without auto replay, explicit reposition retry, disposal'});
+   await context.close();results.push({engine:name,id,result:'pass',test:'offscreen/limited tracking guards, Tap fallback, duplicate prevention, enabled sound control with six preloaded assets, background cancellation without auto replay, explicit reposition retry, disposal'});
   }
   {
    const{context,page}=await fixture(browser);await enter(page);

@@ -40,11 +40,11 @@ See [placement implementation and Vercel device checks](docs/CRACKER_PLACEMENT.m
 
 ## Screen 07 — Light the Fuse
 
-Drag the HTML firestick tip toward the real projected model FusePoint, or use the guarded Tap to Light action. A single world-space spark burst leads to a monotonic 5-to-1 countdown in the same camera session. Tracking/background interruptions cancel the sequence safely. The countdown now hands off to the selected firework. Approved firestick PNGs and audio were absent; temporary aligned SVG fallback artwork and silent audio are explicitly documented. [Implementation, missing assets and device tests](docs/FUSE_IGNITION.md).
+Drag the HTML firestick tip toward the real projected model FusePoint, or use the guarded Tap to Light action. A single world-space spark burst leads to a monotonic 5-to-1 countdown in the same camera session. Tracking/background interruptions cancel the sequence safely. The countdown now hands off to the selected firework. Approved firestick PNGs and audio were absent; temporary aligned SVG fallback artwork is explicitly documented; gesture-unlocked audio is covered in [AUDIO.md](docs/AUDIO.md). [Implementation, missing assets and device tests](docs/FUSE_IGNITION.md).
 
 ## Screen 09 — AR Fireworks
 
-Flower Pot has a golden fountain from its named opening; Ground Chakra spins a visual child and emits ground-level radial sparks; Rocket launches a separate visual from its fixed support, then bursts while world tracking and framing remain usable. A labelled, explicitly selected camera-relative sky preview handles sky limitations. Minimal completion supports Celebrate Again / Choose Another without restarting the camera or replaying automatically. Procedural pooled particles, adaptive budgets and safe interruption share the existing SDK loop. Audio remains silent pending approved files. [Implementation, tests and physical-device checklist](docs/FIREWORKS.md).
+Flower Pot has a golden fountain from its named opening; Ground Chakra spins a visual child and emits ground-level radial sparks; Rocket launches a separate visual from its fixed support, then bursts while world tracking and framing remain usable. A labelled, explicitly selected camera-relative sky preview handles sky limitations. Minimal completion supports Celebrate Again / Choose Another without restarting the camera or replaying automatically. Procedural pooled particles, adaptive budgets and safe interruption share the existing SDK loop. Audio now uses a licensed rocket recording and distinct temporary synthesized fountain/spinner/fuse cues; see [audio provenance and mobile testing](docs/AUDIO.md). [Implementation, tests and physical-device checklist](docs/FIREWORKS.md).
 
 ## Screen 10 — Celebrate Again
 

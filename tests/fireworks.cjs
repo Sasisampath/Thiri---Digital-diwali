@@ -18,7 +18,7 @@ async function ignite(page){await page.getByRole('button',{name:'Tap to Light',e
    }
    await until(page,'COMPLETED',{target});await expect(page.getByRole('heading',{name:'That was magical!',exact:true})).toBeVisible();
    expect(await page.evaluate(id=>testAR.scene.scene.getObjectByName(`CrackerModel:${id}`).matrixWorld.toArray(),id)).toEqual(saved);
-   expect(await page.evaluate(()=>[testAR.nativeCalls,testAR.runCalls,testAR.activeMax])).toEqual([1,1,1]);expect(audioRequests).toBe(0);
+   expect(await page.evaluate(()=>[testAR.nativeCalls,testAR.runCalls,testAR.activeMax])).toEqual([1,1,1]);expect(audioRequests).toBe(6);
    expect(await page.evaluate(()=>[document.documentElement.scrollWidth,document.documentElement.scrollHeight])).toEqual([width,height]);const cta=await page.getByRole('button',{name:'Celebrate Again',exact:true}).boundingBox();expect(cta.height).toBeGreaterThanOrEqual(48);expect(cta.y+cta.height).toBeLessThanOrEqual(height);
    if(width===390)await page.screenshot({path:`${name.toLowerCase()}-${id}-completion-test.png`});
    await frame(page,{target});

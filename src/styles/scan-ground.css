@@ -27,3 +27,6 @@
 @media (max-height: 660px) { .ar-guide { bottom: calc(max(10px, env(safe-area-inset-bottom)) + 168px); padding: 10px 12px; }.ar-guide-art { width: 54px; height: 80px; flex-basis: 54px; }.ar-guide h2 { font-size: 16px; }.ar-instruction { padding: 14px; }.ar-instruction h1 { font-size: 20px; } }
 @media (orientation: landscape) and (max-height: 520px) { .ar-guide { left: 20px; bottom: 62px; transform: none; width: 240px; }.ar-scan-footer { left: auto; width: 45%; }.ar-instruction h1 { font-size: 18px; }.ar-instruction p { font-size: 12px; }.ar-scan-footer { gap: 8px; }.ar-scan-footer .thiri-primary-button { min-height: 48px; padding: 12px; } }
 @media (prefers-reduced-motion: reduce) { .ar-guide { transition: none; } }
+
+/* Shown only when the browser requires another trusted audio gesture. */
+.ar-enable-sound{position:absolute;z-index:12;top:calc(env(safe-area-inset-top, 0px) + 78px);right:16px;background:#241b2f;color:#fff;min-height:44px;padding:8px 18px;border-radius:24px;}

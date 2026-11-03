@@ -38,7 +38,7 @@ async function frames(page, data = {}, count = 4) {
    expect(await page.evaluate(()=>testAR.scene.scene.children.find(o=>o.isMesh).visible)).toBe(false);
    await expect(page.getByRole('button',{name:'Choose a Cracker'})).toHaveCount(0);
    await expect(page.getByText('Use a well-lit area with a textured floor.')).toBeVisible();
-   await page.getByRole('button',{name:'Sound off',exact:true}).click(); expect(await page.evaluate(()=>localStorage.getItem('thiri:sound-enabled'))).toBe('true');
+   await page.getByRole('button',{name:'Sound on',exact:true}).click(); expect(await page.getByRole('button',{name:'Sound on',exact:true}).getAttribute('aria-pressed')).toBe('true');
    await page.getByRole('button',{name:'Close AR and return to Welcome'}).click(); await expect(page.locator('.thiri-welcome')).toBeVisible();
    expect(await allStopped(page)).toBe(true); expect(await page.evaluate(()=>testAR.disposedRenderers)).toBe(1); expect(errors).toEqual([]); await context.close();
    results.push({engine:name,width,height,test:'layout, consent handoff, no timer/normal/feature-only false READY, world-space surface reticle, aim update, session-preserving next step/back, tracking loss, sound, release',result:'pass'});

@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState, useSyncExternalStore } from 'react';
+import { audioManager } from '../../lib/audio/audio-manager';
 import { ENGINE_VERSION, GroundARSession } from '../../lib/ar/engine';
 import { initialSnapshot, scanMessages } from '../../lib/ar/tracking';
 import { getCracker } from '../../config/crackers';
@@ -22,7 +23,9 @@ export default function ScanGroundScreen({ mode, releasePermissionCamera, onClos
   const [session, setSession] = useState<GroundARSession | null>(null);
   const [attempt, setAttempt] = useState(0);
   const [guideDismissed, setGuideDismissed] = useState(false);
-  const [sound, setSound] = useState(() => { try { return localStorage.getItem('thiri:sound-enabled') === 'true'; } catch { return false; } });
+  // Demo sound is always enabled; legacy stored false must not silence it.
+  const sound = true;
+  const soundBlocked = useSyncExternalStore(audioManager.subscribe, audioManager.getBlocked);
   const snapshot = useSyncExternalStore(session?.subscribe ?? noopSubscribe, session?.getSnapshot ?? initial);
   const selected = useRef(snapshot.selectedCracker); selected.current = snapshot.selectedCracker;
 
@@ -33,7 +36,7 @@ export default function ScanGroundScreen({ mode, releasePermissionCamera, onClos
     setSession(next); setGuideDismissed(false);
     close.current?.focus({ preventScroll: true });
     void next.start();
-    return () => next.dispose();
+    return () => { next.dispose(); audioManager.stopAll(); };
   }, [attempt, releasePermissionCamera]);
   useEffect(() => {
     if (snapshot.state === 'SEARCHING' || snapshot.state === 'READY') setGuideDismissed(true);
@@ -52,16 +55,13 @@ export default function ScanGroundScreen({ mode, releasePermissionCamera, onClos
   };
   const rescan = () => { session?.rescanCracker(); onBackToScan(); };
   const recenter = () => { session?.recenterCracker(); if (mode === 'fuse') onBackToPlacement(); };
-  const light = () => { if (session?.beginFuseStep()) onLightFuse(); };
-  const toggleSound = () => setSound(value => {
-    try { localStorage.setItem('thiri:sound-enabled', String(!value)); } catch { /* In-memory preference remains available. */ }
-    return !value;
-  });
+  const light = () => { audioManager.unlock(); if (session?.beginFuseStep()) onLightFuse(); };
+  const enableSound = () => { audioManager.unlock(); };
   const failed = snapshot.state === 'ERROR' || snapshot.state === 'UNSUPPORTED';
   const ready = snapshot.state === 'READY' && snapshot.candidateValid && !snapshot.paused;
   const showingFireworks = mode === 'fuse' && snapshot.fireworksState !== 'WAITING';
   const chooseAnother = () => { session?.resetForNewCracker(); onBackToChoose(); };
-  const replay = () => { if(session?.resetForReplay()==='place')onBackToPlacement(); };
+  const replay = () => { audioManager.unlock(); if(session?.resetForReplay()==='place')onBackToPlacement(); };
   const completed=mode==='fuse'&&snapshot.fireworksState==='COMPLETED'&&!failed;
   const debug = import.meta.env.DEV && new URLSearchParams(location.search).has('arDebug');
 
@@ -71,8 +71,9 @@ export default function ScanGroundScreen({ mode, releasePermissionCamera, onClos
       <button ref={close} className="ar-circle-button" type="button" aria-label={mode === 'scan' ? 'Close AR and return to Welcome' : mode === 'choose' ? 'Back to Scan the Ground' : mode === 'fuse' ? showingFireworks ? 'Cancel fireworks and return to placement' : 'Back to placement' : 'Back to cracker selection'} onClick={mode === 'scan' ? exit : mode === 'choose' ? onBackToScan : mode === 'fuse' ? returnFromFuse : onBackToChoose}><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d={mode === 'scan' ? 'm6 6 12 12M18 6 6 18' : 'M19 12H5m7-7-7 7 7 7'} fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg></button>
       {showingFireworks ? <span/> : mode === 'place' || mode === 'fuse' ? <p className="ar-position-title">{mode === 'place' ? 'Position your cracker' : 'Light the Fuse'}</p> : <ARStatusIndicator state={snapshot.state} paused={snapshot.paused} />}
       {mode === 'place' ? <button className="ar-circle-button" type="button" onClick={recenter} disabled={!session || snapshot.state === 'INITIALIZING'} aria-label={snapshot.canRecenter ? 'Recenter view and reset placement' : 'Reset placement'} title="Reset the view and reposition"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M3 11a9 9 0 1 1 2 7M3 4v7h7"/></svg></button>
-        : <button className="ar-circle-button" type="button" aria-label={sound ? 'Sound on' : 'Sound off'} aria-pressed={sound} onClick={toggleSound}><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="m11 5-6 4H2v6h3l6 4V5Z"/>{sound ? <path d="M15 8a6 6 0 0 1 0 8m3-11a10 10 0 0 1 0 14"/> : <path d="m16 9 6 6m0-6-6 6"/>}</svg></button> }
+        : <button className="ar-circle-button" type="button" aria-label={soundBlocked ? 'Enable Sound' : 'Sound on'} aria-pressed={sound} onClick={enableSound}><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="m11 5-6 4H2v6h3l6 4V5Z"/>{sound ? <path d="M15 8a6 6 0 0 1 0 8m3-11a10 10 0 0 1 0 14"/> : <path d="m16 9 6 6m0-6-6 6"/>}</svg></button> }
     </header>
+    {soundBlocked && !completed && <button type="button" className="ar-secondary-button ar-enable-sound" onClick={enableSound}>Enable Sound</button>}
     {!failed && mode === 'scan' && <>
       {!ready && <div className="ar-search-aim" aria-hidden="true"><span/><span/><span/><span/></div>}
       <ScanInstructions dismissed={guideDismissed} />

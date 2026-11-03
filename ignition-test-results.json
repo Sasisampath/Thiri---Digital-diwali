@@ -33,13 +33,13 @@
       "engine": "Chromium",
       "id": "ground-chakra",
       "result": "pass",
-      "test": "offscreen/limited tracking guards, Tap fallback, duplicate prevention, sound preference with missing assets silent, background cancellation without auto replay, explicit reposition retry, disposal"
+      "test": "offscreen/limited tracking guards, Tap fallback, duplicate prevention, enabled sound control with six preloaded assets, background cancellation without auto replay, explicit reposition retry, disposal"
     },
     {
       "engine": "Chromium",
       "id": "rocket",
       "result": "pass",
-      "test": "offscreen/limited tracking guards, Tap fallback, duplicate prevention, sound preference with missing assets silent, background cancellation without auto replay, explicit reposition retry, disposal"
+      "test": "offscreen/limited tracking guards, Tap fallback, duplicate prevention, enabled sound control with six preloaded assets, background cancellation without auto replay, explicit reposition retry, disposal"
     },
     {
       "engine": "Chromium",
@@ -78,13 +78,13 @@
       "engine": "WebKit",
       "id": "ground-chakra",
       "result": "pass",
-      "test": "offscreen/limited tracking guards, Tap fallback, duplicate prevention, sound preference with missing assets silent, background cancellation without auto replay, explicit reposition retry, disposal"
+      "test": "offscreen/limited tracking guards, Tap fallback, duplicate prevention, enabled sound control with six preloaded assets, background cancellation without auto replay, explicit reposition retry, disposal"
     },
     {
       "engine": "WebKit",
       "id": "rocket",
       "result": "pass",
-      "test": "offscreen/limited tracking guards, Tap fallback, duplicate prevention, sound preference with missing assets silent, background cancellation without auto replay, explicit reposition retry, disposal"
+      "test": "offscreen/limited tracking guards, Tap fallback, duplicate prevention, enabled sound control with six preloaded assets, background cancellation without auto replay, explicit reposition retry, disposal"
     },
     {
       "engine": "WebKit",

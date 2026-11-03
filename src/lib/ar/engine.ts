@@ -1,3 +1,4 @@
+import { audioManager } from '../audio/audio-manager';
 import { FireworksController } from './fireworks-controller';
 import * as THREE from 'three';
 import { IgnitionController } from './ignition-controller';
@@ -46,7 +47,7 @@ export class GroundARSession {
   private reticle: PlacementReticle | null = null;
   private estimator = new GroundPlacement();
   private crackerPlacement: PlacementController | null = null;
-  private soundEnabled=false;
+  private soundEnabled=true;
   private completionAnchorTrusted=false;
   private fireworks: FireworksController | null = null;
   private ignition: IgnitionController | null = null;
@@ -283,13 +284,13 @@ export class GroundARSession {
   }
   subscribeFuseProjection(listener: (p: FuseProjection) => void) { this.fuseListeners.add(listener); return () => { this.fuseListeners.delete(listener); }; }
   armFirestick() { this.ignition?.arm(); }
-  beginFirestickDrag() { if(this.freshTracking()) return this.ignition?.beginDrag() ?? false; this.ignition?.lost(); return false; }
+  beginFirestickDrag() { audioManager.unlock(); if(this.freshTracking()) return this.ignition?.beginDrag() ?? false; this.ignition?.lost(); return false; }
   moveFirestick(tip: {x:number;y:number}) { if(this.freshTracking()) this.ignition?.moveTip(tip); else this.ignition?.lost(); }
   cancelFirestickDrag() { this.ignition?.cancelDrag(); }
-  tapToLight() { if(this.freshTracking()) return this.ignition?.tap() ?? false; this.ignition?.lost(); return false; }
+  tapToLight() { audioManager.unlock(); if(this.freshTracking()) return this.ignition?.tap() ?? false; this.ignition?.lost(); return false; }
   setIgnitionSound(enabled: boolean) { this.soundEnabled=enabled;this.ignition?.setSound(enabled);this.fireworks?.setSound(enabled); }
   getCountdownContext() { return this.ignition?.getCountdownContext() ?? null; }
-  playSkyPreview() { return this.live() && !this.snapshot.paused && document.visibilityState==='visible' && this.snapshot.camera==='hasVideo' && performance.now()-this.lastFrame<=350 ? this.fireworks?.playSkyPreview(performance.now(),true)??false : false; }
+  playSkyPreview() { audioManager.unlock(); return this.live() && !this.snapshot.paused && document.visibilityState==='visible' && this.snapshot.camera==='hasVideo' && performance.now()-this.lastFrame<=350 ? this.fireworks?.playSkyPreview(performance.now(),true)??false : false; }
   resetForReplay(): 'fuse' | 'place' {
     const placed=this.getPlacedCracker();
     let safe=Boolean(this.snapshot.fireworksState==='COMPLETED'&&this.completionAnchorTrusted&&this.freshTracking()&&this.crackerPlacement?.canContinue(performance.now())&&placed);
