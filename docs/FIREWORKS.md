@@ -27,7 +27,7 @@ Flower Pot was implemented and validated first through the complete countdown �
 
 The controller accepts only WAITING with no prior attempt. It records the ignition timestamp before creating the effect, validates selected/placed cracker types, transitions READY → PLAYING and ignores repeated zero events. React receives meaningful summary changes only. Particle movement runs in the existing SDK `onUpdate` pipeline; countdown and effect timing use monotonic elapsed time, with no interval simulating successful fireworks.
 
-States: WAITING, READY, PLAYING, PAUSED, TRACKING_LOST, COMPLETED, CANCELLED, ERROR. Completion is reached only after the selected effect's total fade duration. The effect is hidden after its last particles expire; resources are released on replay, selection reset or session close.
+States: WAITING, READY, PLAYING, PAUSED, TRACKING_LOST, COMPLETED, CANCELLED, ERROR. Completion is reached only after the selected effect's total fade duration. After its last particles expire, the effect is disposed and local visual overrides are restored before COMPLETED is published. Screen 10 preserves the placed model for validated replay.
 
 ## Effect behavior
 
@@ -65,7 +65,7 @@ World effects stop rendering when tracking becomes LIMITED/unusable, on large po
 
 Backgrounding pauses the SDK through the existing lifecycle and interrupts effects/countdown. Returning cannot automatically launch an explosion. Closing/fatal engine errors dispose all effects before releasing the existing SDK renderer and camera. There is no new media owner.
 
-**Celebrate Again** disposes old particles, restores animated visual children, resets ignition/countdown, retains selection and camera, and returns to placement. A new explicit ignition is required. **Choose Another Cracker** performs the same cleanup and opens existing selection without a camera restart. Screen 10 uses a minimal completion panel: “That was magical!” / “Ready for another one?”; its full design remains separate work.
+**Celebrate Again** now uses the [Screen 10 validated replay API](CELEBRATION_COMPLETE.md): finished particles are already disposed, ignition/countdown reset, and valid selection/placement/camera are retained for direct return to Light the Fuse. Unreliable placement requires recovery. A new explicit ignition is required. **Choose Another Cracker** performs the same cleanup and opens existing selection without a camera restart. Screen 10 now provides the approved illustrated completion card; see its linked implementation guide.
 
 ## Audio / assets
 

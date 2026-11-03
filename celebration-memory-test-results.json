@@ -1,0 +1,335 @@
+{
+  "note": "Real WebGL renderer.info counters over six synthetic celebrations per model, no physical AR or full browser heap profiling.",
+  "results": [
+    {
+      "engine": "Chromium",
+      "result": "pass",
+      "rows": [
+        {
+          "id": "flower-pot",
+          "baseline": {
+            "geometry": 5,
+            "textures": 1,
+            "programs": 1,
+            "children": 2
+          },
+          "samples": [
+            {
+              "geometry": 5,
+              "textures": 1,
+              "programs": 1,
+              "children": 2,
+              "complete": "COMPLETED"
+            },
+            {
+              "geometry": 5,
+              "textures": 1,
+              "programs": 1,
+              "children": 2,
+              "complete": "COMPLETED"
+            },
+            {
+              "geometry": 5,
+              "textures": 1,
+              "programs": 1,
+              "children": 2,
+              "complete": "COMPLETED"
+            },
+            {
+              "geometry": 5,
+              "textures": 1,
+              "programs": 1,
+              "children": 2,
+              "complete": "COMPLETED"
+            },
+            {
+              "geometry": 5,
+              "textures": 1,
+              "programs": 1,
+              "children": 2,
+              "complete": "COMPLETED"
+            },
+            {
+              "geometry": 5,
+              "textures": 1,
+              "programs": 1,
+              "children": 2,
+              "complete": "COMPLETED"
+            }
+          ]
+        },
+        {
+          "id": "ground-chakra",
+          "baseline": {
+            "geometry": 5,
+            "textures": 1,
+            "programs": 1,
+            "children": 2
+          },
+          "samples": [
+            {
+              "geometry": 5,
+              "textures": 1,
+              "programs": 1,
+              "children": 2,
+              "complete": "COMPLETED"
+            },
+            {
+              "geometry": 5,
+              "textures": 1,
+              "programs": 1,
+              "children": 2,
+              "complete": "COMPLETED"
+            },
+            {
+              "geometry": 5,
+              "textures": 1,
+              "programs": 1,
+              "children": 2,
+              "complete": "COMPLETED"
+            },
+            {
+              "geometry": 5,
+              "textures": 1,
+              "programs": 1,
+              "children": 2,
+              "complete": "COMPLETED"
+            },
+            {
+              "geometry": 5,
+              "textures": 1,
+              "programs": 1,
+              "children": 2,
+              "complete": "COMPLETED"
+            },
+            {
+              "geometry": 5,
+              "textures": 1,
+              "programs": 1,
+              "children": 2,
+              "complete": "COMPLETED"
+            }
+          ]
+        },
+        {
+          "id": "rocket",
+          "baseline": {
+            "geometry": 0,
+            "textures": 1,
+            "programs": 0,
+            "children": 2
+          },
+          "samples": [
+            {
+              "geometry": 0,
+              "textures": 1,
+              "programs": 0,
+              "children": 2,
+              "complete": "COMPLETED"
+            },
+            {
+              "geometry": 0,
+              "textures": 1,
+              "programs": 0,
+              "children": 2,
+              "complete": "COMPLETED"
+            },
+            {
+              "geometry": 0,
+              "textures": 1,
+              "programs": 0,
+              "children": 2,
+              "complete": "COMPLETED"
+            },
+            {
+              "geometry": 0,
+              "textures": 1,
+              "programs": 0,
+              "children": 2,
+              "complete": "COMPLETED"
+            },
+            {
+              "geometry": 0,
+              "textures": 1,
+              "programs": 0,
+              "children": 2,
+              "complete": "COMPLETED"
+            },
+            {
+              "geometry": 0,
+              "textures": 1,
+              "programs": 0,
+              "children": 2,
+              "complete": "COMPLETED"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "engine": "WebKit",
+      "result": "pass",
+      "rows": [
+        {
+          "id": "flower-pot",
+          "baseline": {
+            "geometry": 5,
+            "textures": 1,
+            "programs": 1,
+            "children": 2
+          },
+          "samples": [
+            {
+              "geometry": 5,
+              "textures": 1,
+              "programs": 1,
+              "children": 2,
+              "complete": "COMPLETED"
+            },
+            {
+              "geometry": 5,
+              "textures": 1,
+              "programs": 1,
+              "children": 2,
+              "complete": "COMPLETED"
+            },
+            {
+              "geometry": 5,
+              "textures": 1,
+              "programs": 1,
+              "children": 2,
+              "complete": "COMPLETED"
+            },
+            {
+              "geometry": 5,
+              "textures": 1,
+              "programs": 1,
+              "children": 2,
+              "complete": "COMPLETED"
+            },
+            {
+              "geometry": 5,
+              "textures": 1,
+              "programs": 1,
+              "children": 2,
+              "complete": "COMPLETED"
+            },
+            {
+              "geometry": 5,
+              "textures": 1,
+              "programs": 1,
+              "children": 2,
+              "complete": "COMPLETED"
+            }
+          ]
+        },
+        {
+          "id": "ground-chakra",
+          "baseline": {
+            "geometry": 5,
+            "textures": 1,
+            "programs": 1,
+            "children": 2
+          },
+          "samples": [
+            {
+              "geometry": 5,
+              "textures": 1,
+              "programs": 1,
+              "children": 2,
+              "complete": "COMPLETED"
+            },
+            {
+              "geometry": 5,
+              "textures": 1,
+              "programs": 1,
+              "children": 2,
+              "complete": "COMPLETED"
+            },
+            {
+              "geometry": 5,
+              "textures": 1,
+              "programs": 1,
+              "children": 2,
+              "complete": "COMPLETED"
+            },
+            {
+              "geometry": 5,
+              "textures": 1,
+              "programs": 1,
+              "children": 2,
+              "complete": "COMPLETED"
+            },
+            {
+              "geometry": 5,
+              "textures": 1,
+              "programs": 1,
+              "children": 2,
+              "complete": "COMPLETED"
+            },
+            {
+              "geometry": 5,
+              "textures": 1,
+              "programs": 1,
+              "children": 2,
+              "complete": "COMPLETED"
+            }
+          ]
+        },
+        {
+          "id": "rocket",
+          "baseline": {
+            "geometry": 0,
+            "textures": 1,
+            "programs": 0,
+            "children": 2
+          },
+          "samples": [
+            {
+              "geometry": 0,
+              "textures": 1,
+              "programs": 0,
+              "children": 2,
+              "complete": "COMPLETED"
+            },
+            {
+              "geometry": 0,
+              "textures": 1,
+              "programs": 0,
+              "children": 2,
+              "complete": "COMPLETED"
+            },
+            {
+              "geometry": 0,
+              "textures": 1,
+              "programs": 0,
+              "children": 2,
+              "complete": "COMPLETED"
+            },
+            {
+              "geometry": 0,
+              "textures": 1,
+              "programs": 0,
+              "children": 2,
+              "complete": "COMPLETED"
+            },
+            {
+              "geometry": 0,
+              "textures": 1,
+              "programs": 0,
+              "children": 2,
+              "complete": "COMPLETED"
+            },
+            {
+              "geometry": 0,
+              "textures": 1,
+              "programs": 0,
+              "children": 2,
+              "complete": "COMPLETED"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

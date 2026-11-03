@@ -22,7 +22,9 @@
     "test:ignition": "node tests/ignition.cjs",
     "test:ignition-state": "node tests/ignition-state.cjs",
     "test:fireworks": "node tests/fireworks.cjs",
-    "test:fireworks-effects": "node tests/fireworks-effects.cjs"
+    "test:fireworks-effects": "node tests/fireworks-effects.cjs",
+    "test:celebration": "node tests/celebration.cjs",
+    "test:celebration-memory": "node tests/celebration-memory.cjs"
   },
   "dependencies": {
     "@8thwall/engine-binary": "1.0.0",

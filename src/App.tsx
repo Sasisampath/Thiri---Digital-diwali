@@ -1,4 +1,4 @@
-import { lazy, Suspense, useCallback, useEffect, useState } from 'react';
+import { lazy, Suspense, useCallback, useEffect, useState, useRef } from 'react';
 import SplashGate from './components/SplashScreen';
 import WelcomeScreen from './components/WelcomeScreen';
 import CameraPermissionScreen from './components/CameraPermissionScreen';
@@ -19,6 +19,7 @@ function currentRoute(): Route {
 }
 
 export default function App() {
+  const returnWelcomeFocus=useRef(false);
   const [route, setRoute] = useState<Route>(currentRoute);
   const [arConsent, setArConsent] = useState(false);
   const { stream, requesting, error, errorKind, request, stop, setError } = useCamera();
@@ -80,7 +81,8 @@ export default function App() {
     else navigate('choose', true);
   };
   const backToPlacement = () => { if (history.state?.thiriFrom === 'place') history.back(); else navigate('place', true); };
-  const closeAR = () => navigate('welcome');
+  const closeAR = () => { returnWelcomeFocus.current=true; navigate('welcome'); };
+  useEffect(()=>{if(route==='welcome'&&returnWelcomeFocus.current){returnWelcomeFocus.current=false;document.querySelector<HTMLElement>('.thiri-welcome [data-splash-focus]')?.focus({preventScroll:true});}},[route]);
   const permissionHelp = () => {
     setError('Enable camera access in your browser settings to experience Thiri in your surroundings.', 'denied');
     navigate('permission');

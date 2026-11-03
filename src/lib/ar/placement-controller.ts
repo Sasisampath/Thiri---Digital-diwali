@@ -115,6 +115,7 @@ export class PlacementController {
     const p = this.preview.anchor.position;
     return { ...this.pose.support, position: { x: p.x, y: p.y, z: p.z }, normal: { ...this.pose.support.normal } };
   }
+  resetForNewCracker() { this.reset(); this.type=null; this.error=null; this.preview.clearModels(); this.updateSummary(false,false,false); }
   setError(message: string) { this.error = message; this.preview.setVisible(false); this.updateSummary(false, false, false); }
   dispose() { this.preview.dispose(); this.placed = null; this.pose = null; }
 }

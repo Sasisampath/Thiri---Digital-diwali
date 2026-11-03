@@ -1,0 +1,35 @@
+{
+  "note": "Real app/controllers/Three geometry and monotonic time, synthetic camera/tracking fixtures; not physical-device AR validation.",
+  "results": [
+    {
+      "engine": "Chromium",
+      "result": "pass",
+      "test": "motion: no invalid anchor replay, explicit recovery or scrollable short-screen exit"
+    },
+    {
+      "engine": "Chromium",
+      "result": "pass",
+      "test": "stale: no invalid anchor replay, explicit recovery or scrollable short-screen exit"
+    },
+    {
+      "engine": "Chromium",
+      "result": "pass",
+      "test": "cleanup: no invalid anchor replay, explicit recovery or scrollable short-screen exit"
+    },
+    {
+      "engine": "WebKit",
+      "result": "pass",
+      "test": "motion: no invalid anchor replay, explicit recovery or scrollable short-screen exit"
+    },
+    {
+      "engine": "WebKit",
+      "result": "pass",
+      "test": "stale: no invalid anchor replay, explicit recovery or scrollable short-screen exit"
+    },
+    {
+      "engine": "WebKit",
+      "result": "pass",
+      "test": "cleanup: no invalid anchor replay, explicit recovery or scrollable short-screen exit"
+    }
+  ]
+}

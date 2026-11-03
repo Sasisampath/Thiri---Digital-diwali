@@ -13,7 +13,7 @@ export type Hit = { type: string; position: Point3; rotation?: Rotation; distanc
 export type Placement = { position: Point3; normal: Point3; source: 'engine-surface' | 'slam-point-cloud'; updatedAt: number; support: number };
 export type ARFlow = 'scan' | 'choose' | 'place' | 'fuse';
 export type Snapshot = PlacementSummary & IgnitionSummary & FireworksSummary & {
-  selectedCracker: CrackerType; canRecenter: boolean;
+  selectedCracker: CrackerType; canRecenter: boolean; replayAvailable: boolean;
   state: ScanState; camera: string; trackingStatus: string; trackingReason: string;
   candidateValid: boolean; placementMode: string; error: string | null; errorKind: 'camera' | 'denied' | 'engine' | null; paused: boolean;
 };

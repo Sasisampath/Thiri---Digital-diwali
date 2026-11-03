@@ -1,0 +1,25 @@
+.celebration-overlay { position: absolute; inset: 0; z-index: 10; display: flex; align-items: flex-end; justify-content: center; padding: max(18px, env(safe-area-inset-top)) max(16px, env(safe-area-inset-right)) max(20px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left)); background: rgb(36 27 47 / 20%); animation: celebration-overlay-in .25s ease-out both; touch-action: none; }
+.celebration-card { position: relative; width: min(100%, 390px); max-height: 100%; overflow-y: auto; overscroll-behavior: contain; touch-action: pan-y; padding: 18px 24px 24px; border: 1px solid rgb(255 255 255 / 75%); border-radius: 30px; background: #FFF9F2; color: #241B2F; text-align: center; box-shadow: 0 12px 40px rgb(24 18 34 / 16%); }
+.celebration-close { position: absolute; right: 6px; top: 6px; z-index: 1; display: grid; place-items: center; width: 48px; height: 48px; border: 0; border-radius: 50%; color: #62566D; background: transparent; cursor: pointer; touch-action: manipulation; }
+.celebration-art { position: relative; width: clamp(180px, 52vw, 220px); height: clamp(180px, 52vw, 220px); margin: 0 auto 4px; }
+.celebration-diya { display: block; width: 100%; height: 100%; object-fit: contain; animation: celebration-diya-in .36s ease-out both; }
+.celebration-sparkles { position: absolute; top: 22px; left: -13px; width: 44px; height: 44px; object-fit: contain; animation: celebration-sparkles-in .3s .12s ease-out both; pointer-events: none; }
+.celebration-card h1 { margin: 0 0 10px; font-size: clamp(25px, 6.8vw, 30px); line-height: 1.12; letter-spacing: -.04em; font-weight: 800; outline: none; }
+.celebration-card > p { margin: 0 0 23px; color: #6C6273; font-size: 15px; line-height: 1.5; }
+.celebration-actions { display: grid; gap: 10px; }
+.celebration-primary, .celebration-secondary { min-height: 52px; display: flex; align-items: center; justify-content: center; gap: 9px; width: 100%; padding: 13px 10px; border-radius: 99px; font: inherit; font-size: 14px; font-weight: 700; cursor: pointer; touch-action: manipulation; transition: transform .12s, opacity .12s; }
+.celebration-primary { border: 1px solid #7559E8; background: #7559E8; color: #fff; }
+.celebration-secondary { border: 1px solid #D6CAF9; background: #F2ECFF; color: #6445D3; }
+.celebration-primary:disabled { opacity: .45; cursor: default; }.celebration-secondary:disabled { cursor: default; }
+.celebration-card button:focus-visible { outline: 3px solid #FF7049; outline-offset: 3px; }
+.celebration-card button:not(:disabled):active { transform: scale(.98); }
+.celebration-recovery { margin: -8px 0 16px; border-radius: 16px; background: #F1EAFB; padding: 8px 12px; }
+.celebration-recovery p { margin: 0; color: #62556C; font-size: 13px; }.celebration-recovery button { min-height: 48px; border: 0; background: transparent; color: #6445D3; font: inherit; font-size: 13px; font-weight: 700; text-decoration: underline; }
+.celebration-preview-note { display: block; margin: -12px 0 20px; color: #6C6273; font-size: 11px; }
+.celebration-overlay.is-leaving { animation: celebration-overlay-out .17s ease-in both; pointer-events: none; }
+@keyframes celebration-overlay-in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes celebration-overlay-out { to { opacity: 0; transform: translateY(6px); } }
+@keyframes celebration-diya-in { from { opacity: 0; transform: translateY(6px) scale(.94); } to { opacity: 1; transform: translateY(0) scale(1); } }
+@keyframes celebration-sparkles-in { from { opacity: 0; transform: translateY(3px); } to { opacity: 1; transform: translateY(0); } }
+@media (max-height: 650px) { .celebration-card { padding: 12px 20px 20px; border-radius: 26px; }.celebration-art { width: 180px; height: 180px; }.celebration-card > p { margin-bottom: 18px; }.celebration-card h1 { font-size: 25px; } }
+@media (prefers-reduced-motion: reduce) { .celebration-overlay, .celebration-diya, .celebration-sparkles, .celebration-overlay.is-leaving { animation: none; }.celebration-card button { transition: none; } }

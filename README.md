@@ -1,8 +1,8 @@
 # Thiri
 
-Mobile-first Vite + React + TypeScript application with the approved Splash, Welcome and Camera Permission screens, Screen 04: Scan the Ground, Screen 05: Choose Your Cracker, Screen 06: Place Your Cracker, Screen 07: Light the Fuse, Screen 08: Countdown, and Screen 09: AR Fireworks.
+Mobile-first Vite + React + TypeScript application with the approved Splash, Welcome and Camera Permission screens, Screen 04: Scan the Ground, Screen 05: Choose Your Cracker, Screen 06: Place Your Cracker, Screen 07: Light the Fuse, Screen 08: Countdown, Screen 09: AR Fireworks, and Screen 10: Celebrate Again.
 
-Flow: **Splash → Welcome → Camera Explanation → Enable Camera → Scan the Ground → Choose Your Cracker → Place Your Cracker → Light the Fuse → 5-second Countdown → Fireworks → completion/replay.**
+Flow: **Splash → Welcome → Camera Explanation → Enable Camera → Scan the Ground → Choose Your Cracker → Place Your Cracker → Light the Fuse → 5-second Countdown → Fireworks → Celebration Complete → Light the Fuse / Choose Another.**
 
 ## Run
 
@@ -22,7 +22,7 @@ The project is in this directory; run the commands alongside `package.json`. Vit
 - The permission preflight stream stops synchronously before XR8 opens its rear camera. XR8 exclusively owns the AR camera and render loop afterward.
 - No elapsed timer, camera-open event, NORMAL status alone or isolated feature-point hit can mark placement READY.
 - The reticle uses the supplied SVG as a real Three.js ground-plane texture. The compact guide uses the supplied transparent illustration and fades after usable tracking.
-- Choosing a cracker opens the functional selection sheet while retaining the same AR component, canvas, SDK camera and world context. The selected cracker carries into the clearly labeled Place Your Cracker → Light the Fuse → 5-second Countdown → Fireworks → completion/replay.
+- Choosing a cracker opens the functional selection sheet while retaining the same AR component, canvas, SDK camera and world context. The selected cracker carries into the clearly labeled Place Your Cracker → Light the Fuse → 5-second Countdown → Fireworks → Celebration Complete → Light the Fuse / Choose Another.
 - Tracking loss invalidates placement. Backgrounding pauses the SDK; resuming requires fresh tracking evidence. Closing, exiting AR, pagehide and failures stop/release resources.
 - Unsupported devices show an explanation rather than simulated AR. Procedural cracker models are implemented; world-space fireworks and fuse ignition are implemented.
 
@@ -45,6 +45,10 @@ Drag the HTML firestick tip toward the real projected model FusePoint, or use th
 ## Screen 09 — AR Fireworks
 
 Flower Pot has a golden fountain from its named opening; Ground Chakra spins a visual child and emits ground-level radial sparks; Rocket launches a separate visual from its fixed support, then bursts while world tracking and framing remain usable. A labelled, explicitly selected camera-relative sky preview handles sky limitations. Minimal completion supports Celebrate Again / Choose Another without restarting the camera or replaying automatically. Procedural pooled particles, adaptive budgets and safe interruption share the existing SDK loop. Audio remains silent pending approved files. [Implementation, tests and physical-device checklist](docs/FIREWORKS.md).
+
+## Screen 10 — Celebrate Again
+
+The real COMPLETED event opens a compact cream card over the live camera with approved diya/sparkle artwork, accessible close/replay/selection controls and safe-area layout. Valid replay preserves the model and world placement and returns directly to manual ignition; unreliable tracking offers Rescan. New selection disposes old models/fuse references without restarting the camera. Finished particle resources release before completion is shown. [Files, asset optimization, reset APIs and device checklist](docs/CELEBRATION_COMPLETE.md).
 
 ## Assets
 
@@ -80,6 +84,8 @@ npm run test:ignition-state
 npm run test:runtime
 npm run test:fireworks-effects
 npm run test:fireworks
+npm run test:celebration
+npm run test:celebration-memory
 ```
 
 Set `TEST_URL` to the server URL if necessary (e.g. `http://127.0.0.1:5174/`). `CHROMIUM_EXECUTABLE_PATH` can select an installed Chromium executable. Test missing browsers fail instead of silently skipping.

@@ -53,7 +53,7 @@ export class FireworksController {
       }
     }
     this.effect.update(Math.min(elapsed,this.effect.duration),particleBudgets[this.summary.fireworksQuality],viewportHeight);
-    if(elapsed>=this.effect.duration){this.effect.stop();this.audio.stop();this.publish({fireworksState:'COMPLETED',rocketGuidance:false});}
+    if(elapsed>=this.effect.duration){this.effect.stop();this.effect.dispose();this.effect=null;this.audio.stop();this.publish({fireworksState:'COMPLETED',rocketGuidance:false});}
   }
   interrupt(reason:'tracking'|'background'|'stale'='tracking'){
     if(this.summary.fireworksState!=='PLAYING')return;

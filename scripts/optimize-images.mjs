@@ -5,6 +5,8 @@ import path from 'node:path';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const jobs = [
+  ['celebration/glowing_diya_diwali_celebration', 768, false],
+  ['celebration/glossy_festive_sparkle_cluster', 256, false],
   ['branding/thiri-logo', null, true],
   ['branding/thiri-icon', null, true],
   ['crackers/flower-pot', 960, false],
@@ -20,7 +22,8 @@ const jobs = [
   ['onboarding/secure_purple_camera_icon', 256, false],
   ['onboarding/scan-ground-guide', 480, false],
 ];
-for (const [name, width, lossless] of jobs) {
+const only = process.argv.find(arg => arg.startsWith('--only='))?.slice(7);
+for (const [name, width, lossless] of jobs.filter(([name]) => !only || name.startsWith(only))) {
   const source = path.join(root, 'public/assets', `${name}.png`);
   const output = path.join(root, 'public/assets', `${name}.webp`);
   let pipeline = sharp(source);

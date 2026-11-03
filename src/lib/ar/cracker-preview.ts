@@ -42,6 +42,7 @@ export class CrackerPreview {
     this.shadow.scale.set(footprint, footprint, 1); this.highlight.scale.setScalar(footprint * 0.75);
     return model;
   }
+  clearModels() { this.models.forEach(model => model.dispose()); this.models.clear(); this.model=null; this.anchor.visible=false; }
   getModel() { return this.model; }
   setVisible(visible: boolean) { this.anchor.visible = visible; }
   setPreview(preview: boolean) { this.model?.setPreview(preview); this.highlight.visible = preview; }

@@ -88,5 +88,6 @@ export class IgnitionController {
   interrupt() { this.effect.hide();this.audio.stop();this.dragging=false;this.tip=null;this.publish({ignitionInterrupted:true,ignitionNear:false,countdown:null}); }
   /** Explicit user action cancels the old attempt; no automatic replay after loss/background. */
   resetAttempt() { this.reset(this.placed); }
+  forgetPlacement() { this.leave(); this.reset(null); }
   dispose() {this.leave();this.effect.dispose();this.context=null;this.placed=null;}
 }
